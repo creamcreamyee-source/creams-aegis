@@ -1,0 +1,380 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#101319"><title>CREAM’S AEGIS · 10막 20장</title><meta name="description" content="크림의 아이기스 v13 — 추가 API 비용 없는 10막 20장 텍스트 RPG"></head><body>
+<div class="wrap"><header><div class="brand"><div class="eyebrow">THE CREAM · CHRONICLE EDITION</div><h1>CREAM’S AEGIS</h1><div class="sub">v13.0 · 10막 20장 · 오프라인 GM · NEW GAME+</div></div><span class="tag" id="headerStatus">무료 모험</span></header>
+<main><div class="card maincard"><nav class="tabs"><button class="tab active" data-tab="adventure">⚔ 모험</button><button class="tab" data-tab="character">인물</button><button class="tab" data-tab="journal">연대기</button><button class="tab" data-tab="save">저장/복구</button></nav><div id="game" class="padded"></div></div><aside id="sidebar" class="card side"></aside></main><div class="foot">서사는 선택을 기억하고 판정은 엔진이 수행합니다. HTML 한 파일로 무료 실행.</div></div><div id="toast" role="status" aria-live="polite"></div>
+<style>:root{color-scheme:dark;--bg:#101319;--panel:#191e27;--panel2:#212936;--border:#343d49;--ink:#f1efe9;--muted:#a5abb5;--gold:#e0c28a;--sage:#9dbaa5;--red:#d88e80;--blue:#99b9d6;font:15px/1.7 -apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -12%,#273648 0%,transparent 60%),var(--bg);color:var(--ink);min-height:100vh}button,select,input,textarea{font:inherit}button{cursor:pointer;touch-action:manipulation}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #a8bfef;outline-offset:2px}button:disabled{opacity:.4;cursor:not-allowed}.wrap{max-width:1170px;margin:auto;padding:0 18px 64px}header{padding:25px 0 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px}.brand h1{margin:0;font:500 clamp(22px,3.3vw,32px)/1.25 Georgia,'Times New Roman',serif;color:var(--gold);letter-spacing:.04em}.eyebrow{font:700 10px/1.4 sans-serif;letter-spacing:.21em;color:#b9a17d}.sub{font-size:12px;color:var(--muted)}main{display:grid;grid-template-columns:minmax(0,1fr) 290px;align-items:start;gap:17px;padding-top:18px}.card{background:linear-gradient(155deg,#1e2530,#171d25);border:1px solid var(--border);border-radius:15px;overflow:hidden}.maincard{min-width:0}.padded{padding:23px 25px}.muted{color:var(--muted)}.tiny{font-size:12px}.tag{display:inline-block;border:1px solid #635747;background:#2b2a29;padding:2px 9px;border-radius:20px;color:var(--gold);font-size:11px;font-weight:600}.progress{display:flex;gap:4px;flex-wrap:wrap;margin:14px 0 21px}.progress i{display:block;height:6px;flex:1;min-width:8px;background:#35404c;border-radius:4px}.progress i.done{background:#b7a078}.progress i.current{background:#d7c7a9;box-shadow:0 0 8px #b39c7347}.sectionHeading{display:flex;justify-content:space-between;gap:10px;align-items:center}.sectionHeading h2{margin:7px 0 5px;font:500 28px/1.3 Georgia,'Malgun Gothic',serif}.description{white-space:pre-line;color:#dfded8;line-height:1.9;margin:18px 0}.question{padding-top:16px;border-top:1px solid var(--border);color:#e9dfc9;font-size:16px;font-weight:650}.choices{display:grid;gap:11px;margin:16px 0}.choice{width:100%;background:#252e3a;border:1px solid #47505c;border-radius:12px;padding:14px 16px;text-align:left;color:var(--ink);transition:background .15s,border-color .15s;min-height:66px}.choice:hover{background:#303d4b;border-color:#ac966b}.choice:active{background:#384556;transform:translateY(1px)}.choice small{display:block;color:#adb6bc;font-size:11px;margin-top:3px}.choice .mark{color:var(--gold);margin-right:7px}.actionLine{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;background:#2a3542;border:1px solid #546171;border-radius:9px;padding:11px 14px;color:var(--ink);font-weight:650;min-height:43px}.btn.gold{background:#a78856;border-color:#ccac78;color:#14171b}.btn.red{border-color:#785452;background:#422d30}.btn.light{border-color:#546a60;background:#274136}.btn:active{filter:brightness(1.2)}.side{padding:20px}.side h3{font:600 12px/1.4 sans-serif;letter-spacing:.14em;color:var(--gold);margin:0 0 12px}.stat{display:flex;justify-content:space-between;gap:8px;font-size:12px;margin:7px 0;color:var(--muted)}.stat b{color:var(--ink);font-weight:650}.meter{height:6px;background:#353b43;border-radius:6px;overflow:hidden;margin:-1px 0 9px}.meter span{display:block;height:100%;border-radius:6px;background:#9bb4a4}.meter.mp span{background:#9db5d7}.meter.sp span{background:#cfb08d}.divider{border:0;border-top:1px solid var(--border);margin:17px 0}.tabs{display:flex;gap:4px;padding:0 14px 14px;border-bottom:1px solid var(--border);flex-wrap:wrap}.tab{background:transparent;border:0;color:var(--muted);font-weight:650;padding:10px 12px;border-radius:8px;font-size:13px}.tab.active{background:#35404b;color:#f2e1c3}.result{border:1px solid #647867;background:linear-gradient(150deg,#28382f,#1f282b);border-radius:12px;padding:18px;margin-top:18px}.result.fail{border-color:#805c56;background:linear-gradient(150deg,#392d2e,#27262a)}.result h3{margin:0;color:#e9d8b2}.result p{margin:10px 0}.record{font:12px/1.7 ui-monospace,monospace;color:#c0c3c9;border-top:1px dashed #555b61;padding:9px 0;overflow-wrap:anywhere}.twocol{display:grid;grid-template-columns:1fr 1fr;gap:10px}.formField{display:grid;gap:5px;font-size:12px;color:#d0c6b6}.formField input,.formField select{background:#202732;border:1px solid #505b69;border-radius:8px;color:white;padding:11px;min-width:0;width:100%}.formField option{background:#202732;color:#eee}.attribute-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.attribute{border:1px solid var(--border);padding:10px;background:#202731;border-radius:9px;text-align:center}.attribute b{display:block;font-size:13px}.attribute .score{display:flex;justify-content:center;align-items:center;gap:10px}.attribute button{border:1px solid #606872;border-radius:5px;background:#303b48;color:#fff;width:27px;height:28px;padding:0}.attribute span{font-weight:700}.battleBox{background:#26202a;border:1px solid #5d4a56;border-radius:12px;padding:16px;margin:15px 0}.battleBox h3{margin:0}.battlegrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.battlebar{height:9px;border-radius:10px;background:#493639;overflow:hidden}.battlebar>span{display:block;height:100%;background:#c57f77}.battleButtons{display:grid;grid-template-columns:1fr 1fr;gap:9px}.battleButtons button{min-height:60px}.radioLine{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 13px}.radioLine label{background:#232d37;border:1px solid #425062;border-radius:8px;padding:7px 9px;font-size:12px}.radioLine input{margin-right:3px}.field{padding:12px;border:1px solid var(--border);border-radius:9px;margin:8px 0;display:flex;justify-content:space-between;align-items:center;gap:14px}.field .help{font-size:12px;color:var(--muted)}.full{width:100%}.notice{border-left:3px solid var(--gold);padding:9px 14px;background:#272b30;color:#d7d5ce;font-size:12px}.logrow{padding:8px 0;border-bottom:1px solid #313945;font-size:12px;line-height:1.55}.logrow b{color:#dbc194;font-size:10px;display:block}.foot{padding:23px 0;text-align:center;color:#79838d;font-size:11px}#toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#4c3439;border:1px solid #986d71;color:white;padding:12px 16px;border-radius:10px;box-shadow:0 8px 28px #0008;z-index:10;max-width:92vw;display:none}#toast.visible{display:block}.endingTitle{color:var(--gold);font:500 33px/1.35 Georgia,serif}.endCard{background:radial-gradient(ellipse at 70% 30%,#423b30,#21262d);border:1px solid #806c50;padding:24px;border-radius:13px}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+@media(max-width:800px){main{grid-template-columns:1fr}.side{order:2}.padded{padding:17px 17px}.wrap{padding:0 12px 42px}header{padding:18px 3px}.brand h1{font-size:24px}.sectionHeading h2{font-size:25px}.tabs{padding:0 8px 8px}.tab{padding:9px 10px}.attribute-grid{grid-template-columns:repeat(3,1fr)}.side{padding:16px}}
+@media(max-width:420px){.twocol{grid-template-columns:1fr}.battleButtons{grid-template-columns:1fr 1fr}.attribute-grid{grid-template-columns:repeat(2,1fr)}.choice{padding:13px 12px}.padded{padding:16px 15px}}
+</style><script>/* Original fantasy campaign. Twenty finite chapters, two decision beats each. */
+const D=(title,region,intro,first,second,battle=null)=>({title,region,intro,beats:[first,second],battle});
+const B=(text,options)=>({text,options});
+const O=(label,stat,dc,success,failure,axis,points=1)=>({label,stat,dc,success,failure,axis,points});
+const STORY=[
+D('꺼진 종의 항구','회색 항구','항구의 새벽에는 늘 종이 울렸다. 오늘은 파도 소리만 돌벽을 때린다. 작은 비숑 크림이가 은방울을 흔들며 부두 아래를 바라본다. 부두 일꾼들은 무언가를 봤지만 아무도 먼저 말하려 하지 않는다.',
+ B('부두의 소동을 어떻게 조사할까?',[
+ O('일꾼에게 차분히 사정을 듣는다','CHA',11,'선장이 마지막 종소리를 들은 시각과 붉은 돛을 기억해 낸다.','일꾼은 입을 다물지만, 그의 시선은 닻 창고를 향한다.','mercy'),
+ O('크림이가 맡은 냄새를 따라간다','WIS',11,'바닷물 속에 섞인 낯선 유황의 흔적을 찾는다.','희미한 냄새만 남는다. 크림이가 위험을 알리는 듯 몸을 낮춘다.','lore'),
+ O('창고의 자물쇠를 조사한다','INT',12,'낡은 자물쇠는 안쪽에서 열린 흔적이 있다. 납치가 아니라 공모였다.','흠집만 보이지만 관리인이 과하게 놀라는 반응을 보인다.','order')]),
+ B('항구 경비가 증인을 끌고 가려 한다. 무슨 선택을 할까?',[
+ O('증인을 보호하고 공개 진술을 요구한다','CHA',12,'경비는 한발 물러나고 시민들이 증인의 이름을 기억한다.','증인은 연행되지만 목격자들이 사건을 퍼뜨리기 시작한다.','mercy'),
+ O('경비의 이동 경로를 몰래 확인한다','DEX',12,'병사들이 향하는 창고와 남몰래 쓰는 암호를 알아낸다.','경비가 낌새를 채지만 숨은 문양을 본 것은 확실하다.','lore'),
+ O('경비의 허점을 직접 지적한다','STR',12,'경비는 무력을 쓰지 못하고 물러선다.','충돌 직전까지 갔지만 크림이가 끼어들어 상황이 가라앉는다.','order')])),
+D('안개숲의 이방인','안개숲','북쪽 숲은 가도가 끝나는 곳에서 시작된다. 사라진 종을 실은 마차의 자국은 이쪽으로 향했다. 큰 나무 아래 한 여인이 마차 잔해를 치우며 구조 신호를 보낸다.',
+ B('여인은 자신을 세린이라 소개하며 동생을 찾는다고 말한다.',[
+ O('구조를 돕고 함께 진실을 찾자고 제안한다','WIS',12,'세린은 손을 내민다. 위험한 길에서 서로 등을 맡길 가능성이 생겼다.','세린은 고맙다고 말하지만 아직 당신을 경계한다.','mercy'),
+ O('마차와 추격 흔적부터 확인한다','INT',12,'습격자는 물건이 아니라 사람 하나만 노렸다. 세린의 이야기와 일치한다.','정보는 불완전하다. 세린은 당신의 신중함을 지켜본다.','lore'),
+ O('추격대가 오기 전에 급히 옮긴다','DEX',12,'적을 피할 고지대를 발견해 세린을 안전하게 이끈다.','적이 가까워졌으나 세린이 지형을 활용해 몸을 숨긴다.','order')]),
+ B('추격자들이 숲길을 가로막는다. 전투를 피할 길도 있다.',[
+ O('추격자의 지휘관에게 이유를 묻는다','CHA',13,'그들이 정식 군이 아니라 사설 추적대임을 밝힌다.','그는 대답하지 않지만 갑옷에 왕도 문양이 없다는 점을 알아차린다.','mercy'),
+ O('연막을 만들어 크림이와 우회한다','DEX',13,'숲의 경사면을 통해 적의 뒤를 잡는 길이 열린다.','연막은 금세 걷히지만 빠져나갈 틈은 만들어졌다.','lore'),
+ O('전열을 정비하고 정면으로 나선다','STR',12,'세린이 활을 들고 당신의 후방을 맡는다.','적의 방패는 예상보다 단단하다. 크림이가 경계한다.','order')]),'scout'),
+D('길드의 두 장부','갈림길 길드','길드는 북쪽 도로를 봉쇄한 뒤 용병에게만 통행권을 팔고 있었다. 게시판에는 사라진 주민들의 이름 대신 수배된 도적의 초상만 붙어 있다.',
+ B('길드 책임자는 기록 열람을 거부한다.',[
+ O('두 장부의 금액 차이를 논리로 추궁한다','INT',13,'장부 한 권이 조작됐다는 증거를 확보한다.','수치는 맞지 않지만 증인에게 당장 확인받지 못한다.','lore'),
+ O('실종자 가족의 진술을 먼저 듣는다','WIS',12,'서로 다른 증언에서 같은 붉은 인장 이야기가 나온다.','가족들은 두려워하지만 크림이에게 경계를 조금 푼다.','mercy'),
+ O('통행세를 내고 먼저 현장을 확보한다','CHA',12,'정식 통행증을 받아 한시적인 행동권을 얻는다.','통행증 발급은 지연되지만 내부 경비 교대 시각을 알아낸다.','order')]),
+ B('길드 직원 하나가 밀서를 건넨다. 그를 어떻게 대할까?',[
+ O('익명을 보장하고 증언을 기록한다','CHA',13,'밀서에는 종을 옮긴 인물의 이름이 적혀 있다.','밀서는 찢겼지만 인장 일부를 지켜낸다.','mercy'),
+ O('밀서의 잉크와 종이를 확인한다','INT',12,'이 문서가 왕도에서 온 지령임을 확인한다.','출처는 불명확하지만 지령의 날짜가 어긋나는 것을 발견한다.','lore'),
+ O('직원의 안전한 탈출을 마련한다','DEX',13,'그는 나중에 다시 도움을 주겠다고 약속한다.','탈출은 간신히 성공한다. 길드는 누가 정보를 흘렸는지 찾기 시작한다.','order')])),
+D('붉은 협곡의 협상','붉은 협곡','협곡에는 임시 징수소가 생겨난 지 오래다. 황혼단의 병사와 굶주린 난민이 한 줄에서 대치하고 있다. 누구의 편에 서도 오래된 질서가 흔들린다.',
+ B('난민은 길을 열어 달라고 요구한다.',[
+ O('식량을 나누고 통과 협상을 한다','CHA',13,'아이를 업은 가족부터 지나간다. 전쟁보다 생명이 먼저라는 소문이 남는다.','모두를 지나가게 하진 못하지만 하루분 식량을 확보한다.','mercy'),
+ O('징수소 문서에서 허위 명령을 찾는다','INT',14,'명령서는 이미 폐기된 왕도 직인을 사용하고 있었다.','직인 진위를 결론내지 못하지만 책임자가 서류를 숨긴다.','lore'),
+ O('바위길을 찾아 우회 통로를 연다','DEX',13,'작은 무리가 경비 눈을 피해 협곡을 넘는다.','길이 위험해 돌아가지만 감시탑의 맹점을 발견한다.','order')]),
+ B('징수소 지휘관이 더는 협상을 허락하지 않는다.',[
+ O('무력 충돌 전에 마지막으로 항복을 권한다','CHA',14,'병사 일부가 무기를 낮춘다.','지휘관은 거절하지만 병사들은 흔들린다.','mercy'),
+ O('수레와 바위로 적의 시야를 가린다','INT',13,'적의 장창이 제대로 힘을 쓰지 못하는 지형이 된다.','차단은 완벽하지 않지만 난민이 물러날 시간을 번다.','lore'),
+ O('선두에 서서 돌파한다','STR',13,'협곡에 울리는 발걸음이 난민의 두려움을 덜어낸다.','충돌을 피하지 못한다. 동료는 당신의 선택을 기억한다.','order')]),'guard'),
+D('망각된 왕도의 편지','오래된 왕도','왕도에서 온 편지는 비가 젖은 채 발견된다. 봉인 없는 문서는 왕가의 서명이 아니라 폐위된 섭정의 글씨를 담고 있다.',
+ B('문서의 수신인은 누구일까?',[
+ O('편지를 시민 대표에게 공개한다','CHA',14,'시민들이 왕가의 내부 분열을 알게 된다.','폭로가 일찍 퍼져 군중이 동요하지만 침묵은 깨졌다.','mercy'),
+ O('서명과 왕실 문서의 날짜를 대조한다','INT',13,'섭정이 종을 옮기기 전 이미 계획을 세웠다는 사실이 드러난다.','추정만 가능하지만 서명이 최근 쓰인 것이라는 단서를 얻는다.','lore'),
+ O('수신인을 직접 추적한다','WIS',13,'방랑 기사 한 명이 왕도 밖으로 떠났음을 알아낸다.','단서는 끊어지지만 기사단의 상징을 확인한다.','order')]),
+ B('문서 끝에는 한 문장이 적혀 있다. “종은 감옥이자 열쇠다.”',[
+ O('세린에게 먼저 사실을 알린다','WIS',13,'세린은 동생의 행방과 종의 연관성을 떠올린다.','세린은 침묵하지만 적어도 당신이 숨기지 않았다는 걸 안다.','mercy'),
+ O('종의 원리를 해독할 기록을 찾는다','INT',14,'낡은 학자의 이름과 먼 도서관이 등장한다.','문장은 여전히 모호하지만 특정 룬 배열을 발견한다.','lore'),
+ O('편지를 안전한 장소에 보관한다','DEX',12,'원본을 노리는 감시자를 따돌린다.','사본을 만들 시간이 부족하지만 원본은 지켜냈다.','order')])),
+D('불 꺼진 도서관','침묵의 도서관','도서관의 중심 계단이 무너져 있다. 사서들은 고대 종에 관한 책의 마지막 장이 한꺼번에 찢겼다고 말한다. 살아남은 기록관은 금서의 문을 가리킨다.',
+ B('어떤 정보부터 찾을까?',[
+ O('기록관의 두려움을 이해하고 듣는다','WIS',14,'종이 수호의 제구였다는 증언을 얻는다.','그는 일부를 숨기지만 수호자가 어디 있는지는 알려 준다.','mercy'),
+ O('비전 도해를 복원한다','INT',14,'종이 세 개의 핵으로 연결되어 있음을 밝혀낸다.','도해를 완성하지 못했지만 해독의 방향은 옳았다.','lore'),
+ O('잔해 사이의 안전한 통로를 연다','STR',13,'닫힌 서고로 향하는 길을 확보한다.','문은 완전히 열리지 않지만 동료가 지나갈 공간이 생긴다.','order')]),
+ B('금서의 수호자가 깨어난다. 도서관을 지키는 자에게 무엇을 말할까?',[
+ O('지식이 사람을 해치지 않도록 지키겠다고 맹세한다','CHA',14,'수호자는 잠시 적의를 누그러뜨린다.','수호자는 시험을 요구하지만 즉시 공격하지는 않는다.','mercy'),
+ O('수호 룬의 허점을 역이용한다','INT',15,'잠금 문장이 잠시 흔들리며 새로운 진입로가 열린다.','수호자는 경계하며 결전을 준비한다.','lore'),
+ O('동료를 뒤로 보내고 수호자에게 맞선다','CON',13,'수호자는 당신을 정식 도전자로 인정한다.','충격이 거세지만 동료는 당신이 방패가 되는 모습을 기억한다.','order')]),'warden'),
+D('세린의 잃어버린 이름','은빛 마을','마을 폐허에는 세린이 어릴 적 새겼다는 이름이 남아 있다. 그러나 이름의 마지막 글자가 지워졌다. 주민들은 세린의 동생을 반역자의 자식이라 부른다.',
+ B('세린이 자신의 과거를 말하려다 멈춘다.',[
+ O('말할 준비가 될 때까지 기다린다','WIS',12,'세린이 먼저 당신에게 가족의 약속을 이야기한다.','그는 아직 말하지 못하지만 경계가 조금 풀린다.','mercy'),
+ O('지워진 비문을 살핀다','INT',14,'이름을 지운 것은 마을 사람이 아니라 황혼단의 인장이다.','완전한 이름은 찾지 못했으나 지워진 시기를 알아낸다.','lore'),
+ O('오래된 원한을 가진 촌장을 만난다','CHA',14,'촌장이 세린의 가족을 의심한 이유를 털어놓는다.','촌장은 면담을 거부하지만 두려움이 적의보다 크다는 것을 알게 된다.','order')]),
+ B('마을 회관에는 실종자의 기록이 불타고 있다.',[
+ O('기록보다 주민을 먼저 구한다','CON',13,'아이들과 노인을 구하며 주민들의 신뢰를 얻는다.','모두 구하지 못하지만 위험한 불길을 막는다.','mercy'),
+ O('불타기 전 마지막 기록을 확보한다','DEX',14,'세린의 동생이 살아 있었던 최근 날짜가 남는다.','책은 타 버리지만 흔적을 통해 목적지를 알아낸다.','lore'),
+ O('불을 지른 자의 흔적을 추적한다','WIS',14,'불길 뒤에서 황혼단 정보원의 행로를 잡는다.','도망자는 사라지지만 영수증 하나가 남는다.','order')])),
+D('검의 수도원','백령 수도원','산속 수도원은 이미 전쟁에 휘말린 사람을 위해 문을 열어 두었다. 주지는 무력을 버리는 자에게만 안식처를 주겠다고 한다.',
+ B('주지는 당신의 무기를 내려놓으라고 한다.',[
+ O('무기를 맡기고 수도원의 규칙을 존중한다','CHA',13,'수도승들은 상처 입은 크림이의 발을 살펴준다.','규칙을 따르지만 수도승 일부의 시선은 차갑다.','mercy'),
+ O('숨겨진 훈련장을 살핀다','WIS',14,'수도원이 과거 정예 기사단의 피난처였음을 발견한다.','수도원에 무장한 이들이 있다는 사실만 확인한다.','lore'),
+ O('비전 검술의 시험을 신청한다','STR',14,'오래된 대련 기록에 당신의 이름이 남는다.','대련은 어려웠지만 기본 기법의 약점을 알게 된다.','order')]),
+ B('한 수도승이 전쟁을 막으려면 종의 힘을 파괴해야 한다고 말한다.',[
+ O('그가 종을 두려워하는 이유를 듣는다','WIS',13,'그는 과거 종이 피난민을 구한 사건을 고백한다.','이유는 알 수 없지만 단순한 증오는 아님을 느낀다.','mercy'),
+ O('종의 역사와 수도원의 기록을 대조한다','INT',14,'종은 사람의 서약을 증폭하지만 자유의사를 대체하지 못한다.','정보는 엇갈리지만 진실에 가까워지고 있다.','lore'),
+ O('힘은 다루는 자에게 달렸다고 설득한다','CHA',15,'수도승 중 일부가 자신의 판단을 다시 생각한다.','그들은 동의하지 않지만 대화를 멈추지 않는다.','order')])),
+D('백야의 습격','국경의 야영지','밤에 멈춰야 할 야영지가 횃불에 휩싸인다. 황혼단은 종을 찾는 이들을 잡으려는 것이 아니라 한 명의 증인을 죽이려 한다.',
+ B('방어선을 세울 시간이 짧다.',[
+ O('주민을 후방으로 보내고 치료소를 만든다','WIS',14,'초기 피해를 줄이고 동료의 신뢰를 얻는다.','후방이 혼란스럽지만 아이들을 우선 보호한다.','mercy'),
+ O('공격 부대의 진입로를 분석한다','INT',14,'적의 기습 지점을 예측해 불리한 지형을 피한다.','일부 적을 놓쳤지만 공격 방향을 알아낸다.','lore'),
+ O('경계병들과 정면 방어선을 만든다','STR',14,'방어선이 적의 첫 돌격을 견뎌 낸다.','방어선이 밀렸지만 주민이 대피할 시간을 벌었다.','order')]),
+ B('증인이 숨어 있는 장막이 찢겨 나간다.',[
+ O('증인의 말을 먼저 듣고 그가 숨을 곳을 만든다','CHA',14,'증인은 종의 실체를 보았다고 말한다.','증인은 떨며 말을 끊지만 자신이 도망친 경로를 알려 준다.','mercy'),
+ O('장막에 남은 마력 자국을 읽는다','INT',14,'추격자들이 종의 위치를 추적하는 법을 발견한다.','마력 흔적은 불안정하지만 다음 공격을 예측할 단서다.','lore'),
+ O('중앙의 침입자를 제압한다','DEX',14,'야영지에 퍼진 공포가 잠시 가라앉는다.','침입자는 물러나지만 곧 다시 나타날 것이다.','order')]),'raider'),
+D('검은 성전의 갈림길','성전 평원','왕도군과 황혼단이 같은 평원에 깃발을 세웠다. 서로 다른 명분을 내세우지만 어느 쪽도 주민에게 길을 열어 주지 않는다. 바람은 전투를 기다리고 있다.',
+ B('두 진영의 전쟁을 어떻게 막아볼까?',[
+ O('주민 대피를 교전 조건으로 제안한다','CHA',15,'양측이 잠시 검을 멈추고 통로를 연다.','대피 통로가 좁지만 위험한 사람들을 먼저 내보낸다.','mercy'),
+ O('전장 아래 봉인의 균열을 조사한다','INT',15,'교전이 봉인을 찢어놓을 위험을 밝혀낸다.','증거는 부족하지만 땅이 울리는 이유를 알아낸다.','lore'),
+ O('보급선을 확보해 불필요한 살상을 막는다','WIS',14,'보급로가 열려 적대 진영도 조금 진정된다.','보급은 충분치 않지만 군대가 하루를 버틸 수 있게 된다.','order')]),
+ B('지휘관들이 당신에게 한쪽을 택하라고 요구한다.',[
+ O('어느 쪽에도 복종하지 않겠다고 선언한다','CHA',15,'시민들은 제삼의 길이 있음을 알게 된다.','지휘관의 반발이 크지만 그 선언은 오래 남는다.','mercy'),
+ O('전쟁의 배후 문서를 공개한다','INT',15,'충돌을 유도한 인물이 섭정임을 알린다.','문서의 진위 논쟁이 시작되지만 큰 균열을 만든다.','lore'),
+ O('직접 병사들과 약속을 맺는다','STR',14,'당신을 따르는 소규모 방위대가 생겨난다.','일부만 따르지만 무고한 이의 방패는 만들어졌다.','order')])),
+D('심연으로 내려가는 계단','심연의 층계','전쟁의 소음은 뒤로 사라졌다. 종이 잠들어 있던 지하계단에서 누군가 세린의 동생 이름을 부른다. 계단의 마지막 층에는 발소리가 하나 더 들린다.',
+ B('누가 숨겨진 통로를 열 것인가?',[
+ O('먼저 크림이를 안전한 곳에 두고 조사한다','WIS',15,'크림이가 숨은 지하공기를 감지해 함정을 피한다.','크림이가 꼬리를 낮추고 위험한 문턱을 알린다.','mercy'),
+ O('심연 문자에 남은 계약을 읽는다','INT',15,'인장에 쓰인 이름이 사람 이름이 아닌 역할명임을 알아낸다.','문자는 흐리지만 계약의 구조를 이해하기 시작한다.','lore'),
+ O('장애물을 제거하고 통로를 뚫는다','STR',15,'잠긴 문이 열리며 지하의 울음소리가 들린다.','무거운 돌이 떨어지지만 후퇴할 길은 확보된다.','order')]),
+ B('층계 아래의 수호자가 전진을 막는다.',[
+ O('수호자의 임무를 먼저 물어본다','CHA',15,'그는 도망치지 않은 이에게만 진실을 보여 주겠다고 말한다.','수호자는 대답하지 않지만 고개를 숙이는 의식을 취한다.','mercy'),
+ O('수호문장의 패턴을 분석한다','INT',16,'그의 약점을 알리는 음각 문양을 찾는다.','문양이 어긋나지만 공격 주기를 눈으로 익힌다.','lore'),
+ O('동료를 엄호하며 전진한다','CON',15,'동료에게 위험을 넘기지 않고 전열을 유지한다.','타격은 거칠지만 가장 위험한 길을 자신이 맡는다.','order')]),'sentinel'),
+D('잊힌 맹세의 정원','심연의 정원','끝없는 돌계단 위에 뜻밖의 정원이 펼쳐진다. 여기에 갇힌 것은 괴물이 아니라 왕도와 심연이 함께 잊으려 한 사람들이었다.',
+ B('심연의 포로들이 도움을 청한다.',[
+ O('먼저 물과 식량을 나눈다','WIS',14,'포로들은 수백 년 전 첫 종의 이름을 알려 준다.','감사와 함께 서로 다른 두 이야기를 듣게 된다.','mercy'),
+ O('감옥이 작동하는 원리를 조사한다','INT',16,'감옥은 힘이 아니라 잊힌 맹세로 유지된다는 사실을 발견한다.','마법은 아직 풀리지 않지만 균열이 생긴다.','lore'),
+ O('감시자의 열쇠를 빼앗아 문을 연다','DEX',15,'수감자 몇 명이 자유를 되찾는다.','열쇠는 부서지지만 감시자가 숨기는 통로를 본다.','order')]),
+ B('해방한 사람들은 각자 다른 미래를 원한다.',[
+ O('모두가 스스로 선택하도록 기다린다','CHA',15,'정원에 자발적인 협약이 맺어진다.','모두가 합의하지는 않지만 폭력 없이 갈라선다.','mercy'),
+ O('그들의 기억을 기록해 잊히지 않게 한다','INT',15,'첫 번째 진짜 연대기가 완성된다.','글이 누락되지만 중요한 이름은 남는다.','lore'),
+ O('앞으로 함께 싸울 이들을 모은다','STR',15,'정원에서 작은 자원 방위대가 탄생한다.','많지 않은 이가 따라오지만 약속은 진실하다.','order')])),
+D('세 개의 왕관','도금된 회랑','왕관 세 개가 긴 탁자에 놓여 있다. 어느 하나도 원래 주인을 기다리지 않는다. 회랑의 그림자는 오래전에 끝나야 할 왕위 계승을 다시 요구한다.',
+ B('왕관을 어떻게 다룰까?',[
+ O('왕관의 소유권을 시민들에게 돌리자고 제안한다','CHA',16,'평범한 사람들도 통치에 발언권을 얻는다.','귀족들은 분노하지만 시대의 질문이 되살아난다.','mercy'),
+ O('왕관에 숨은 계약의 조항을 읽는다','INT',16,'왕관마다 종의 다른 기능이 연결돼 있음을 알게 된다.','완전한 해독엔 실패했지만 위험한 문구를 찾아낸다.','lore'),
+ O('왕관을 한곳에 모아 통제한다','WIS',15,'적어도 누군가 몰래 차지할 위험은 줄어든다.','왕관의 힘이 흔들려 동료의 경계가 깊어진다.','order')]),
+ B('회랑의 수호대장이 왕관을 넘기라고 요구한다.',[
+ O('싸울 필요 없는 이유를 설득한다','CHA',16,'수호대장이 명령의 부당함을 의심하기 시작한다.','설득은 통하지 않지만 그는 무고한 주민에게는 칼을 돌리지 않는다.','mercy'),
+ O('그가 숨기는 진짜 계약문을 폭로한다','INT',16,'수호대장은 자신도 계약에 묶인 사실을 깨닫는다.','수호대장은 흔들리지만 마지막 결단을 거부한다.','lore'),
+ O('왕관을 건 전투를 받아들인다','STR',15,'수호대는 당신을 공식 도전자로 인정한다.','대결은 피할 수 없지만 비열한 기습은 없을 것이다.','order')]),'captain'),
+D('불타는 수도','왕도 중심부','도시 전체가 서로 다른 깃발을 달고 있다. 섭정은 종의 힘을 사용해 누구나 같은 미래를 꿈꾸게 하겠다고 선언한다. 크림이는 그 말이 나오자 웅크려 낮게 으르렁거린다.',
+ B('도시의 혼란에서 무엇을 먼저 할까?',[
+ O('폭동 사이에 갇힌 주민을 구한다','WIS',16,'시민들은 당신의 이름을 두려움이 아니라 신뢰로 기억한다.','생명을 모두 지키지 못했지만 구호로가 열린다.','mercy'),
+ O('섭정의 마법 방식을 조사한다','INT',17,'그가 종의 세 번째 핵을 무리하게 깨웠다는 증거가 나온다.','마법을 멈추지는 못했지만 그 영향 범위가 밝혀진다.','lore'),
+ O('성문을 장악해 군대의 이동을 막는다','STR',16,'성문에서 시민군이 시간을 번다.','성문은 버티지만 완전한 통제는 어렵다.','order')]),
+ B('도시 광장에서 섭정의 대변인이 당신과 만나자고 한다.',[
+ O('공개된 장소에서 협상한다','CHA',17,'그가 꿈을 강요한다는 사실이 군중 앞에 드러난다.','대변인은 침묵하지만 사람들이 의심하기 시작한다.','mercy'),
+ O('말의 균열에서 숨은 명령을 찾아낸다','WIS',16,'대변인이 두려워하는 자의 이름을 알게 된다.','미묘한 반응만 남지만 다음 행동의 실마리가 된다.','lore'),
+ O('대변인을 억류해 확전 명령을 막는다','DEX',16,'명령문이 폐기되고 시민군이 숨을 돌린다.','그는 도주하지만 중요한 시간은 벌었다.','order')])),
+D('신의 침묵','성운 제단','하늘은 한동안 아무 말도 하지 않았다. 수호자를 자처한 신관들도 자신들이 진실을 아는지 확신하지 못한다. 제단 아래에서 종의 첫 제작자가 남긴 음성이 울린다.',
+ B('제작자의 기록을 어떻게 해석할까?',[
+ O('오래된 신탁보다 지금 사람의 선택을 믿는다','CHA',16,'제단의 오래된 서약이 새로운 뜻을 갖는다.','신관들이 반발하지만 살아 있는 사람들의 의견이 남는다.','mercy'),
+ O('제작자의 기억 조각을 해독한다','INT',17,'종은 세계의 고통을 한 곳에 묶기 위해 만들어졌음을 안다.','일부가 흐리지만 기억 조각에 거짓이 섞였다는 것을 본다.','lore'),
+ O('제단의 방어 장치를 통제한다','WIS',16,'누군가 제단을 무기로 쓰지 못하도록 막는다.','제단은 불안정하지만 위험한 장치 하나가 멈췄다.','order')]),
+ B('신관은 자신의 미래를 당신에게 맡기려 한다.',[
+ O('그들 스스로 결단하라고 말한다','CHA',16,'신관들이 처음으로 독립적인 판단을 시작한다.','아직 모두가 따르지는 않지만 침묵을 강요하지 않는다.','mercy'),
+ O('예언 대신 재현 가능한 증거를 제시한다','INT',17,'신관들 사이의 오랜 거짓말을 논박한다.','증거가 부족하지만 허황된 예언에 균열이 간다.','lore'),
+ O('일시적인 수호자의 역할을 맡는다','CON',16,'그들은 당신을 지도자가 아니라 방패로 인정한다.','부담이 크지만 사람들의 공포가 줄어든다.','order')]),'oracle'),
+D('크림이의 은방울','별의 오솔길','크림이의 은방울이 오래된 별빛 아래서 처음으로 긴 울림을 낸다. 종의 핵은 모두 서로 다른 방향에 있는데, 은방울은 그 사이에서 조용히 공명한다.',
+ B('크림이가 오래된 폐허로 당신을 이끈다.',[
+ O('크림이에게 스스로 길을 고르게 한다','WIS',16,'크림이는 사람보다 먼저 위험한 냄새를 감지하고 우회로를 찾는다.','크림이는 두 길 사이에서 망설이지만 위험을 알려 준다.','mercy'),
+ O('은방울의 공명을 관찰한다','INT',17,'크림이는 종을 복제한 물건이 아니라 균형을 감지하는 존재임을 알게 된다.','원리는 모르지만 어떤 소리가 크림이를 힘들게 하는지 알 수 있다.','lore'),
+ O('위험한 길의 함정을 먼저 해제한다','DEX',16,'크림이가 뛰어놀 안전한 길을 만든다.','함정 몇 개는 남았지만 주요 통로를 확보했다.','order')]),
+ B('그림자가 크림이의 은방울을 빼앗으려 한다.',[
+ O('크림이를 품에 안고 뒤로 물러난다','WIS',15,'크림이가 당신을 신뢰하며 안정을 찾는다.','크림이가 놀라지만 곧 침착해진다.','mercy'),
+ O('그림자의 본체를 조사한다','INT',17,'그림자는 종의 잔향이며 살아 있는 의지가 아니라는 사실을 안다.','그림자의 수상한 동작을 눈에 익힌다.','lore'),
+ O('그림자를 몰아내기 위해 맞선다','STR',16,'크림이가 위험에서 벗어나고 그림자는 모습을 드러낸다.','싸움이 이어지지만 크림이가 돌진로를 알려 준다.','order')]),'shade'),
+D('잿빛 연맹','모임의 광장','길드 대표와 난민, 도시 수호대, 심연의 생존자가 같은 탁자에 앉았다. 그들의 요구는 서로 충돌한다. 누구도 완전한 승리를 얻을 수 없다.',
+ B('연맹의 첫 원칙을 어떻게 세울까?',[
+ O('약자의 안전을 맨 앞에 둔다','CHA',17,'서로 다른 진영이 최소한의 공동 안전 규칙에 합의한다.','합의문은 불완전하지만 난민의 발언권이 확보된다.','mercy'),
+ O('모든 진영의 숨겨진 약속을 검증한다','INT',17,'배후 거래가 드러나면서 불신의 원인을 제거한다.','일부 진영이 퇴장하지만 거짓된 합의는 막는다.','lore'),
+ O('임시 방위 체계를 세운다','WIS',16,'연맹이 공격을 버틸 현실적인 체계를 갖춘다.','방위대는 작은 규모로 시작하지만 실제 준비가 진행된다.','order')]),
+ B('세린이 자기 동생의 운명을 묻는다.',[
+ O('세린이 선택할 시간을 준다','WIS',16,'세린은 당신과의 약속을 스스로 다시 정한다.','세린은 혼자 생각할 시간이 필요하다고 말한다.','mercy'),
+ O('지금까지의 단서로 실종 경로를 정리한다','INT',17,'동생은 희생된 게 아니라 종의 핵을 지키고 있을 가능성이 높다.','확정하진 못했지만 거짓된 사망 보고를 반박한다.','lore'),
+ O('세린과 함께 마지막 원정에 나서자고 맹세한다','CHA',16,'세린은 자기 뜻으로 함께하기로 한다.','세린은 망설이지만 함께하는 약속을 부정하지 않는다.','order')])),
+D('마지막 봉쇄선','종의 벽','세 개의 핵이 하나로 울리기 전 마지막 벽에 도착했다. 섭정의 근위대는 자신들이 세상을 구한다고 믿는다. 지키려는 것과 가두려는 것의 경계가 무너진다.',
+ B('마지막 방어선을 어떻게 돌파할까?',[
+ O('근위대에게 진실을 알릴 기회를 준다','CHA',17,'병사 일부가 무기를 내려놓는다.','진실은 바로 믿어지지 않지만 의문이 남는다.','mercy'),
+ O('벽 아래 숨겨진 고대 문을 연다','INT',18,'거대한 벽이 만들어진 목적이 드러난다.','문의 끝은 보이지 않지만 적의 배치가 흔들린다.','lore'),
+ O('동료와 함께 전면 돌파한다','STR',17,'동료들의 호흡이 맞아 방어선의 일부가 무너진다.','충돌이 격하지만 철수 경로는 유지된다.','order')]),
+ B('근위대장이 더는 물러서지 않겠다고 한다.',[
+ O('그의 신념을 꺾지 않고 다른 해법을 제시한다','WIS',17,'근위대장이 자신이 지킨 사람들을 떠올린다.','그는 싸움을 멈추지 않지만 무고한 사람을 공격하지 않는다.','mercy'),
+ O('그의 계약에 숨은 강제 조항을 폭로한다','INT',18,'근위대장의 동요가 적군 전체에 퍼진다.','그는 흔들리지만 검을 놓지 않는다.','lore'),
+ O('결투를 정식으로 받아들인다','STR',17,'그는 기사로서 마주 선다.','전투는 불가피하지만 비겁한 수단을 쓰지는 않는다.','order')]),'champion'),
+D('섭정의 마지막 제안','침묵의 왕좌','왕좌 위의 섭정은 괴물이 아니라 지친 인간처럼 보인다. 그는 종을 통해 전쟁이 없는 세상을 만들겠다고 말한다. 대신 누구도 스스로 위험한 선택을 할 수 없게 된다.',
+ B('섭정에게 무엇을 묻겠는가?',[
+ O('자유 없는 평화도 평화인지 묻는다','CHA',18,'섭정은 답하지 못한다. 대신 오래된 전쟁의 상처를 드러낸다.','섭정은 분노하지만 그의 명분에 균열이 생긴다.','mercy'),
+ O('그가 숨기는 최종 봉인의 조건을 추궁한다','INT',18,'종을 깨우려면 단 한 명의 의지를 영구히 묶어야 한다는 사실을 알아낸다.','조건은 흐리지만 섭정이 감추는 희생을 발견한다.','lore'),
+ O('무기의 힘보다 주민의 뜻을 앞세운다','WIS',17,'시민들이 다시 자신의 언어로 외친다.','압도적인 무력 앞에서도 독립적인 뜻이 살아남는다.','order')]),
+ B('섭정의 힘이 왕좌에서 흘러내린다.',[
+ O('그를 살린 채 권력을 내려놓게 설득한다','CHA',18,'섭정은 잠깐 손을 멈춘다. 최종 결단의 문이 열린다.','섭정은 듣지 않지만 그를 구할 가능성까지 사라진 것은 아니다.','mercy'),
+ O('종의 세 핵을 분리하는 순서를 알아낸다','INT',18,'종을 파괴하지 않고 무력화하는 방법을 알아낸다.','방법의 일부만 알지만 전투에서 이용할 수 있다.','lore'),
+ O('최종 결전에 대비해 동료를 정렬한다','STR',17,'동료들은 각자의 결의로 전투에 나선다.','동료들은 긴장하지만 서로를 버리지 않는다.','order')]),'regent'),
+D('종의 마지막 메아리','세계의 심장','전쟁은 끝나지 않았지만 끝낼 수 있는 순간에 도착했다. 세 개의 핵은 세계 전체를 울릴 준비를 마쳤다. 종은 누군가의 명령을 기다리는 도구가 아니다. 당신의 판단이 앞으로의 시대를 남긴다.',
+ B('종 앞에서 마지막으로 무엇을 지킬 것인가?',[
+ O('강요당하지 않을 자유를 지킨다','CHA',18,'종의 소리가 사람들의 마음에서 명령의 흔적을 지운다.','당신의 뜻은 온전히 전달되지 않았지만 자유의 씨앗이 남는다.','mercy'),
+ O('오래된 진실을 밝힌다','INT',18,'수백 년의 거짓된 역사에 균열이 가고 사람들이 진짜 기억을 되찾는다.','진실의 일부만 드러나지만 새로운 기록을 시작할 근거가 생긴다.','lore'),
+ O('누구도 이 힘을 독점하지 못하게 한다','WIS',18,'종의 권한이 여러 수호자의 약속으로 나뉜다.','힘을 완전히 나누지 못하지만 독점을 막을 장치가 생긴다.','order')]),
+ B('마지막 핵에 손을 댄다. 그때 크림이의 은방울이 조용히 울린다.',[
+ O('종을 봉인하고 세계에 선택권을 돌려준다','WIS',18,'강제의 시대가 끝났다. 세계는 불안하지만 스스로 살아간다.','봉인은 완벽하지 않지만 누군가의 자유를 지키는 첫 걸음이 된다.','mercy'),
+ O('종의 지식을 세계에 나누어 공개한다','INT',18,'금단의 지식이 시민과 학자들에게 분산된다.','지식은 위험하지만 누구도 진실을 혼자 독점하지 못한다.','lore'),
+ O('종을 공적인 협약 아래 관리한다','CHA',18,'여러 도시가 종을 공동으로 관리하는 약속을 맺는다.','협약에는 갈등이 남지만 새로운 질서가 만들어진다.','order')]))
+];
+const ACT_TITLES=['잿빛의 서막','갈라진 왕국','망각의 유적','피의 서약','검은 성전','심연의 문','무너진 질서','신들의 침묵','마지막 원정','아이기스의 운명'];
+const ENEMIES={
+ scout:{name:'황혼단 정찰대',hp:100,def:12,hit:4,dice:6,bonus:2,xp:110,gold:50},guard:{name:'협곡 징수대장',hp:145,def:13,hit:5,dice:6,bonus:3,xp:170,gold:60},warden:{name:'도서관의 금서 수호자',hp:180,def:14,hit:5,dice:8,bonus:3,xp:230,gold:90},raider:{name:'백야의 침입자',hp:220,def:15,hit:6,dice:8,bonus:3,xp:270,gold:120},sentinel:{name:'심연 층계의 수호자',hp:240,def:15,hit:7,dice:8,bonus:4,xp:330,gold:110},captain:{name:'세 왕관의 호위대장',hp:285,def:16,hit:7,dice:10,bonus:3,xp:380,gold:150},oracle:{name:'제단의 침묵하는 화신',hp:320,def:16,hit:8,dice:10,bonus:4,xp:430,gold:0},shade:{name:'은방울을 쫓는 그림자',hp:340,def:17,hit:8,dice:10,bonus:5,xp:470,gold:0},champion:{name:'종벽의 근위대장',hp:390,def:18,hit:9,dice:10,bonus:5,xp:510,gold:200},regent:{name:'최후의 섭정',hp:480,def:19,hit:10,dice:10,bonus:6,xp:650,gold:0}
+};
+
+'use strict';
+const SAVE_KEY='creams_aegis_13_save', BACKUP_KEY='creams_aegis_13_backup';
+const XP_THRESHOLDS=[0,200,500,900,1500,2300,3300,4600,6200,8200,10700,13700];
+const POINT_COST={8:0,9:1,10:2,11:3,12:4,13:5,14:7,15:9};
+const STATS=['STR','DEX','CON','INT','WIS','CHA'];
+const ATTR_KR={STR:'근력',DEX:'민첩',CON:'건강',INT:'지능',WIS:'지혜',CHA:'매력'};
+const CLASSES={
+ warrior:['검술가','STR','흑월참','파진격',false],paladin:['서약기사','STR','서약의 강타','수호의 선고',false],rogue:['그림자 도적','DEX','배후 찌르기','맹독 단검',false],ranger:['야수 추적자','DEX','급소 사격','속박 화살',true],mage:['비전 마도사','INT','성운탄','빙결의 룬',true],warlock:['심연 계약술사','CHA','심연의 별','생명 흡수',true],cleric:['성직자','WIS','심판의 빛','회복의 기도',true],bard:['음유술사','CHA','불협의 선율','용기의 노래',true],monk:['기공무인','DEX','백뢰연타','기혈 봉쇄',false],druid:['변신술사','WIS','가시 폭풍','뿌리의 구속',true],engineer:['룬공학자','INT','전하탄','포획 장치',true],berserker:['광전사','STR','혈풍참','파쇄의 포효',false]
+};
+const ANCESTRIES={human:['인간','CHA'],highElf:['고위 엘프','INT'],woodElf:['숲 엘프','WIS'],drow:['황혼 엘프','DEX'],dwarf:['드워프','CON'],tiefling:['지옥혈족','CHA'],dragon:['용혈족','STR'],beast:['야수인','WIS'],halfling:['반신족','DEX'],aasimar:['천상 후예','WIS'],golem:['철맥인','INT'],changeling:['변신족','CHA']};
+const BACKGROUNDS={wanderer:['방랑자','WIS'],soldier:['전직 용병','STR'],scholar:['금서 연구자','INT'],artisan:['장인','INT'],noble:['몰락 귀족','CHA'],outlaw:['도망자','DEX'],healer:['순례 치유사','WIS'],seeker:['유적 탐사자','WIS']};
+const PRESETS={warrior:[15,13,14,8,12,10],paladin:[15,10,13,8,12,14],rogue:[10,15,13,12,14,8],ranger:[12,15,13,10,14,8],mage:[8,12,13,15,14,10],warlock:[8,12,13,14,10,15],cleric:[8,10,13,12,15,14],bard:[8,13,12,14,10,15],monk:[12,15,13,8,14,10],druid:[8,12,13,14,15,10],engineer:[10,13,14,15,12,8],berserker:[15,13,14,8,12,10]};
+const DIFFICULTIES={story:{label:'이야기',health:.72,hit:-2,dmg:.78,xp:1},normal:{label:'모험가',health:1,hit:0,dmg:1,xp:1},tactician:{label:'전술가',health:1.18,hit:1,dmg:1.12,xp:1},legend:{label:'전설',health:1.38,hit:2,dmg:1.25,xp:1}};
+const BOONS={none:['없음','1회차 기본 시작'],insight:['초월의 직감','주요 능력 판정 +1'],vigor:['잊히지 않는 생명','기본 최대 HP +20'],legacy:['선행자의 유산','시작 화폐 +200']};
+const isValidStats=stats=>stats&&STATS.every(k=>Number.isInteger(stats[k])&&stats[k]>=8&&stats[k]<=15)&&STATS.reduce((v,k)=>v+POINT_COST[stats[k]],0)<=27;
+const mod=x=>Math.floor((x-10)/2);
+const clamp=(x,min,max)=>Math.min(max,Math.max(min,x));
+const clone=x=>JSON.parse(JSON.stringify(x));
+function roll(sides=20){if(!(globalThis.crypto&&crypto.getRandomValues))throw Error('안전한 난수 기능을 사용할 수 없습니다. HTTPS에서 게임을 실행하세요.');const a=new Uint32Array(1),n=0x100000000,lim=n-n%sides;let x;do{crypto.getRandomValues(a);x=a[0]}while(x>=lim);return x%sides+1;}
+const rollDice=(n,s)=>Array.from({length:n},()=>roll(s));
+function day(s){return 1+Math.floor(s.minutes/1440)}
+function event(s,msg,kind='모험'){const entry={id:++s.seq,at:s.minutes,kind,msg};s.log.push(entry);if(s.log.length>200)s.log.shift();return entry}
+function playerMax(s){const p=s.player,boon=s.ng.boon;return {hp:118+(p.level-1)*20+mod(p.stats.CON)*9+(boon==='vigor'?20:0),mp:65+(p.level-1)*7+mod(p.stats.INT)*7,sp:50+(p.level-1)*5+mod(p.stats.DEX)*5};}
+function syncCaps(s){const caps=playerMax(s);s.player.maxHP=Math.max(75,caps.hp);s.player.maxMP=Math.max(25,caps.mp);s.player.maxSP=Math.max(25,caps.sp);}
+function damageText(s,before){const p=s.player;return `HP ${before.hp}→${p.hp} · MP ${before.mp}→${p.mp} · SP ${before.sp}→${p.sp}`;}
+function makeSkills(role){const c=CLASSES[role];return [
+ {slot:'심법',name:c[0]+'의 심법'}, {slot:'액티브',name:c[2]}, {slot:'액티브',name:c[3]},
+ {slot:'추가 행동',name:'전술적 집중'}, {slot:'반응',name:'위기 방어'},
+ {slot:'패시브',name:'전장 감각'}, {slot:'패시브',name:'상황 판단'}, {slot:'패시브',name:'탐험의 경험'},
+ {slot:'선천 재능',name:'잠재력의 증명'}, {slot:'선천 재능',name:'고유 운명'}
+];}
+function startGame(opts,previous=null){
+ opts={name:'백호',role:'warrior',ancestry:'human',background:'wanderer',...opts};
+ if(!CLASSES[opts.role]||!ANCESTRIES[opts.ancestry]||!BACKGROUNDS[opts.background])throw Error('지원하지 않는 캐릭터 유형');
+ const stats=opts.stats||Object.fromEntries(STATS.map((a,i)=>[a,PRESETS[opts.role][i]]));if(!isValidStats(stats))throw Error('능력치의 27 Point Buy 조건이 잘못됐습니다.');
+ let ng=previous?clone(previous.ng):{cycle:1,boon:'none',endings:[]};const difficulty=opts.difficulty||'normal';if(!DIFFICULTIES[difficulty])throw Error('난이도 오류');
+ const name=(opts.name||'백호').trim().slice(0,22);if(!name)throw Error('이름을 입력하세요.');
+ const p={name,role:opts.role,ancestry:opts.ancestry,background:opts.background,stats:clone(stats),level:1,xp:0,tier:'삼류',hp:0,mp:0,sp:0,maxHP:0,maxMP:0,maxSP:0,def:12+mod(stats.DEX),gold:220+(ng.boon==='legacy'?200:0),potions:4,skills:makeSkills(opts.role),growth:[],inspiration:1};
+ let s={schema:'aegis.v13',version:'13.0.0',id:`AEGIS-${Date.now()}-${roll(999999)}`,ng, difficulty, player:p,cream:{name:'크림이',hp:45,maxHP:45,trust:5},serin:{joined:false,hp:85,maxHP:85,trust:0,goal:'잃어버린 동생을 찾는다'},axis:{mercy:0,lore:0,order:0},factions:{guild:0,cult:0,citizens:0},chapter:0,beat:0,phase:'story',minutes:360,seq:0,log:[],lastResult:null,battle:null,rewarded:[],seenChapters:[],shortRestCount:0,shortRestDay:1,lastLongDay:0,lastFactionTick:0,choicesCount:0,turnsCount:0,rolls:[],ending:null,worldFlags:[],error:null};
+ syncCaps(s);p.hp=p.maxHP;p.mp=p.maxMP;p.sp=p.maxSP;
+ event(s,'첫 장이 열렸습니다. 크림이가 당신 곁을 따른다.','세계');return s;
+}
+function tick(s,min){s.minutes+=min;let target=Math.floor(s.minutes/360);while(s.lastFactionTick<target){s.lastFactionTick++; const r=s.lastFactionTick%3;
+ if(r===0){s.factions.cult++;event(s,'황혼단이 경계선을 옮기며 새로운 보급로를 확보했다.','세력')}
+ if(r===1){s.factions.guild++;event(s,'길드가 새로운 조사대를 출발시켰다.','세력')}
+ if(r===2){s.factions.citizens++;event(s,'피난민들이 독립적인 구호 협정을 체결했다.','세력')}
+ }}
+function gainXP(s,amount,id){if(s.rewarded.includes(id))return false;s.rewarded.push(id);const p=s.player;p.xp+=amount;let old=p.level;while(p.level<12&&p.xp>=XP_THRESHOLDS[p.level]){p.level++;p.growth.push({level:p.level,reward:[null,'패시브','액티브','능력치/특기','전투 능력 강화','추가 행동/반응 강화','패시브','능력치/특기','상위 액티브','심법 진화','궁극기','최종 특기'][p.level]||'성장'});}
+ if(p.level>old){syncCaps(s);p.def=12+mod(p.stats.DEX)+Math.floor((p.level-1)/4);p.tier=['삼류','삼류','이류','이류','일류','일류','절정','절정','초절정','화경','현경','생사경'][p.level-1];event(s,`Lv.${old} → Lv.${p.level} 달성. 최대 자원만 증가하며 현재 자원은 회복되지 않는다.`, '성장');}
+ return true;}
+function check(s,stat,dc,label){const p=s.player,r=roll(20),bonus=mod(p.stats[stat])+((ANCESTRIES[p.ancestry][1]===stat)?1:0)+((BACKGROUNDS[p.background][1]===stat)?1:0)+(s.ng.boon==='insight'?1:0);const success=r===20||r!==1&&r+bonus>=dc;const entry={name:label,roll:r,bonus,dc,success};s.rolls.push(entry);if(s.rolls.length>60)s.rolls.shift();event(s,`${label} · d20 ${r}${bonus>=0?'+':''}${bonus} vs DC${dc} → ${success?'성공':'실패'}`, '주사위');return entry;}
+function choices(s){if(s.phase!=='story')return [];const c=STORY[s.chapter],beat=c?.beats[s.beat];if(!beat)return [];const opt=beat.options.map((o,i)=>({...o,key:'b'+s.beat+'_'+i}));if(s.ng.cycle>1&&[4,9,14,19].includes(s.chapter))opt.push({key:'ng',label:'[회차 특전] 반복된 운명의 빈틈을 짚어낸다',stat:'WIS',dc:12,success:'지난 회차에서 알게 된 미래가 새로운 통로를 연다.',failure:'운명은 완전히 같지 않다. 그러나 달라진 작은 조짐을 알아낸다.',axis:'lore',points:1});return opt;}
+function choose(s,key){if(s.phase!=='story')return {ok:false,error:'지금은 이야기 선택 상태가 아닙니다.'};const opts=choices(s),opt=opts.find(x=>x.key===key);if(!opt)return {ok:false,error:'이미 진행했거나 존재하지 않는 선택입니다.'};const before={hp:s.player.hp,mp:s.player.mp,sp:s.player.sp};const record=check(s,opt.stat,opt.dc,opt.label);s.axis[opt.axis]+=record.success?opt.points:0;
+ if(opt.axis==='mercy'){s.cream.trust+=record.success?1:0;s.serin.trust+=record.success?1:0;}
+ if(opt.axis==='lore'&&record.success)s.factions.guild++;
+ if(opt.axis==='order'&&record.success)s.factions.citizens++;
+ if(s.chapter===1&&s.beat===0){s.serin.joined=true;s.serin.trust+=1;}
+ if(!record.success){const hit=6+Math.floor(s.chapter/3);s.player.hp=Math.max(1,s.player.hp-hit);}
+ tick(s,90);s.choicesCount++;
+ s.lastResult={success:record.success,title:opt.label,description:record.success?opt.success:opt.failure,roll:record,resource:damageText(s,before)};
+ s.phase='result';event(s,`[${s.chapter+1}장] ${opt.label}: ${s.lastResult.description}`,'선택');return {ok:true};}
+function next(s){if(s.phase!=='result')return {ok:false,error:'진행할 결과 화면이 없습니다.'};s.lastResult=null;
+ if(s.beat===0){s.beat=1;s.phase='story';return {ok:true};}
+ const battleId=STORY[s.chapter].battle;
+ if(battleId){startBattle(s,battleId);return {ok:true};}
+ completeChapter(s);return {ok:true};}
+function completeChapter(s){const chapterNumber=s.chapter+1,p=s.player;if(!s.seenChapters.includes(chapterNumber))s.seenChapters.push(chapterNumber);
+ const rewardXP=85+chapterNumber*37,gold=45+chapterNumber*8; gainXP(s,rewardXP,`ch_${chapterNumber}`);p.gold+=gold;
+ event(s,`제${chapterNumber}장 완료 · XP +${rewardXP} · ${gold}G 획득`,'정산');
+ s.lastResult={title:`제${chapterNumber}장 완료`,description:`${STORY[s.chapter].title}의 결말이 세계 기록에 남았습니다. 선택 ${s.choicesCount}회 · 크림이 신뢰 ${s.cream.trust}.`,resource:`경험치 +${rewardXP} · 화폐 +${gold}G`};
+ if(s.chapter===19){finish(s);return;}
+ s.phase='camp';}
+function nextChapter(s){if(s.phase!=='camp')return {ok:false,error:'이동할 수 있는 장면이 아닙니다.'};s.chapter++;s.beat=0;s.phase='story';s.lastResult=null;tick(s,120);event(s,`제${s.chapter+1}장 ${STORY[s.chapter].title} 시작`,'장');return {ok:true};}
+function finish(s){let axis=Object.entries(s.axis).sort((a,b)=>b[1]-a[1])[0][0];const endings={mercy:['자유의 시대','종의 권능은 봉인되고 각자의 선택이 돌아온다. 분쟁은 사라지지 않았지만 누구도 강제된 평화를 누리지 않는다.'],lore:['진실의 시대','종의 기억은 도서관과 사람들 사이로 흩어진다. 새로운 시대에는 기밀보다 검증 가능한 진실이 더 중요한 힘이 된다.'],order:['새로운 협약','여러 도시가 종의 권한을 나누어 관리한다. 제도는 완벽하지 않지만 전쟁과 혼란을 견제할 안전장치가 생긴다.']};
+ const [title,text]=endings[axis];s.ending={title,text,axis,cycle:s.ng.cycle,chapters:20,choices:s.choicesCount,turns:s.turnsCount,at:s.minutes};s.ng.endings.push(clone(s.ending));s.phase='ending';s.lastResult=null;event(s,`${title} 엔딩. 10막 20장 완결.`,'엔딩');}
+function startBattle(s,id){const src=ENEMIES[id];if(!src)throw Error('등록되지 않은 적 카드');const d=DIFFICULTIES[s.difficulty],multi=1+(s.ng.cycle-1)*.07;const p=s.player;
+ const playerInit=roll(20)+mod(p.stats.DEX),enemyInit=roll(20)+Math.floor(src.hit/3);
+ s.battle={id,enemy:{name:src.name,maxHP:Math.round(src.hp*d.health*multi),hp:Math.round(src.hp*d.health*multi),def:src.def,hit:src.hit+d.hit,dice:src.dice,bonus:src.bonus},round:1,distance:1,initiative:playerInit>=enemyInit?'player':'enemy',notes:[`주도권: 아군 ${playerInit} / 적 ${enemyInit}`],guard:false,focused:false,reactUsed:false,retreatAttempts:0,usedThisRound:false};
+ s.phase='combat';event(s,`${src.name}과 교전 시작. HP ${s.battle.enemy.hp} / DEF ${src.def}.`,'전투');if(s.battle.initiative==='enemy')enemyAct(s,true);}
+function dmgToEnemy(s,diceCount,sides,flat,crit,kind){const b=s.battle,mods=mod(s.player.stats[CLASSES[s.player.role][1]]),arr=rollDice(diceCount*(crit?2:1),sides),total=10*Math.max(1,arr.reduce((a,c)=>a+c,0)+flat+mods);b.enemy.hp=Math.max(0,b.enemy.hp-total);event(s,`${kind}: ${arr.join('+')} + ${flat}+${mods} ×10 → ${total} 피해, 적 HP ${b.enemy.hp}`,'피해');return total;}
+function dmgToPlayer(s,amount,crit=false){const p=s.player,b=s.battle,react=b&&!b.reactUsed&&p.sp>=6&&(amount>=p.maxHP*.25||amount>=p.hp);if(react){p.sp-=6;b.reactUsed=true;amount=Math.max(0,amount-26-Math.floor(p.level/3)*3);event(s,`자동 반응 · 위기 방어 발동(SP-6), 피해 경감`,'반응');}p.hp=Math.max(0,p.hp-amount);event(s,`적의 공격으로 ${amount} 피해 · HP ${p.hp}/${p.maxHP}`,'피해');if(p.hp<=0){s.phase='wounded';event(s,'전투불능. 죽음 확정이 아니라 구조·퇴각을 선택할 수 있다.','전투');}}
+function enemyAct(s,opening=false){if(s.phase!=='combat')return;const b=s.battle,e=b.enemy,p=s.player;
+ if(b.distance===2){b.distance=1;event(s,'적이 한 구역 접근한다.','전투');return;}
+ const r=roll(20),def=p.def+(b.guard?3:0),hit=r===20||r!==1&&r+e.hit>=def;
+ event(s,`적 명중 d20 ${r}+${e.hit} vs DEF ${def} → ${hit?'명중':'실패'}`,'주사위');if(hit){const dice=rollDice(r===20?2:1,e.dice),raw=10*(dice.reduce((a,c)=>a+c,0)+e.bonus),amount=Math.round(raw*DIFFICULTIES[s.difficulty].dmg);dmgToPlayer(s,amount,r===20);}else event(s,'적의 공격이 허공을 갈랐다.','전투');}
+function allyAct(s){const b=s.battle;if(s.phase!=='combat')return;
+ const creamCan=s.cream.hp>0;
+ if(creamCan){const help=roll(20);if(help>=8){let amount=10+Math.floor(s.chapter/5)*3;b.enemy.hp=Math.max(0,b.enemy.hp-amount);event(s,`크림이가 적의 움직임을 방해한다. 동료의 틈새 공격 +${amount} 피해.`,'동료');}else {s.player.hp=Math.min(s.player.maxHP,s.player.hp+8);event(s,'크림이가 다가와 주변을 경계한다. 긴장이 조금 풀려 HP +8.','동료');}}
+ if(b.enemy.hp<=0)return;
+ if(s.serin.joined&&s.serin.hp>0){const r=roll(20),hit=r===20||r!==1&&r+5>=b.enemy.def;if(hit){const amount=10*(roll(6)+2);b.enemy.hp=Math.max(0,b.enemy.hp-amount);event(s,`세린의 화살 명중: ${amount} 피해`,'동료');}else event(s,'세린의 화살이 빗나갔다.','동료');}
+}
+function victory(s){const id=s.battle.id,src=ENEMIES[id],p=s.player; if(gainXP(s,src.xp,`battle_${s.chapter}_${id}`)){p.gold+=src.gold;event(s,`${src.name} 격파 · XP +${src.xp} / ${src.gold}G`,'정산');}s.battle=null;completeChapter(s);}
+function battleAction(s,type,move='hold'){if(s.phase!=='combat')return {ok:false,error:'전투 상태가 아닙니다.'};const p=s.player,b=s.battle,c=CLASSES[p.role];const action=['basic','skill1','skill2','guard','potion','retreat','parley'].includes(type);if(!action)return {ok:false,error:'알 수 없는 전투 행동'};
+ const distanceAfter=clamp(b.distance+(move==='approach'?-1:move==='withdraw'?1:0),0,2);
+ const ranged=c[4],isSkill=type==='skill1'||type==='skill2',isMelee=type==='basic'&&!ranged||isSkill&&!ranged;const limit=isMelee?0:2;
+ if(['basic','skill1','skill2'].includes(type)&&distanceAfter>limit)return {ok:false,error:'사거리가 부족합니다. 이동을 「접근」으로 바꾸거나 원거리 행동을 선택하세요.'};
+ if(isSkill&&p.mp<(type==='skill1'?12:18))return {ok:false,error:'MP가 부족합니다. 다른 행동이나 휴식을 선택하세요.'};
+ if(type==='potion'&&p.potions<=0)return {ok:false,error:'회복 물약이 없습니다.'};
+ const old=p.hp;b.distance=distanceAfter;b.guard=false;b.reactUsed=false;
+ if(type==='basic'||isSkill){let crit=false,ability=c[1],bonus=mod(p.stats[ability])+2+Math.floor((p.level-1)/3)+(b.focused?2:0),r=roll(20),hits=r===20||r!==1&&r+bonus>=b.enemy.def;event(s,`${isSkill?c[type==='skill1'?2:3]:'기본 공격'} d20 ${r}+${bonus} vs DEF${b.enemy.def} → ${hits?'명중':'실패'}`,'주사위');b.focused=false;
+ if(isSkill)p.mp-=type==='skill1'?12:18; if(hits){crit=r===20;dmgToEnemy(s,type==='skill2'?2:1,type==='basic'?6:8,type==='basic'?2:4,crit,isSkill?c[type==='skill1'?2:3]:'기본 공격');if(type==='skill2'&&['cleric','druid'].includes(p.role))p.hp=Math.min(p.maxHP,p.hp+35);}}
+ else if(type==='guard'){b.guard=true;p.sp=Math.min(p.maxSP,p.sp+5);event(s,'방어 자세를 취한다. 다음 적 공격 시 DEF +3 / SP +5.','전투');}
+ else if(type==='potion'){p.potions--;p.hp=Math.min(p.maxHP,p.hp+70);event(s,`회복 물약 사용: HP ${old} → ${p.hp}`,'전투');}
+ else if(type==='retreat'){const test=check(s,'DEX',12+Math.floor(s.chapter/5),'전투 이탈');if(test.success){s.player.gold=Math.max(0,s.player.gold-20);tick(s,90);s.battle=null;s.phase='retry';event(s,'퇴각 성공. 보상 없이 야영지에 복귀했다. 적은 여전히 같은 장의 목표를 지킨다.','전투');return {ok:true};}event(s,'퇴각 실패. 적이 추격한다.','전투');}
+ else if(type==='parley'){const test=check(s,'CHA',14+Math.floor(s.chapter/5),'전투 중 교섭');if(test.success){if(gainXP(s,Math.floor(ENEMIES[b.id].xp*.6),`battle_${s.chapter}_${b.id}`))event(s,'상대가 무기를 내려놓았다. 비살상 해결 보상 정산.','전투');s.battle=null;completeChapter(s);return {ok:true};}event(s,'적이 교섭을 거부한다.','전투');}
+ s.turnsCount++;if(b.enemy.hp<=0){victory(s);return {ok:true};}
+ allyAct(s);if(b.enemy.hp<=0){victory(s);return {ok:true};}
+ enemyAct(s);if(s.phase==='combat'){b.round++;b.guard=false;b.reactUsed=false;tick(s,1);}
+ return {ok:true};}
+function rest(s,kind){if(!['camp','story','retry'].includes(s.phase))return {ok:false,error:'전투 중에는 안전하게 휴식할 수 없습니다.'};const p=s.player,currentDay=day(s);
+ if(kind==='short'){if(s.shortRestDay!==currentDay){s.shortRestDay=currentDay;s.shortRestCount=0;}if(s.shortRestCount>=2)return {ok:false,error:'오늘의 짧은 휴식 2회를 이미 사용했습니다.'};s.shortRestCount++;tick(s,60);p.hp=Math.min(p.maxHP,p.hp+Math.floor(p.maxHP*.25));p.mp=Math.min(p.maxMP,p.mp+Math.floor(p.maxMP*.25));event(s,'짧은 휴식 1시간 · HP/MP 최대치의 25% 회복, SP 변화 없음.','휴식');}
+ else if(kind==='long'){if(s.lastLongDay===currentDay)return {ok:false,error:'오늘은 이미 긴 휴식으로 완전 회복했습니다.'};tick(s,480);p.hp=p.maxHP;p.mp=p.maxMP;p.sp=p.maxSP;s.lastLongDay=currentDay;s.shortRestCount=0;s.shortRestDay=day(s);event(s,'긴 휴식 8시간 · HP/MP/SP 완전 회복.','휴식');}
+ else return {ok:false,error:'휴식 종류 오류'};return {ok:true};}
+function retryBattle(s){if(s.phase!=='retry')return {ok:false,error:'재도전할 장면이 없습니다.'};startBattle(s,STORY[s.chapter].battle);return {ok:true};}
+function recovery(s){if(s.phase!=='wounded')return {ok:false,error:'지금은 구조가 필요하지 않습니다.'};s.player.gold=Math.max(0,s.player.gold-80);tick(s,480);s.player.hp=Math.max(30,Math.floor(s.player.maxHP*.6));s.player.mp=Math.max(20,Math.floor(s.player.maxMP*.5));s.player.sp=Math.max(10,Math.floor(s.player.maxSP*.5));s.battle=null;s.phase='retry';event(s,'동료가 당신을 구조했다. 화폐 80G를 지출하고 야영지로 후퇴했다.','구조');return {ok:true};}
+function ngPlus(s,difficulty,boon){if(s.phase!=='ending')return {ok:false,error:'본편을 완결해야 다음 회차가 열립니다.'};if(!DIFFICULTIES[difficulty]||!BOONS[boon])return {ok:false,error:'회차 설정 오류'};
+ const ng=clone(s.ng);ng.cycle++;ng.boon=boon;
+ const opts={name:s.player.name,role:s.player.role,ancestry:s.player.ancestry,background:s.player.background,stats:s.player.stats,difficulty};
+ const next=startGame(opts,{ng});return {ok:true,state:next};}
+function validateState(s){return s&&s.schema==='aegis.v13'&&s.player&&CLASSES[s.player.role]&&ANE(s)&&Number.isInteger(s.chapter)&&s.chapter>=0&&s.chapter<=19&&Number.isInteger(s.beat)&&s.beat>=0&&s.beat<=1&&['story','result','combat','camp','wounded','retry','ending'].includes(s.phase)&&s.ng&&s.ng.cycle>=1&&s.log&&Array.isArray(s.log)&&Array.isArray(s.rewarded)&&Array.isArray(s.rolls);}
+function ANE(s){return ANCESTRIES[s.player.ancestry]&&BACKGROUNDS[s.player.background]&&isValidStats(s.player.stats);}
+function save(s){if(!validateState(s))throw Error('저장 상태 검증 실패');const text=JSON.stringify(s);try{const old=localStorage.getItem(SAVE_KEY);if(old&&old!==text)localStorage.setItem(BACKUP_KEY,old);localStorage.setItem(SAVE_KEY,text);return true;}catch{return false;}}
+function load(){try{const v=localStorage.getItem(SAVE_KEY);if(!v)return null;const x=JSON.parse(v);return validateState(x)?x:null;}catch{return null;}}
+function loadBackup(){try{const v=localStorage.getItem(BACKUP_KEY);if(!v)return null;const x=JSON.parse(v);return validateState(x)?x:null;}catch{return null;}}
+function importState(raw){if(typeof raw!=='string'||raw.length>2500000)throw Error('유효하지 않은 세이브 크기');const s=JSON.parse(raw);if(!validateState(s))throw Error('v13 세이브 형식이 아닙니다. 구버전은 별도로 백업해 주세요.');return s;}
+function currentChapter(s){return STORY[s.chapter];}
+function chapterStatus(s){return `${Math.floor(s.chapter/2)+1}막 · ${s.chapter+1}장 / 20장`}
+function gameTime(s){const h=Math.floor(s.minutes%1440/60),m=s.minutes%60;return `DAY ${day(s)} · ${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;}
+
+let state=load(),tab='adventure',draft={name:'백호',role:'warrior',ancestry:'human',background:'wanderer',difficulty:'normal',stats:Object.fromEntries(STATS.map((k,i)=>[k,PRESETS.warrior[i]]))};
+const el=id=>document.getElementById(id);
+const e=x=>String(x??'').replace(/[&<>"']/g,a=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[a]));
+function toast(msg){const t=el('toast');t.textContent=msg;t.classList.add('visible');clearTimeout(toast._id);toast._id=setTimeout(()=>t.classList.remove('visible'),4200);}
+function write(s){if(!save(s))toast('브라우저 자동 저장이 제한됐습니다. 저장/복구에서 JSON 파일을 내려받으세요.');}
+function outcome(result){if(!result.ok){toast(result.error||'진행할 수 없습니다.');return false;}if(result.state)state=result.state;write(state);render();return true;}
+function after(ok){if(ok){write(state);render();}return ok;}
+const meter=(title,v,max,kind='hp')=>`<div class="stat"><span>${e(title)}</span><b>${v} / ${max}</b></div><div class="meter ${kind}"><span style="width:${clamp(100*v/max,0,100)}%"></span></div>`;
+const miniButton=(text,cmd,cls='')=>`<button class="btn ${cls}" data-cmd="${cmd}">${text}</button>`;
+function renderSide(){if(!state){el('sidebar').innerHTML='<h3>WORLD STATUS</h3><div class="muted tiny">새 모험을 시작하면 캐릭터와 세계 상태가 이곳에 표시됩니다.</div>';el('headerStatus').textContent='새 캠페인';return;}
+ const s=state,p=s.player;el('headerStatus').textContent=`${chapterStatus(s)} · ${s.ng.cycle}회차`;
+ el('sidebar').innerHTML=`<h3>HERO STATUS</h3><div class="stat"><b>${e(p.name)}</b><span>Lv.${p.level} · ${e(CLASSES[p.role][0])}</span></div>${meter('HP',p.hp,p.maxHP)}${meter('MP',p.mp,p.maxMP,'mp')}${meter('SP',p.sp,p.maxSP,'sp')}<div class="stat"><span>EXP</span><b>${p.xp}${p.level<12?' / '+XP_THRESHOLDS[p.level]:' / MAX'}</b></div><div class="stat"><span>소지금</span><b>${p.gold} G</b></div><div class="stat"><span>물약</span><b>${p.potions}개</b></div><hr class="divider"><h3>WORLD STATUS</h3><div class="stat"><span>시간</span><b>${gameTime(s)}</b></div><div class="stat"><span>난이도</span><b>${DIFFICULTIES[s.difficulty].label}</b></div><div class="stat"><span>크림이 🐶</span><b>신뢰 ${s.cream.trust}</b></div><div class="stat"><span>세린</span><b>${s.serin.joined?'동행 · 신뢰 '+s.serin.trust:'독립 행동 중'}</b></div><div class="stat"><span>세계 경향</span><b>자비 ${s.axis.mercy} / 진실 ${s.axis.lore} / 질서 ${s.axis.order}</b></div><hr class="divider"><h3>CHRONICLE</h3>${s.log.slice(-4).reverse().map(x=>`<div class="logrow"><b>${e(x.kind)}</b>${e(x.msg)}</div>`).join('')}`;
+}
+function gameTabs(){document.querySelectorAll('[data-tab]').forEach(x=>x.classList.toggle('active',x.dataset.tab===tab));if(!state){el('game').innerHTML=renderSetup();return;}switch(tab){case 'adventure':el('game').innerHTML=renderAdventure();break;case 'character':el('game').innerHTML=renderCharacter();break;case 'journal':el('game').innerHTML=renderJournal();break;case 'save':el('game').innerHTML=renderSave();break;}}
+function render(){renderSide();gameTabs();}
+const options=(obj)=>Object.entries(obj).map(([k,v])=>`<option value="${e(k)}">${e(v[0])}</option>`).join('');
+function selectField(label,id,items,value){return `<label class="formField">${label}<select id="${id}">${Object.entries(items).map(([k,v])=>`<option value="${e(k)}" ${k===value?'selected':''}>${e(v[0])}</option>`).join('')}</select></label>`;}
+function renderSetup(){const total=STATS.reduce((v,k)=>v+POINT_COST[draft.stats[k]],0),left=27-total;return `<div class="eyebrow">START A NEW CHRONICLE</div><h2>당신의 전설을 시작하세요</h2><p class="description">10막 20장의 본편과 회차별 특전이 준비되어 있습니다. 크림이는 처음부터 함께하며, 세린과 다른 인물들의 관계는 선택에 따라 달라집니다.</p><div class="twocol"><label class="formField">이름<input id="heroName" maxlength="22" value="${e(draft.name)}" autocomplete="off"></label>${selectField('직업','heroRole',CLASSES,draft.role)}${selectField('종족·혈통','heroAncestry',ANCESTRIES,draft.ancestry)}${selectField('배경','heroBackground',BACKGROUNDS,draft.background)}${selectField('난이도','heroDifficulty',Object.fromEntries(Object.entries(DIFFICULTIES).map(([k,v])=>[k,[v.label]])),draft.difficulty)}</div><h3>27 Point Buy <span class="tag" id="budget">남은 ${left}점</span></h3><div class="attribute-grid">${STATS.map(k=>`<div class="attribute"><b>${k} <span class="muted">${ATTR_KR[k]}</span></b><div class="score"><button data-stat="${k}" data-dir="-1" aria-label="${k} 낮추기">−</button><span>${draft.stats[k]}</span><button data-stat="${k}" data-dir="1" aria-label="${k} 높이기">+</button></div></div>`).join('')}</div><p class="tiny muted">기본 생성 범위 8~15. 27점 이내이면 생성 가능합니다. 직업 선택 시 추천 능력치가 자동 배치됩니다.</p><div class="actionLine">${miniButton('모험 시작 →','create','gold')}</div><p class="notice">기존 v12.1 플레이 데이터는 변경하지 않습니다. v13은 별도의 세이브 공간을 사용합니다.</p>`;}
+function chapterProgress(s){return `<div class="progress" title="20장 진행도">${Array.from({length:20},(_,i)=>`<i class="${i<s.chapter?'done':i===s.chapter?'current':''}"></i>`).join('')}</div>`;}
+function renderAdventure(){const s=state,c=currentChapter(s),intro=`<div class="eyebrow">ACT ${Math.floor(s.chapter/2)+1} · ${e(ACT_TITLES[Math.floor(s.chapter/2)])}</div><div class="sectionHeading"><h2>${e(c.title)}</h2><span class="tag">제${s.chapter+1}장 / 20</span></div><div class="muted tiny">📍 ${e(c.region)} · ${gameTime(s)}</div>${chapterProgress(s)}`;
+ if(s.phase==='story'){const b=c.beats[s.beat];const ch=choices(s);return intro+`<p class="description">${e(s.beat===0?c.intro:'앞선 결정의 여파가 인물들의 표정에 남아 있다. 세린은 여전히 자신의 선택을 고민하고, 크림이는 은방울을 살짝 울린다.')}</p><p class="question">${e(b.text)}</p><div class="choices">${ch.map((o,i)=>`<button class="choice" data-choice="${e(o.key)}"><span class="mark">${i+1}.</span>${e(o.label)}<small>${ATTR_KR[o.stat]} 판정 · DC ${o.dc}${o.key==='ng'?' · 회차 해금':''}</small></button>`).join('')}</div><p class="muted tiny">모든 선택지는 실행됩니다. 실패해도 이야기는 진행되며 대가가 기록됩니다.</p>`;}
+ if(s.phase==='result'){const r=s.lastResult;return intro+`<div class="result ${r.success?'':'fail'}"><div class="eyebrow">${r.success?'SUCCESS · 성공':'CONSEQUENCE · 실패와 대가'}</div><h3>${e(r.title)}</h3><p>${e(r.description)}</p><div class="record">d20 ${r.roll.roll} ${r.roll.bonus>=0?'+':'−'} ${Math.abs(r.roll.bonus)} vs DC ${r.roll.dc} → ${r.success?'성공':'실패'}</div><div class="tiny muted">${e(r.resource)}</div></div><div class="actionLine">${miniButton('다음 장면으로 →','continue','gold')}</div>`;}
+ if(s.phase==='camp'){const r=s.lastResult||{};return intro+`<div class="result"><div class="eyebrow">CHAPTER CLEARED</div><h3>${e(r.title||'장 완료')}</h3><p>${e(r.description)}</p><div class="record">${e(r.resource||'')}</div></div><p class="description">잠시 쉬며 장비를 정리할 수 있습니다. 휴식 중에도 세계의 시계가 흐르고 NPC들은 자신의 일을 계속합니다.</p><div class="actionLine">${miniButton('다음 장으로 계속 →','nextChapter','gold')}${miniButton('짧은 휴식 (1시간)','shortRest')}${miniButton('긴 휴식 (8시간)','longRest')}${miniButton('물약 구매 (35G)','buyPotion')}</div>`;}
+ if(s.phase==='combat')return intro+renderBattle(s);
+ if(s.phase==='retry')return intro+`<div class="result"><h3>전투 재정비</h3><p>상대를 쓰러뜨리거나 교섭해야 다음 장으로 진행할 수 있습니다. 이 장의 전투는 아직 끝나지 않았습니다.</p></div><div class="actionLine">${miniButton('다시 도전하기','retryBattle','gold')}${miniButton('짧은 휴식','shortRest')}${miniButton('긴 휴식','longRest')}${miniButton('물약 구매 (35G)','buyPotion')}</div>`;
+ if(s.phase==='wounded')return intro+`<div class="result fail"><h3>전투불능 · 구조 대기</h3><p>패배가 곧 게임 종료는 아닙니다. 크림이와 동료의 도움으로 후퇴할 수 있습니다. 화폐 80G(보유분 한도)와 게임 시간 8시간을 소모하며 적은 아직 남습니다.</p></div>${miniButton('동료의 도움으로 구조받기','rescue','gold')}`;
+ if(s.phase==='ending')return renderEnding(s);
+ return '<p>현재 게임 상태를 확인할 수 없습니다.</p>';}
+function renderBattle(s){const b=s.battle,p=s.player,c=CLASSES[p.role];return `<div class="eyebrow">TACTICAL ENCOUNTER · ROUND ${b.round}</div><div class="battleBox"><h3>${e(b.enemy.name)}</h3><div class="battlegrid"><div><div class="muted tiny">적 HP ${b.enemy.hp}/${b.enemy.maxHP}</div><div class="battlebar"><span style="width:${clamp(100*b.enemy.hp/b.enemy.maxHP,0,100)}%"></span></div></div><div class="tiny muted">DEF ${b.enemy.def}<br>거리 ${['근접','중거리','원거리'][b.distance]}</div></div><div class="record">${e(b.notes.slice(-2).join(' · '))}</div></div><p class="question">이번 라운드의 작전을 선택하세요.</p><div class="tiny muted">이동과 주행동을 한 번에 처리합니다. 사거리·자원 부족은 비용 차감 전에 검증합니다.</div><div class="radioLine"><label><input type="radio" name="move" value="hold" checked>위치 유지</label><label><input type="radio" name="move" value="approach">접근 (1구역)</label><label><input type="radio" name="move" value="withdraw">이탈 (1구역)</label></div><div class="battleButtons"><button class="choice" data-combat="basic">⚔ 기본 공격<small>${c[4]?'원거리':'근접'} · MP 0</small></button><button class="choice" data-combat="skill1">✦ ${e(c[2])}<small>MP 12 · 주행동</small></button><button class="choice" data-combat="skill2">✧ ${e(c[3])}<small>MP 18 · 주행동</small></button><button class="choice" data-combat="guard">🛡 방어<small>DEF+3 · SP+5</small></button><button class="choice" data-combat="potion">🧪 물약 사용<small>HP+70 · ${p.potions}개 보유</small></button><button class="choice" data-combat="parley">💬 전투 중 교섭<small>CHA 판정 · 비살상</small></button><button class="choice" data-combat="retreat">↩ 후퇴 시도<small>DEX 판정 · 전투 종료 가능</small></button></div><p class="tiny muted">크림이${s.serin.joined?'와 세린':''}는 플레이어 행동 후 자율적으로 행동합니다. 적은 확정된 카드와 주사위로 공격합니다.</p>`;}
+function renderEnding(s){const v=s.ending;return `<div class="eyebrow">10막 20장 · THE END</div><div class="endCard"><div class="eyebrow">${e(s.ng.cycle)}회차 완결</div><h2 class="endingTitle">${e(v.title)}</h2><p class="description">${e(v.text)}</p><p class="tiny muted">자비 ${s.axis.mercy} · 진실 ${s.axis.lore} · 질서 ${s.axis.order} / 결정 ${v.choices}회 / 전투 라운드 ${v.turns}회</p><p>크림이는 당신의 곁에서 은방울을 울린다. 여정은 끝났지만, 새로운 회차에는 다른 선택과 운명이 기다린다.</p></div><h3>NEW GAME+ · 다음 회차</h3><p class="muted tiny">레벨과 장비는 초기화하고, 엔딩 기록·회차 수·선택한 특전은 계승합니다.</p><div class="twocol">${selectField('다음 회차 난이도','ngDifficulty',Object.fromEntries(Object.entries(DIFFICULTIES).map(([k,v])=>[k,[v.label]])),s.difficulty)}${selectField('계승 특전','ngBoon',BOONS,'insight')}</div><div class="actionLine">${miniButton('다음 회차 시작 →','ngplus','gold')}</div><hr class="divider"><p class="tiny muted">엔딩은 저장 파일에 남습니다. 새 게임 시작 전 JSON 백업을 권장합니다.</p>`;}
+function renderCharacter(){const p=state.player,c=CLASSES[p.role];return `<div class="eyebrow">CHARACTER RECORD</div><h2>${e(p.name)}</h2><p class="muted">Lv.${p.level} ${e(c[0])} · ${e(ANCESTRIES[p.ancestry][0])} · ${e(BACKGROUNDS[p.background][0])} · ${e(p.tier)}</p><div class="attribute-grid">${STATS.map(k=>`<div class="attribute"><b>${k} · ${ATTR_KR[k]}</b><span>${p.stats[k]} (${mod(p.stats[k])>=0?'+':''}${mod(p.stats[k])})</span></div>`).join('')}</div><h3>시작 기술 10개</h3><div class="twocol">${p.skills.map(x=>`<div class="field"><span>${e(x.name)}</span><small class="muted">${e(x.slot)}</small></div>`).join('')}</div><h3>성장 기록</h3>${p.growth.length?p.growth.map(x=>`<div class="logrow">Lv.${x.level} · ${e(x.reward)}</div>`).join(''):'<p class="muted">레벨을 올리면 보상이 기록됩니다.</p>'}<p class="notice">Lv.12가 최고 레벨입니다. 경험치는 v10 기준표를 사용하며 추가 배율은 없습니다.</p>`;}
+function renderJournal(){const s=state;return `<div class="eyebrow">CHRONICLE LEDGER</div><h2>세상이 기억하는 선택</h2><p class="muted">진행 ${s.seenChapters.length}/20장 · 판정 ${s.rolls.length}회(최근 기록) · 누적 회차 ${s.ng.cycle}</p><h3>동료와 세력</h3><div class="stat"><span>크림이</span><b>신뢰 ${s.cream.trust}</b></div><div class="stat"><span>세린</span><b>${s.serin.joined?'합류':'독자 활동'} · 신뢰 ${s.serin.trust}</b></div><div class="stat"><span>길드 / 황혼단 / 시민</span><b>${s.factions.guild} / ${s.factions.cult} / ${s.factions.citizens}</b></div><h3>완결한 엔딩</h3>${s.ng.endings.length?s.ng.endings.map(x=>`<div class="logrow">${x.cycle}회차 · ${e(x.title)}</div>`).join(''):'<p class="muted">첫 엔딩을 기다리고 있습니다.</p>'}<h3>사건 기록</h3>${s.log.slice().reverse().map(x=>`<div class="logrow"><b>${e(x.kind)} · ${e('DAY '+(Math.floor(x.at/1440)+1))}</b>${e(x.msg)}</div>`).join('')}`;}
+function renderSave(){return `<div class="eyebrow">ARCHIVE & RECOVERY</div><h2>캠페인 저장소</h2><p class="description">동일 브라우저·동일 주소에서는 자동 저장됩니다. 아이폰 브라우저 데이터 삭제나 기기 변경에 대비하여 세이브 파일을 내려받아 Google Drive 등에 백업해 두세요.</p><div class="actionLine">${miniButton('⬇ JSON 세이브 내려받기','export','gold')}${miniButton('⬆ JSON 세이브 불러오기','import')}${miniButton('↶ 이전 자동 저장 복원','backup')}${miniButton('새 모험 시작 화면','resetSetup','red')}</div><input type="file" id="importFile" accept="application/json,.json" class="sr-only"><p class="notice">기존 v12.1 세이브는 별도 키에 남아 있으며 v13에서 자동 변환하지 않습니다. 이 게임은 인터넷 접속이나 별도의 AI API 키가 필요 없습니다.</p><p class="tiny muted">저장 스키마: ${e(state.schema)} · 현재 상태: ${e(state.phase)} · ${chapterStatus(state)}</p>`;}
+function exportSave(){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`AEGIS_v13_${state.ng.cycle}회차_${state.chapter+1}장.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),5000);}
+function create(){draft.name=el('heroName').value;draft.ancestry=el('heroAncestry').value;draft.background=el('heroBackground').value;draft.role=el('heroRole').value;draft.difficulty=el('heroDifficulty').value;try{state=startGame(draft);tab='adventure';after(true);}catch(error){toast(error.message);}}
+function onCommand(cmd){if(!state&&cmd!=='create')return;try{switch(cmd){case 'create':create();return;case 'continue':outcome(next(state));return;case 'nextChapter':outcome(nextChapter(state));return;case 'shortRest':outcome(rest(state,'short'));return;case 'longRest':outcome(rest(state,'long'));return;case 'buyPotion':if(!['camp','retry'].includes(state.phase)){toast('야영지에서만 구매할 수 있습니다.');return;}if(state.player.gold<35){toast('화폐가 부족합니다.');return;}state.player.gold-=35;state.player.potions++;event(state,'회복 물약 구매 · 35G','거래');after(true);return;case 'rescue':outcome(recovery(state));return;case 'retryBattle':outcome(retryBattle(state));return;case 'export':exportSave();return;case 'import':el('importFile').click();return;case 'backup':{const old=loadBackup();if(old){state=old;after(true);toast('이전 자동 저장이 복구됐습니다.');}else toast('복구 가능한 이전 자동 저장이 없습니다.');return;}
+ case 'ngplus':outcome(ngPlus(state,el('ngDifficulty').value,el('ngBoon').value));return;
+ case 'resetSetup':if(!confirm('새 모험을 시작하면 v13 현재 세이브를 변경할 수 있습니다. JSON 백업을 권장합니다. 시작 화면으로 돌아갈까요?'))return;state=null;tab='adventure';render();return;default:toast('지원하지 않는 명령입니다.');return;}}catch(error){toast(error.message||'알 수 없는 오류');}}
+document.body.addEventListener('click',ev=>{const b=ev.target.closest('button');if(!b)return;try{if(b.dataset.tab){tab=b.dataset.tab;render();return;}
+ if(b.dataset.stat){const k=b.dataset.stat,dir=+b.dataset.dir;let val=draft.stats[k]+dir;if(val<8||val>15)return;const next={...draft.stats,[k]:val};if(!isValidStats(next)){toast('27 Point Buy 한도를 초과했습니다.');return;}draft.stats=next;render();return;}
+ if(b.dataset.choice){outcome(choose(state,b.dataset.choice));return;}
+ if(b.dataset.combat){const move=document.querySelector('input[name="move"]:checked')?.value||'hold';outcome(battleAction(state,b.dataset.combat,move));return;}
+ if(b.dataset.cmd){onCommand(b.dataset.cmd);return;}
+ }catch(error){toast(`게임 오류: ${error.message}`);}});
+document.body.addEventListener('change',ev=>{const t=ev.target;
+ if(t.id==='heroRole'){draft.role=t.value;draft.stats=Object.fromEntries(STATS.map((k,i)=>[k,PRESETS[draft.role][i]]));render();}
+ if(t.id==='heroAncestry'){draft.ancestry=t.value;}
+ if(t.id==='heroBackground'){draft.background=t.value;}
+ if(t.id==='heroDifficulty'){draft.difficulty=t.value;}
+ if(t.id==='importFile'&&t.files[0]){const file=t.files[0];if(file.size>2500000){toast('세이브 파일이 너무 큽니다.');return;}file.text().then(text=>{const candidate=importState(text);if(confirm(`불러올 세이브: ${candidate.ng.cycle}회차 제${candidate.chapter+1}장. 현재 상태를 교체할까요?`)){state=candidate;tab='adventure';after(true);toast('세이브 불러오기 완료');}}).catch(err=>toast('불러오기 오류: '+err.message));}
+});
+render();
+</script></body></html>
