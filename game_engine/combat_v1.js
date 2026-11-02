@@ -217,7 +217,7 @@
    if(s.routeId==="zhuge")p.tokens=Math.min(2,p.tokens+1);
    s.events.push({type:"BONUS",style:s.style,position:p.zone,defenseBonus:p.stanceDefense});
  }
- function enemyPhase(s,choice){
+ function enemyPhase(s,choice,pack){
    const p=s.player;
    for(const enemy of current(s)){
      if(enemy.skip>0){enemy.skip-=1;s.events.push({type:"ENEMY_SKIPPED",enemy:enemy.id});continue;}
@@ -237,10 +237,12 @@
        const blocked=Math.min(dmg,s.ally.guard);s.ally.guard=0;dmg-=blocked;
        s.events.push({type:"ALLY_GUARD",blocked});
      }
-     const canReact=choice.autoReaction&&!p.reactionUsedThisRound&&p.sp>=2&&(!allyTarget||s.routeId==="shaolin"&&Math.abs(p.zone-s.ally.zone)<=1);
+     const reactCard=pathOf(pack,s.routeId).skills.find(x=>x.slot==="reaction");
+     const canReact=choice.autoReaction&&!p.reactionUsedThisRound&&
+       projectedCost(p,[reactCard.cost])&&(!allyTarget||s.routeId==="shaolin"&&Math.abs(p.zone-s.ally.zone)<=1);
      if(canReact){
        p.reactionUsedThisRound=true;
-       spend(s,"SP",2);
+       spend(s,reactCard.cost.resource,reactCard.cost.amount);
        const prevented=dice(s,1,6);
        dmg=Math.max(0,dmg-prevented);
        s.events.push({type:"REACTION",prevented,remainingDamage:dmg,target:allyTarget?"ally":"player"});
@@ -262,13 +264,13 @@
    validateChoice(s,pack,choice);
    s.player.reactionUsedThisRound=false;
    const enemyFirst=s.round===1&&s.initiative.first==="enemy";
-   if(enemyFirst)enemyPhase(s,choice);
+   if(enemyFirst)enemyPhase(s,choice,pack);
    if(s.player.hp>0&&(!s.ally||s.ally.hp>0)){
      s.player.zone=Math.min(2,Math.max(0,s.player.zone+(choice.moveDelta??0)));
      playerBonus(s,pack,choice);
      playerMain(s,pack,choice);
    }
-   if(!enemyFirst&&!s.winner&&current(s).length>0&&s.player.hp>0)enemyPhase(s,choice);
+   if(!enemyFirst&&!s.winner&&current(s).length>0&&s.player.hp>0)enemyPhase(s,choice,pack);
    if(s.player.hp<=0||s.ally&&s.ally.hp<=0)s.winner="enemies";
    else if(!s.winner&&current(s).length===0)s.winner="player";
    const result={round:s.round,choice:copy(choice),events:copy(s.events),hp:s.player.hp,sp:s.player.sp,mp:s.player.mp,enemies:s.enemies.map(x=>({id:x.id,hp:x.hp})),winner:s.winner,allyHp:s.ally?.hp??null};
