@@ -15,26 +15,26 @@
   ],
   "checkpoint": {
     "chapter": 1,
-    "scene_id": "WANDERER_SHRINE_LATCH",
-    "scene_title": "낡은 구결 — 세 점의 쇠걸쇠",
+    "scene_id": "WANDERER_SHRINE_THIRD_VEIN",
+    "scene_title": "낡은 구결 — 땅 밑의 세 번째 길",
     "phase": "AWAITING_FOLLOWUP_CHOICE",
-    "revision": 2,
-    "last_committed_event_id": "RYH_CH01_S01_STONE_002",
+    "revision": 3,
+    "last_committed_event_id": "RYH_CH01_S01_VEIN_003",
     "pending_choices": [
       {
-        "id": "SHRINE_LATCH_1",
-        "label": "순례자에게 물러서라고 한 뒤 걸쇠를 자세히 살핀다"
+        "id": "SHRINE_VEIN_3_1",
+        "label": "순례자의 경고에 따라 밖으로 나가 목적과 석판의 울림을 묻는다"
       },
       {
-        "id": "SHRINE_LATCH_2",
-        "label": "순례자에게 돌 밑에 무엇이 있는지 알고 있는지 묻는다"
+        "id": "SHRINE_VEIN_3_2",
+        "label": "사당 뒤편으로 이동해 셋째 기맥이 닿는 흙바닥을 살핀다"
       },
       {
-        "id": "SHRINE_LATCH_3",
-        "label": "돌을 건드리지 않고 기맥의 세 번째 흐름을 따라가 본다"
+        "id": "SHRINE_VEIN_3_3",
+        "label": "사당 안에서 움직이지 않고 진동의 반복 여부와 구결의 대응을 확인한다"
       }
     ],
-    "in_world_minutes": 19
+    "in_world_minutes": 24
   },
   "character": {
     "name": "류현",
@@ -164,7 +164,8 @@
     "eventIds": [
       "CHARACTER_CREATION",
       "RYH_CH01_S01_CHOICE3_001",
-      "RYH_CH01_S01_STONE_002"
+      "RYH_CH01_S01_STONE_002",
+      "RYH_CH01_S01_VEIN_003"
     ],
     "relationships": [
       {
@@ -173,7 +174,7 @@
         "role": "삿갓을 쓴 낯선 순례자",
         "status": "UNKNOWN_NOT_HOSTILE_CONFIRMED",
         "trust": null,
-        "notes": "구결과의 관계 미확정, 류현의 정체도 미확인 사당의 돌 밑이 위험할 수 있다고 경고. 구체적 이유 및 정체는 확인되지 않음."
+        "notes": "구결과의 관계 미확정, 류현의 정체도 미확인 사당의 돌 밑이 위험할 수 있다고 경고. 구체적 이유 및 정체는 확인되지 않음. 석판 울림에 즉각 경계하고 건물 밖으로 나올 것을 권함. 호의인지 자기방어인지는 미확정."
       }
     ],
     "npcKnowledge": [
@@ -182,19 +183,24 @@
         "knows": [
           "사당 안에 사람의 움직임이 있다",
           "잃어버린 물건을 찾기 위해 사당을 방문했다",
-          "사당 안 사람이 석판 부근에서 움직이고 돌 틈을 건드리는 소리가 들렸다"
+          "사당 안 사람이 석판 부근에서 움직이고 돌 틈을 건드리는 소리가 들렸다",
+          "류현이 걸쇠를 당기지 않고 가만히 바닥을 보고 있다",
+          "석판 부근에서 낮은 울림이 발생했다"
         ],
         "doesNotKnow": [
           "류현이 비급의 반쪽을 옷 안에 감췄다",
           "류현이 기맥과 구결의 상관관계를 알아차렸다",
           "류현이 쇠걸쇠와 세 점의 홈을 알아보았다",
-          "류현이 초월 재능으로 기맥의 되돌아오는 흐름을 파악했다"
+          "류현이 초월 재능으로 기맥의 되돌아오는 흐름을 파악했다",
+          "류현이 셋째 기맥이 뒤편 흙바닥으로 이어짐을 감지했다"
         ],
         "actions": [
           "문턱에서 사당 안의 소리를 확인했다",
           "발소리를 줄이고 문가에서 모습을 드러내지 않은 채 말을 걸었다",
           "바닥을 긁는 소리가 나자 사당 문턱까지 걸어 들어와 손에 든 죽장을 바닥에 짚었다",
-          "돌 아래를 함부로 건드리지 말라고 경고했다"
+          "돌 아래를 함부로 건드리지 말라고 경고했다",
+          "돌 아래에서 세 차례 낮은 진동이 느껴지자 죽장을 움켜쥐고 문가에서 한 걸음 물러났다",
+          "류현에게 돌에 손대지 말고 사당 밖으로 나올 것을 권했다"
         ],
         "secretGoal": "NOT_YET_RESOLVED"
       }
@@ -235,6 +241,20 @@
         "knownTo": "류현",
         "text": "바닥의 기맥은 세 점 중 한곳에서만 약하게 되돌아온다. 비급의 소실된 구절을 복원할 수 있는 단서지만 실제 운기를 해본 것은 아니다.",
         "certainty": "OBSERVED"
+      },
+      {
+        "id": "SHRINE_THIRD_FLOW_TO_THRESHOLD",
+        "foundAt": "RYH_CH01_S01_VEIN_003",
+        "knownTo": "류현",
+        "certainty": "OBSERVED",
+        "text": "세 점의 셋째 흐름은 석판 아래에 갇힌 것이 아니라 문턱 아래를 지나 사당 뒤편 흙바닥으로 이어진다. 중앙 걸쇠를 당길 필요 없이 밖에서 흐름을 따라갈 여지가 있다."
+      },
+      {
+        "id": "SHRINE_THREE_BEATS",
+        "foundAt": "RYH_CH01_S01_VEIN_003",
+        "knownTo": "류현",
+        "certainty": "UNCERTAIN",
+        "text": "류현이 셋째 기맥의 방향을 알아본 직후 석판 깊은 곳에서 낮게 세 번 울린 듯한 진동을 느낌. 물체의 작동인지 자연스러운 돌의 울림인지 아직 모름."
       }
     ],
     "inventory": [
@@ -260,19 +280,20 @@
       "status": "EXPERIMENTAL_STORY_METRIC_NOT_XP"
     },
     "lastAction": {
-      "eventId": "RYH_CH01_S01_STONE_002",
-      "choiceId": "WANDERER_SHRINE_2_2",
-      "action": "순례자를 경계하며 석판 틈과 금속성 모서리를 조용히 조사",
+      "eventId": "RYH_CH01_S01_VEIN_003",
+      "choiceId": "SHRINE_LATCH_3",
+      "action": "쇠걸쇠를 만지지 않고 세 번째 기맥의 흐름을 감지함",
       "resolved": [
-        "금속 모서리가 3점 홈과 연결된 쇠걸쇠임을 관찰",
-        "기맥 흐름이 3점 중 하나에서 되돌아오는 것을 감지",
-        "순례자가 긁는 소리를 듣고 문턱까지 접근하며 경고"
+        "셋째 기맥이 문턱 아래에서 사당 뒤편 흙바닥으로 이어짐을 발견",
+        "석판 아래 세 번 울린 듯한 진동을 느낌",
+        "순례자는 울림에 물러나며 밖으로 나오라고 경고함"
       ],
       "notResolved": [
-        "쇠걸쇠의 개폐/함정/그 아래 유물 정체",
-        "순례자의 목적과 신분",
-        "비전 심법 실제 운기",
-        "금속 물체 회수"
+        "석판의 진동 원인과 아래 물건",
+        "사당 뒤편 기맥 끝에 있는 것",
+        "순례자의 정체와 목적",
+        "심법 운기 및 습득",
+        "XP 지급"
       ]
     }
   },
