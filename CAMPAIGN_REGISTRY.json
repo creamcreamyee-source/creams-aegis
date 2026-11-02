@@ -18,21 +18,23 @@
     "game_data/SECT_INTRO_SCENES_V1.json"
   ],
   "playback_policy": "Tool-mediated read/write/re-read at checkpoints. No background automatic saves.",
-  "user_facing_resume_command": "CREAM’S AEGIS 새 캐릭터 시작",
+  "user_facing_resume_command": "CREAM’S AEGIS 류현 이어서",
   "active_session_id": "AEGIS_RYUHYEON_20261102_01",
   "last_interactive_session_id": "AEGIS_RYUHYEON_20261102_01",
   "sessions": [
     {
       "id": "AEGIS_RYUHYEON_20261102_01",
       "kind": "OFFICIAL_CHAT_CAMPAIGN",
-      "status": "INTRO_AWAITING_FIRST_CHOICE",
+      "status": "AWAITING_FOLLOWUP_CHOICE",
       "state_path": "sessions/AEGIS_RYUHYEON_20261102_01.json",
       "ledger_path": "sessions/AEGIS_RYUHYEON_20261102_01_LEDGER.md",
-      "phase": "INTRO",
-      "last_known_checkpoint": "INTRO_WANDERER",
+      "phase": "CHAPTER_1_SCENE_1_POST_CHOICE",
+      "last_known_checkpoint": "WANDERER_SHRINE_HIDDEN_VEIN",
       "name": "류현 — 무문파 독행 · 초월",
       "character_name": "류현",
-      "notes": "Experimental V1 numeric choices explicitly approved for this new campaign; no old records migrated"
+      "notes": "Experimental V1 numeric choices explicitly approved for this new campaign; no old records migrated",
+      "last_committed_event_id": "RYH_CH01_S01_CHOICE3_001",
+      "last_revision": 1
     }
   ],
   "start_policy": "No existing character may be loaded automatically. Start with blank identity, talent, sect/wanderer, point buy, heart art and 10-slot skill choice, then explicitly commit a NEW session.",
