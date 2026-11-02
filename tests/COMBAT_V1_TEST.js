@@ -71,7 +71,22 @@ function runSuite({combat,pack}){
    rows.push({path:path.id,scenario:caseDef.name,victories,losses,timeouts,
      win_pct:+(100*victories/200).toFixed(1),avg_turns:+(turns/200).toFixed(1),A1_uses:usedA1,A2_uses:usedA2});
  }
- check("5500 test battles without engine failures",()=>rows.length===55&&rows.every(r=>r.victories+r.losses+r.timeouts===200)&&errors.length===0);
+ check("11000 test battles without engine failures",()=>rows.length===55&&rows.every(r=>r.victories+r.losses+r.timeouts===200)&&errors.length===0);
+ check("retreat option exists in legal actions",()=>combat.legalActions(start(),pack,{targetId:"guard"}).includes("RETREAT"));
+ check("parley not allowed without negotiable opponent",()=>!combat.legalActions(start(),pack,{targetId:"guard"}).includes("PARLEY"));
+ check("parley available with willing opponent",()=>combat.legalActions(start("hwasan",7,[{...guard,negotiable:true}]),pack,{targetId:"guard"}).includes("PARLEY"));
+ check("parley can produce real truce outcome",()=>{
+   for(let seed=1;seed<=60;seed++){let s=start("hwasan",seed,[{...guard,negotiable:true,negotiationDC:8}]);s=combat.resolveRound(s,pack,{main:"PARLEY"});
+     if(s.winner==="truce")return s.history[0].events.some(x=>x.type==="PARLEY_ATTEMPT"&&x.success); }
+   return false;});
+ check("retreat can produce escaped outcome",()=>{
+   for(let seed=1;seed<=60;seed++){let s=start("hwasan",seed);s=combat.resolveRound(s,pack,{main:"RETREAT"});
+     if(s.winner==="escaped")return s.history[0].events.some(x=>x.type==="RETREAT_ATTEMPT"&&x.success); }
+   return false;});
+ check("failed negotiation cannot repeat indefinitely",()=>{
+   for(let seed=1;seed<=60;seed++){let s=start("hwasan",seed,[{...guard,negotiable:true,negotiationDC:30}]);
+     s=combat.resolveRound(s,pack,{main:"PARLEY"});if(!s.winner)return fails(()=>combat.resolveRound(s,pack,{main:"PARLEY"}));}
+   return false;});
  check("every path uses starter A1 and A2 in simulation",()=>paths.every(p=>rows.filter(r=>r.path===p.id).some(r=>r.A1_uses>0&&r.A2_uses>0)));
  check("ranged specialists actually have situational advantage",()=>{const g=rows.filter(x=>x.scenario==="ranged");const s=g.find(x=>x.path==="joseon");const b=g.find(x=>x.path==="peng");return s.win_pct>b.win_pct;});
  check("escort protector has role advantage",()=>{const g=rows.filter(x=>x.scenario==="escort");const s=g.find(x=>x.path==="shaolin");const b=g.find(x=>x.path==="wanderer");return s.win_pct>b.win_pct;});
