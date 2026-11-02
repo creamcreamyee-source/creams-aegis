@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "mode": "CHAT_CAMPAIGN",
+  "campaign_id": "AEGIS_REBIRTH_01",
+  "content_status": "PROPOSED_REBIRTH_STORY__NOT_MASTER_CANON",
+  "source": {
+    "source_kind": "USER_PROVIDED_PLAY_SAVE",
+    "source_version": 6,
+    "source_build": "CREAMS_AEGIS_REBIRTH_PROLOGUE.html",
+    "date": "2026-11-02",
+    "record": "prologue ending, mercy -> bringWitness -> followCream -> carry",
+    "note": "only fictional game data; no personal identifiers"
+  },
+  "checkpoint": {
+    "revision": 1,
+    "chapter": "REBIRTH_PROLOGUE",
+    "scene": "ending",
+    "phase": "PROLOGUE_COMPLETED",
+    "next_scene": "CHAPTER_1_OPENING_UNPLAYED",
+    "sync_status": "COMMITTED_BASELINE",
+    "last_played_event_id": "PR-005",
+    "pending_roll": null
+  },
+  "character": {
+    "race": "UNKNOWN_NOT_IN_REBIRTH_SAVE",
+    "class": "UNKNOWN_NOT_IN_REBIRTH_SAVE",
+    "level": 2,
+    "xp": 270,
+    "max_level": 12,
+    "next_level_xp": 500,
+    "hp": 23,
+    "hp_cap_experimental": 30,
+    "sp": 8,
+    "sp_cap_experimental": 14,
+    "mp": 12,
+    "mp_cap_experimental": 12,
+    "attribute_scores": null,
+    "skill_loadout": null
+  },
+  "companion": {
+    "name": "크림이",
+    "mode": "scout",
+    "condition": "no injury recorded in source save",
+    "independent_agency": true
+  },
+  "world": {
+    "elapsed_minutes": 90,
+    "region": {
+      "outer": "recovering",
+      "core": "stable"
+    },
+    "danger": 0,
+    "place_at_ending": "봉인실",
+    "factions_confirmed_in_world": false
+  },
+  "relationships": {
+    "여린": 0,
+    "단하": 2,
+    "수겸": 1
+  },
+  "creed": {
+    "truth": 1,
+    "mercy": 1,
+    "order": 0,
+    "status": "experimental narrative metric"
+  },
+  "inventory": [
+    "기억 상실 환자의 증언",
+    "여섯 번째 서명란의 탁본"
+  ],
+  "source_flags": {
+    "protectedChild": true,
+    "witness": true,
+    "haonWorse": true,
+    "creamiProof": true,
+    "costBorne": true
+  },
+  "interpretation": {
+    "witness_origin": "PATIENT_TESTIMONY_FROM_BRING_WITNESS",
+    "clerk_rescued": "NOT_EVIDENCED",
+    "memory_lost": "연묵의 목소리/음색을 현재 기억하지 못함",
+    "memory_restorability": "UNKNOWN",
+    "fate_of_haon": "alive_or_dead_NOT_EXPLICITLY_VERIFIED; memory impairment aggravated",
+    "source_ending_continuity_issue": "v6 ending's 'rescued archivist' line incorrectly conflates patient testimony and rescued archivist; do not promote to fact"
+  },
+  "choices": [
+    "mercy",
+    "bringWitness",
+    "followCream",
+    "carry"
+  ],
+  "verified_rolls": [
+    {
+      "event_id": "PR-004",
+      "kind": "creami_trace",
+      "die": 18,
+      "modifier": 2,
+      "dc": 12,
+      "success": true,
+      "source": "v6 user save"
+    }
+  ],
+  "story_events": [
+    {
+      "id": "PR-001",
+      "minute": 0,
+      "summary": "첫 여정 시작",
+      "source": "v6 user save"
+    },
+    {
+      "id": "PR-002",
+      "minute": 20,
+      "summary": "아이 구조를 우선; 문서 보관 장소에서 타는 냄새",
+      "choice": "mercy"
+    },
+    {
+      "id": "PR-003",
+      "minute": 45,
+      "summary": "환자 증언 확보, 하온의 기억 장애 악화; 주인공 얼굴을 기억하지 못함",
+      "choice": "bringWitness"
+    },
+    {
+      "id": "PR-004",
+      "minute": 65,
+      "summary": "크림이 탐색 성공: 여섯 번째 칸이 희생 서명권을 보관한 자리였다는 단서; SP -2",
+      "choice": "followCream"
+    },
+    {
+      "id": "PR-005",
+      "minute": 90,
+      "summary": "봉인 비용 일부를 자신이 부담; HP -7, SP -4; 연묵의 목소리 기억 상실; 외곽 회복 중",
+      "choice": "carry"
+    }
+  ],
+  "ending": {
+    "kind": "carry",
+    "title": "서막 결말 · 자신의 이름을 내놓는 사람",
+    "region": {
+      "outer": "recovering",
+      "core": "stable"
+    },
+    "carryover": "스승의 이름은 기억하지만 목소리는 잊음. 크림이가 봉인 흔적의 냄새를 기억함."
+  },
+  "pending_threads": [
+    "연묵 목소리 기억 상실의 실제 후속 영향",
+    "하온의 악화된 기억 장애와 이후 재회",
+    "여섯 번째 서명권의 실제 소유자/사용 조건",
+    "단하가 추적하는 지워진 이름",
+    "크림이가 기억한 봉인의 냄새"
+  ],
+  "metadata": {
+    "public_repo_safety": "contains fictional game-only information",
+    "chronology": "no new chapter event has occurred yet",
+    "canonical_status": "approved sync mode; story events are factual within this trial campaign, not approved universe lore"
+  }
+}
