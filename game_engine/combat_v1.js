@@ -14,7 +14,10 @@
  const copy=x=>JSON.parse(JSON.stringify(x));
  const mod=x=>Math.floor((x-10)/2);
  function assert(b,msg){if(!b)throw new Error(msg);}
- function roll(s,sides){assert(Number.isInteger(sides)&&sides>0,"invalid die");s.rng=(1664525*s.rng+1013904223)>>>0;return 1+(s.rng%sides);}
+ function roll(s,sides){assert(Number.isInteger(sides)&&sides>0,"invalid die");
+   s.rng=(s.rng+0x6D2B79F5)>>>0;
+   let t=s.rng;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);
+   return 1+(((t^(t>>>14))>>>0)%sides);}
  function dice(s,n,sides){let total=0;for(let i=0;i<n;i++)total+=roll(s,sides);return total;}
  function range(d){return d==="근접"?0:2;}
  function current(s){return s.enemies.filter(e=>e.hp>0);}
@@ -36,8 +39,9 @@
       assert(Number.isInteger(e.hp)&&e.hp>0&&Number.isInteger(e.def)&&e.def>=1&&Number.isInteger(e.attackBonus),"enemy stats required");
       assert(Number.isInteger(e.damageBonus),"enemy damageBonus required");
       assert(Number.isInteger(e.zone)&&e.zone>=0&&e.zone<=2,"enemy zone 0..2");
+      assert(e.attackRange===undefined||Number.isInteger(e.attackRange)&&e.attackRange>=0&&e.attackRange<=2,"enemy attackRange 0..2");
       return {id:e.id||"enemy"+i,hp:e.hp,maxHp:e.hp,def:e.def,attackBonus:e.attackBonus,
-        damageBonus:e.damageBonus,zone:e.zone,skip:0,weaken:0,slow:0,mark:0,cover:e.cover||0};
+        damageBonus:e.damageBonus,attackRange:e.attackRange??0,zone:e.zone,skip:0,weaken:0,slow:0,mark:0,cover:e.cover||0};
    });
    assert(new Set(enemies.map(e=>e.id)).size===enemies.length,"enemy IDs must be unique");
    return {version:1,scope:STATUS,rng:seed>>>0,round:1,routeId,style:path.martial_identity.token,
@@ -162,7 +166,7 @@
    const dist=Math.abs(p.zone-target.zone);
    assert(dist<=(card?range(card.range):0),"target out of range: move or choose different target");
    if(card)spend(s,card.cost.resource,card.cost.amount);
-   const ability=card?card.effect.ability:(route==="joseon"||route==="tang"? "DEX":route==="zhuge"?"INT":path.primary_ability_candidate);
+   const ability=card?card.effect.ability:(route==="joseon"||route==="tang"?"DEX":"STR");
    const accuracy=2+mod(p.abilities[ability])+p.stanceAttack;
    const atk=attackRoll(s,accuracy,target.def,target.cover);
    p.stanceAttack=0;
@@ -187,7 +191,7 @@
    const p=s.player;
    for(const enemy of current(s)){
      if(enemy.skip>0){enemy.skip-=1;s.events.push({type:"ENEMY_SKIPPED",enemy:enemy.id});continue;}
-     if(Math.abs(enemy.zone-p.zone)>0){if(enemy.slow>0){enemy.slow--;s.events.push({type:"ENEMY_SLOWED",enemy:enemy.id});continue;}enemy.zone+=enemy.zone>p.zone?-1:1;s.events.push({type:"ENEMY_MOVE",enemy:enemy.id,zone:enemy.zone});continue;}
+     if(Math.abs(enemy.zone-p.zone)>enemy.attackRange){if(enemy.slow>0){enemy.slow--;s.events.push({type:"ENEMY_SLOWED",enemy:enemy.id});continue;}enemy.zone+=enemy.zone>p.zone?-1:1;s.events.push({type:"ENEMY_MOVE",enemy:enemy.id,zone:enemy.zone});continue;}
      const hit=attackRoll(s,enemy.attackBonus-Math.min(2,enemy.weaken),p.def+p.stanceDefense);
      enemy.weaken=0;
      if(!hit.success){s.events.push({type:"ENEMY_MISS",enemy:enemy.id});continue;}
