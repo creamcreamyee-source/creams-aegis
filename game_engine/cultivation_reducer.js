@@ -30,6 +30,10 @@
    if(!Array.isArray(c.realmStartEvents))c.realmStartEvents=[];
    if(!Array.isArray(c.activationEvents))c.activationEvents=[];
    if(c.heartArtId===undefined)c.heartArtId=null;
+   const talent=s.character && s.character.talentId;
+   if(talent && !Object.prototype.hasOwnProperty.call(TALENT,talent))throw new Error("invalid innate talent");
+   if(c.innateTalentId && talent && c.innateTalentId!==talent)throw new Error("talent changed: no free reroll");
+   if(!c.innateTalentId)c.innateTalentId=talent||null;
    if(c.realm===undefined)c.realm="UNKNOWN";
    return s;
  }
@@ -83,7 +87,10 @@
    const idx=STAGES.indexOf(art.masteryStage);
    if(idx===STAGES.length-1)throw new Error("mastery already complete");
    if(event.targetStage!==STAGES[idx+1])throw new Error("must advance exactly one mastery stage");
-   const talent=str(event.talent,"talent");const req=stageRequirement(art.quality,talent,event.targetStage);
+   const talent=str(event.talent,"talent");
+   if(!c.innateTalentId)throw new Error("character innate talent must be set before mastery");
+   if(c.innateTalentId!==talent)throw new Error("talent tier cannot be changed during cultivation");
+   const req=stageRequirement(art.quality,talent,event.targetStage);
    if(art.trainingMarks<req)throw new Error("not enough verified training: "+art.trainingMarks+"/"+req);
    const prev=art.masteryStage;art.masteryStage=event.targetStage;
    c.masteryEvents.push({eventId,artId,before:prev,after:event.targetStage,
@@ -120,7 +127,7 @@
  function selectStartingRealm(input,event){
    const s=init(ensure(input)),c=s.growth.cultivation;const id=str(event?.eventId,"eventId");unique(c,id);
    if(c.realm!=="UNKNOWN")throw new Error("realm already set");
-   if(event.realm!=="삼류"&&event.realm!=="UNESTABLISHED")throw new Error("starting realm must be initial");
+   if(event.realm!=="삼류")throw new Error("starting realm must be 삼류; unestablished is kept as UNKNOWN");
    str(event.userOrCharacterEvidence,"userOrCharacterEvidence");
    c.realm=event.realm;c.realmStartEvents.push({eventId:id,realm:event.realm,evidence:event.userOrCharacterEvidence});
    return s;
@@ -128,6 +135,7 @@
  function recordBreakthrough(input,event){
    const s=init(ensure(input)),c=s.growth.cultivation;const eventId=str(event?.eventId,"eventId");unique(c,eventId);
    str(event.approvedRuleRef,"approvedRuleRef");str(event.trialEventId,"trialEventId");
+   if(c.breakthroughEvents.some(x=>x.trialEventId===event.trialEventId))throw new Error("already adjudicated breakthrough trial");
    str(event.insightEvidence,"insightEvidence");str(event.costEventId,"costEventId");
    if(event.outcome!=="SUCCESS"&&event.outcome!=="FAILURE")throw new Error("explicit SUCCESS/FAILURE outcome required");
    const from=REALMS.indexOf(c.realm);
