@@ -1,0 +1,2943 @@
+{
+  "schema_version": "0.1.0-experiment",
+  "created_at": "2026-11-02",
+  "status": "PROPOSED_NOT_CANON",
+  "primary_source": "MASTER_CANON D-038..D-041",
+  "notes": [
+    "명칭과 수치/전수 조건 모두 실험값. 사용자가 개별 승인 전까지 정본으로 간주하지 않음.",
+    "실제 캐릭터의 재능, 문파, 심법, HP/MP/SP는 아직 선택하지 않았으며 캠페인 세이브에 반영되지 않음.",
+    "10슬롯 초기 구성은 각 사문에서 배울 수 있는 예시. 고유 재능의 출처는 최종 확정 전 시험 배정.",
+    "Lv.3 추가 액티브는 후보이며 Lv.3 경험치(500 XP) 기준 미달 상태인 현재 캐릭터에는 지급 금지.",
+    "심법의 재능별 상급/비전 품질은 전수권·입문 관문 보장을 뜻하며 실제 숙련이나 전투 보너스 배율은 자동 변경하지 않는다."
+  ],
+  "rules": {
+    "slot_counts": {
+      "heart": 1,
+      "active": 2,
+      "bonus": 1,
+      "reaction": 1,
+      "passive": 3,
+      "unique": 2
+    },
+    "xp_thresholds": [
+      0,
+      200,
+      500,
+      900,
+      1500,
+      2300,
+      3300,
+      4600,
+      6200,
+      8200,
+      10700,
+      13700
+    ],
+    "point_buy_budget": 27,
+    "active_heart_limit": 1,
+    "manual_state_migration_required": true,
+    "balance_status": "UNVERIFIED",
+    "effect_engine_status": "SCHEMA_ONLY_NOT_EXECUTABLE",
+    "noncombat_effect_status": "NARRATIVE_GATED"
+  },
+  "heart_quality_candidates": [
+    "기초",
+    "정통",
+    "상급",
+    "비전",
+    "절세"
+  ],
+  "talents": [
+    {
+      "id": "ordinary",
+      "name": "범재",
+      "rank": 0,
+      "sect_quality_candidate": "기초",
+      "wanderer_quality_candidate": "기초",
+      "intro_perk": "정규 지도/기본 토납의 온전한 전수"
+    },
+    {
+      "id": "promising",
+      "name": "수재",
+      "rank": 1,
+      "sect_quality_candidate": "정통",
+      "wanderer_quality_candidate": "정통",
+      "intro_perk": "정통 심법의 구결과 해독 수단 확보"
+    },
+    {
+      "id": "gifted",
+      "name": "천재",
+      "rank": 2,
+      "sect_quality_candidate": "정통",
+      "wanderer_quality_candidate": "정통",
+      "intro_perk": "상급 심공 추가 시험/파손된 비급 해독 단서"
+    },
+    {
+      "id": "monster",
+      "name": "괴물",
+      "rank": 3,
+      "sect_quality_candidate": "상급",
+      "wanderer_quality_candidate": "상급",
+      "intro_perk": "고급 심공의 첫 관문과 지도/기연 보장"
+    },
+    {
+      "id": "transcendent",
+      "name": "초월",
+      "rank": 4,
+      "sect_quality_candidate": "비전",
+      "wanderer_quality_candidate": "비전",
+      "intro_perk": "비전급 구결의 첫 운기 관문을 보장(대성·경지 자동X)"
+    }
+  ],
+  "paths": [
+    {
+      "id": "shaolin",
+      "name": "소림",
+      "faction_type": "문파",
+      "discipline": "권·장·금강",
+      "primary_ability_candidate": "CON",
+      "heart_nature": "정순",
+      "principle": "들숨을 바르게 다스려 충격을 견디고 타인을 보호한다",
+      "entrance_scenario": "소림 수련 경로의 입문·전수 시험을 거쳐 첫 심법을 배우는 장면",
+      "teacher_role": "사부/장로/전수자 (실명 OPEN)",
+      "opening_choices": [
+        "사문/전승 조건을 확인한다",
+        "첫 심법 구결의 일부를 이해한다",
+        "사문 계율·자유로운 독행의 대가를 확인한다"
+      ],
+      "secret": {
+        "name": "금강장 비전의 단서",
+        "unlock_condition": "계를 어기지 않고 약자를 호위한 뒤 장로의 재심사를 통과한다",
+        "status": "LOCKED_PROPOSED",
+        "effect": "OPEN_NOT_IMPLEMENTED"
+      },
+      "heart_id": "SHAOLIN_HEART",
+      "starter_loadout": {
+        "heart": [
+          "SHAOLIN_HEART"
+        ],
+        "active": [
+          "SHAOLIN_A1",
+          "SHAOLIN_A2"
+        ],
+        "bonus": [
+          "SHAOLIN_BONUS"
+        ],
+        "reaction": [
+          "SHAOLIN_REACTION"
+        ],
+        "passive": [
+          "SHAOLIN_P1",
+          "SHAOLIN_P2",
+          "SHAOLIN_P3"
+        ],
+        "unique": [
+          "SHAOLIN_U1",
+          "SHAOLIN_U2"
+        ]
+      },
+      "level3_candidate": "SHAOLIN_A3",
+      "skills": [
+        {
+          "id": "SHAOLIN_HEART",
+          "name": "정심호흡결",
+          "slot": "heart",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "heart_affinity",
+            "nature": "정순",
+            "trigger": "first_matching_martial_action",
+            "bonus": 1,
+            "per_round": 1
+          },
+          "flavor": "들숨을 바르게 다스려 충격을 견디고 타인을 보호한다"
+        },
+        {
+          "id": "SHAOLIN_A1",
+          "name": "응심쇄권",
+          "slot": "active",
+          "level": 1,
+          "action": "main",
+          "cost": {
+            "resource": "SP",
+            "amount": 2
+          },
+          "range": "근접",
+          "effect": {
+            "op": "attack",
+            "ability": "CON",
+            "dice": "1d6",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "create_opening",
+              "value": 1,
+              "duration_rounds": 1
+            }
+          },
+          "flavor": "공격으로 적의 방어 리듬에 틈을 만든다"
+        },
+        {
+          "id": "SHAOLIN_A2",
+          "name": "구조선장",
+          "slot": "active",
+          "level": 1,
+          "action": "main",
+          "cost": {
+            "resource": "SP",
+            "amount": 3
+          },
+          "range": "근접",
+          "effect": {
+            "op": "attack",
+            "ability": "CON",
+            "dice": "1d6",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "attack_penalty",
+              "value": 1,
+              "duration_rounds": 1
+            }
+          },
+          "flavor": "문파 고유의 기운을 실어 상대의 다음 행동을 제약한다"
+        },
+        {
+          "id": "SHAOLIN_BONUS",
+          "name": "지근보",
+          "slot": "bonus",
+          "level": 1,
+          "action": "bonus",
+          "cost": {
+            "resource": "SP",
+            "amount": 1
+          },
+          "range": "self",
+          "effect": {
+            "op": "stance",
+            "mode": "extra_movement_zone",
+            "value": 1,
+            "expires": "end_of_turn"
+          },
+          "flavor": "정해진 교전 리듬을 조절한다"
+        },
+        {
+          "id": "SHAOLIN_REACTION",
+          "name": "금강연수",
+          "slot": "reaction",
+          "level": 1,
+          "action": "reaction",
+          "cost": {
+            "resource": "SP",
+            "amount": 2
+          },
+          "range": "self",
+          "effect": {
+            "op": "reduce_damage",
+            "dice": "1d6",
+            "min": 0,
+            "trigger": "incoming_hit_before_damage"
+          },
+          "flavor": "재빠른 호흡으로 피해를 경감한다"
+        },
+        {
+          "id": "SHAOLIN_P1",
+          "name": "자비의 손",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "skill_check_bonus",
+            "ability": "CON",
+            "bonus": 1,
+            "scope": "권·장·금강"
+          },
+          "flavor": "전승의 이해를 돕는 수련"
+        },
+        {
+          "id": "SHAOLIN_P2",
+          "name": "금강의 숨결",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "first_cost_discount",
+            "resource": "SP",
+            "amount": 1,
+            "min_cost": 1,
+            "per_battle": 1
+          },
+          "flavor": "첫 무공의 운기 손실을 줄임"
+        },
+        {
+          "id": "SHAOLIN_P3",
+          "name": "계율 수련",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "survival_guard",
+            "reduce_damage": 2,
+            "trigger": "would_fall_at_zero_hp",
+            "per_battle": 1
+          },
+          "flavor": "기혈을 붙잡아 치명적인 충격을 견딤"
+        },
+        {
+          "id": "SHAOLIN_U1",
+          "name": "수호자의 인내",
+          "slot": "unique",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "narrative_edge",
+            "scope": "권·장·금강",
+            "uses_per_scene": 1
+          },
+          "flavor": "해당 무학의 학식·문화 배경에 따른 유일한 단서 선택지"
+        },
+        {
+          "id": "SHAOLIN_U2",
+          "name": "사제의 전수",
+          "slot": "unique",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "heart_art_insight",
+            "scope": "정순",
+            "uses_per_chapter": 1
+          },
+          "flavor": "심법을 알아보거나 독문 초식을 해석하는 사건에 기여"
+        },
+        {
+          "id": "SHAOLIN_A3",
+          "name": "정맥통장",
+          "slot": "active",
+          "level": 3,
+          "action": "main",
+          "cost": {
+            "resource": "SP",
+            "amount": 3
+          },
+          "range": "근접",
+          "effect": {
+            "op": "attack",
+            "ability": "CON",
+            "dice": "1d6+1d4",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "conditional_followup",
+              "trigger": "opening_or_stance",
+              "value": 1
+            }
+          },
+          "flavor": "기초 심법과 독문 무공을 연결하는 첫 중급 초식"
+        }
+      ]
+    },
+    {
+      "id": "wudang",
+      "name": "무당",
+      "faction_type": "문파",
+      "discipline": "유검·유권",
+      "primary_ability_candidate": "WIS",
+      "heart_nature": "유전",
+      "principle": "물 흐르듯 상대의 기세를 읽어 반격의 길을 연다",
+      "entrance_scenario": "무당 수련 경로의 입문·전수 시험을 거쳐 첫 심법을 배우는 장면",
+      "teacher_role": "사부/장로/전수자 (실명 OPEN)",
+      "opening_choices": [
+        "사문/전승 조건을 확인한다",
+        "첫 심법 구결의 일부를 이해한다",
+        "사문 계율·자유로운 독행의 대가를 확인한다"
+      ],
+      "secret": {
+        "name": "대원심법의 단서",
+        "unlock_condition": "정면 대결이 아니라 기세의 순환을 이해한다",
+        "status": "LOCKED_PROPOSED",
+        "effect": "OPEN_NOT_IMPLEMENTED"
+      },
+      "heart_id": "WUDANG_HEART",
+      "starter_loadout": {
+        "heart": [
+          "WUDANG_HEART"
+        ],
+        "active": [
+          "WUDANG_A1",
+          "WUDANG_A2"
+        ],
+        "bonus": [
+          "WUDANG_BONUS"
+        ],
+        "reaction": [
+          "WUDANG_REACTION"
+        ],
+        "passive": [
+          "WUDANG_P1",
+          "WUDANG_P2",
+          "WUDANG_P3"
+        ],
+        "unique": [
+          "WUDANG_U1",
+          "WUDANG_U2"
+        ]
+      },
+      "level3_candidate": "WUDANG_A3",
+      "skills": [
+        {
+          "id": "WUDANG_HEART",
+          "name": "현유순기결",
+          "slot": "heart",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "heart_affinity",
+            "nature": "유전",
+            "trigger": "first_matching_martial_action",
+            "bonus": 1,
+            "per_round": 1
+          },
+          "flavor": "물 흐르듯 상대의 기세를 읽어 반격의 길을 연다"
+        },
+        {
+          "id": "WUDANG_A1",
+          "name": "유수연검",
+          "slot": "active",
+          "level": 1,
+          "action": "main",
+          "cost": {
+            "resource": "SP",
+            "amount": 2
+          },
+          "range": "근접",
+          "effect": {
+            "op": "attack",
+            "ability": "WIS",
+            "dice": "1d6",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "create_opening",
+              "value": 1,
+              "duration_rounds": 1
+            }
+          },
+          "flavor": "공격으로 적의 방어 리듬에 틈을 만든다"
+        },
+        {
+          "id": "WUDANG_A2",
+          "name": "회풍압장",
+          "slot": "active",
+          "level": 1,
+          "action": "main",
+          "cost": {
+            "resource": "SP",
+            "amount": 3
+          },
+          "range": "근접",
+          "effect": {
+            "op": "attack",
+            "ability": "WIS",
+            "dice": "1d6",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "defense_penalty",
+              "value": 1,
+              "duration_rounds": 1
+            }
+          },
+          "flavor": "문파 고유의 기운을 실어 상대의 다음 행동을 제약한다"
+        },
+        {
+          "id": "WUDANG_BONUS",
+          "name": "환보",
+          "slot": "bonus",
+          "level": 1,
+          "action": "bonus",
+          "cost": {
+            "resource": "SP",
+            "amount": 1
+          },
+          "range": "self",
+          "effect": {
+            "op": "stance",
+            "mode": "next_attack_bonus",
+            "value": 1,
+            "expires": "end_of_turn"
+          },
+          "flavor": "정해진 교전 리듬을 조절한다"
+        },
+        {
+          "id": "WUDANG_REACTION",
+          "name": "원형호신",
+          "slot": "reaction",
+          "level": 1,
+          "action": "reaction",
+          "cost": {
+            "resource": "SP",
+            "amount": 2
+          },
+          "range": "self",
+          "effect": {
+            "op": "reduce_damage",
+            "dice": "1d6",
+            "min": 0,
+            "trigger": "incoming_hit_before_damage"
+          },
+          "flavor": "재빠른 호흡으로 피해를 경감한다"
+        },
+        {
+          "id": "WUDANG_P1",
+          "name": "유연한 응수",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "skill_check_bonus",
+            "ability": "WIS",
+            "bonus": 1,
+            "scope": "유검·유권"
+          },
+          "flavor": "전승의 이해를 돕는 수련"
+        },
+        {
+          "id": "WUDANG_P2",
+          "name": "심호의 고요",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "first_cost_discount",
+            "resource": "SP",
+            "amount": 1,
+            "min_cost": 1,
+            "per_battle": 1
+          },
+          "flavor": "첫 무공의 운기 손실을 줄임"
+        },
+        {
+          "id": "WUDANG_P3",
+          "name": "태극의 관찰",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "survival_guard",
+            "reduce_damage": 2,
+            "trigger": "would_fall_at_zero_hp",
+            "per_battle": 1
+          },
+          "flavor": "기혈을 붙잡아 치명적인 충격을 견딤"
+        },
+        {
+          "id": "WUDANG_U1",
+          "name": "도인의 눈",
+          "slot": "unique",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "narrative_edge",
+            "scope": "유검·유권",
+            "uses_per_scene": 1
+          },
+          "flavor": "해당 무학의 학식·문화 배경에 따른 유일한 단서 선택지"
+        },
+        {
+          "id": "WUDANG_U2",
+          "name": "기세 간파",
+          "slot": "unique",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "heart_art_insight",
+            "scope": "유전",
+            "uses_per_chapter": 1
+          },
+          "flavor": "심법을 알아보거나 독문 초식을 해석하는 사건에 기여"
+        },
+        {
+          "id": "WUDANG_A3",
+          "name": "유전반검",
+          "slot": "active",
+          "level": 3,
+          "action": "main",
+          "cost": {
+            "resource": "SP",
+            "amount": 3
+          },
+          "range": "근접",
+          "effect": {
+            "op": "attack",
+            "ability": "WIS",
+            "dice": "1d6+1d4",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "conditional_followup",
+              "trigger": "opening_or_stance",
+              "value": 1
+            }
+          },
+          "flavor": "기초 심법과 독문 무공을 연결하는 첫 중급 초식"
+        }
+      ]
+    },
+    {
+      "id": "hwasan",
+      "name": "화산",
+      "faction_type": "문파",
+      "discipline": "쾌검·매화검",
+      "primary_ability_candidate": "DEX",
+      "heart_nature": "경쾌",
+      "principle": "짧고 빠른 운기로 검세의 리듬을 쌓는다",
+      "entrance_scenario": "화산 수련 경로의 입문·전수 시험을 거쳐 첫 심법을 배우는 장면",
+      "teacher_role": "사부/장로/전수자 (실명 OPEN)",
+      "opening_choices": [
+        "사문/전승 조건을 확인한다",
+        "첫 심법 구결의 일부를 이해한다",
+        "사문 계율·자유로운 독행의 대가를 확인한다"
+      ],
+      "secret": {
+        "name": "만개검결의 단서",
+        "unlock_condition": "분리된 초식을 하나의 검세로 잇는다",
+        "status": "LOCKED_PROPOSED",
+        "effect": "OPEN_NOT_IMPLEMENTED"
+      },
+      "heart_id": "HWASAN_HEART",
+      "starter_loadout": {
+        "heart": [
+          "HWASAN_HEART"
+        ],
+        "active": [
+          "HWASAN_A1",
+          "HWASAN_A2"
+        ],
+        "bonus": [
+          "HWASAN_BONUS"
+        ],
+        "reaction": [
+          "HWASAN_REACTION"
+        ],
+        "passive": [
+          "HWASAN_P1",
+          "HWASAN_P2",
+          "HWASAN_P3"
+        ],
+        "unique": [
+          "HWASAN_U1",
+          "HWASAN_U2"
+        ]
+      },
+      "level3_candidate": "HWASAN_A3",
+      "skills": [
+        {
+          "id": "HWASAN_HEART",
+          "name": "매향운기결",
+          "slot": "heart",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "heart_affinity",
+            "nature": "경쾌",
+            "trigger": "first_matching_martial_action",
+            "bonus": 1,
+            "per_round": 1
+          },
+          "flavor": "짧고 빠른 운기로 검세의 리듬을 쌓는다"
+        },
+        {
+          "id": "HWASAN_A1",
+          "name": "화영연검",
+          "slot": "active",
+          "level": 1,
+          "action": "main",
+          "cost": {
+            "resource": "SP",
+            "amount": 2
+          },
+          "range": "근접",
+          "effect": {
+            "op": "attack",
+            "ability": "DEX",
+            "dice": "1d6",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "create_opening",
+              "value": 1,
+              "duration_rounds": 1
+            }
+          },
+          "flavor": "공격으로 적의 방어 리듬에 틈을 만든다"
+        },
+        {
+          "id": "HWASAN_A2",
+          "name": "점설일검",
+          "slot": "active",
+          "level": 1,
+          "action": "main",
+          "cost": {
+            "resource": "SP",
+            "amount": 3
+          },
+          "range": "근접",
+          "effect": {
+            "op": "attack",
+            "ability": "DEX",
+            "dice": "1d6",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "movement_penalty",
+              "value": 1,
+              "duration_rounds": 1
+            }
+          },
+          "flavor": "문파 고유의 기운을 실어 상대의 다음 행동을 제약한다"
+        },
+        {
+          "id": "HWASAN_BONUS",
+          "name": "낙화보",
+          "slot": "bonus",
+          "level": 1,
+          "action": "bonus",
+          "cost": {
+            "resource": "SP",
+            "amount": 1
+          },
+          "range": "self",
+          "effect": {
+            "op": "stance",
+            "mode": "extra_movement_zone",
+            "value": 1,
+            "expires": "end_of_turn"
+          },
+          "flavor": "정해진 교전 리듬을 조절한다"
+        },
+        {
+          "id": "HWASAN_REACTION",
+          "name": "매화호신",
+          "slot": "reaction",
+          "level": 1,
+          "action": "reaction",
+          "cost": {
+            "resource": "SP",
+            "amount": 2
+          },
+          "range": "self",
+          "effect": {
+            "op": "reduce_damage",
+            "dice": "1d6",
+            "min": 0,
+            "trigger": "incoming_hit_before_damage"
+          },
+          "flavor": "재빠른 호흡으로 피해를 경감한다"
+        },
+        {
+          "id": "HWASAN_P1",
+          "name": "봄의 검흔",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "skill_check_bonus",
+            "ability": "DEX",
+            "bonus": 1,
+            "scope": "쾌검·매화검"
+          },
+          "flavor": "전승의 이해를 돕는 수련"
+        },
+        {
+          "id": "HWASAN_P2",
+          "name": "검세 유지",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "first_cost_discount",
+            "resource": "SP",
+            "amount": 1,
+            "min_cost": 1,
+            "per_battle": 1
+          },
+          "flavor": "첫 무공의 운기 손실을 줄임"
+        },
+        {
+          "id": "HWASAN_P3",
+          "name": "사형제 협공",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "survival_guard",
+            "reduce_damage": 2,
+            "trigger": "would_fall_at_zero_hp",
+            "per_battle": 1
+          },
+          "flavor": "기혈을 붙잡아 치명적인 충격을 견딤"
+        },
+        {
+          "id": "HWASAN_U1",
+          "name": "꽃잎 읽기",
+          "slot": "unique",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "narrative_edge",
+            "scope": "쾌검·매화검",
+            "uses_per_scene": 1
+          },
+          "flavor": "해당 무학의 학식·문화 배경에 따른 유일한 단서 선택지"
+        },
+        {
+          "id": "HWASAN_U2",
+          "name": "검맥의 감응",
+          "slot": "unique",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "heart_art_insight",
+            "scope": "경쾌",
+            "uses_per_chapter": 1
+          },
+          "flavor": "심법을 알아보거나 독문 초식을 해석하는 사건에 기여"
+        },
+        {
+          "id": "HWASAN_A3",
+          "name": "매화개화",
+          "slot": "active",
+          "level": 3,
+          "action": "main",
+          "cost": {
+            "resource": "SP",
+            "amount": 3
+          },
+          "range": "근접",
+          "effect": {
+            "op": "attack",
+            "ability": "DEX",
+            "dice": "1d6+1d4",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "conditional_followup",
+              "trigger": "opening_or_stance",
+              "value": 1
+            }
+          },
+          "flavor": "기초 심법과 독문 무공을 연결하는 첫 중급 초식"
+        }
+      ]
+    },
+    {
+      "id": "namgung",
+      "name": "남궁세가",
+      "faction_type": "세가",
+      "discipline": "패검·검기",
+      "primary_ability_candidate": "STR",
+      "heart_nature": "강맹",
+      "principle": "검에 실은 기운을 압축해 상대의 방어를 정면으로 뚫는다",
+      "entrance_scenario": "남궁세가 수련 경로의 입문·전수 시험을 거쳐 첫 심법을 배우는 장면",
+      "teacher_role": "사부/장로/전수자 (실명 OPEN)",
+      "opening_choices": [
+        "사문/전승 조건을 확인한다",
+        "첫 심법 구결의 일부를 이해한다",
+        "사문 계율·자유로운 독행의 대가를 확인한다"
+      ],
+      "secret": {
+        "name": "검가 계승 비기의 단서",
+        "unlock_condition": "가문의 이름보다 지켜야 할 약속을 선택한다",
+        "status": "LOCKED_PROPOSED",
+        "effect": "OPEN_NOT_IMPLEMENTED"
+      },
+      "heart_id": "NAMGUNG_HEART",
+      "starter_loadout": {
+        "heart": [
+          "NAMGUNG_HEART"
+        ],
+        "active": [
+          "NAMGUNG_A1",
+          "NAMGUNG_A2"
+        ],
+        "bonus": [
+          "NAMGUNG_BONUS"
+        ],
+        "reaction": [
+          "NAMGUNG_REACTION"
+        ],
+        "passive": [
+          "NAMGUNG_P1",
+          "NAMGUNG_P2",
+          "NAMGUNG_P3"
+        ],
+        "unique": [
+          "NAMGUNG_U1",
+          "NAMGUNG_U2"
+        ]
+      },
+      "level3_candidate": "NAMGUNG_A3",
+      "skills": [
+        {
+          "id": "NAMGUNG_HEART",
+          "name": "청뢰토납결",
+          "slot": "heart",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "heart_affinity",
+            "nature": "강맹",
+            "trigger": "first_matching_martial_action",
+            "bonus": 1,
+            "per_round": 1
+          },
+          "flavor": "검에 실은 기운을 압축해 상대의 방어를 정면으로 뚫는다"
+        },
+        {
+          "id": "NAMGUNG_A1",
+          "name": "청뢰진검",
+          "slot": "active",
+          "level": 1,
+          "action": "main",
+          "cost": {
+            "resource": "SP",
+            "amount": 2
+          },
+          "range": "근접",
+          "effect": {
+            "op": "attack",
+            "ability": "STR",
+            "dice": "1d6",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "create_opening",
+              "value": 1,
+              "duration_rounds": 1
+            }
+          },
+          "flavor": "공격으로 적의 방어 리듬에 틈을 만든다"
+        },
+        {
+          "id": "NAMGUNG_A2",
+          "name": "단강파검",
+          "slot": "active",
+          "level": 1,
+          "action": "main",
+          "cost": {
+            "resource": "SP",
+            "amount": 3
+          },
+          "range": "근접",
+          "effect": {
+            "op": "attack",
+            "ability": "STR",
+            "dice": "1d6",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "attack_penalty",
+              "value": 1,
+              "duration_rounds": 1
+            }
+          },
+          "flavor": "문파 고유의 기운을 실어 상대의 다음 행동을 제약한다"
+        },
+        {
+          "id": "NAMGUNG_BONUS",
+          "name": "쇄뢰보",
+          "slot": "bonus",
+          "level": 1,
+          "action": "bonus",
+          "cost": {
+            "resource": "SP",
+            "amount": 1
+          },
+          "range": "self",
+          "effect": {
+            "op": "stance",
+            "mode": "next_attack_bonus",
+            "value": 1,
+            "expires": "end_of_turn"
+          },
+          "flavor": "정해진 교전 리듬을 조절한다"
+        },
+        {
+          "id": "NAMGUNG_REACTION",
+          "name": "의검호신",
+          "slot": "reaction",
+          "level": 1,
+          "action": "reaction",
+          "cost": {
+            "resource": "SP",
+            "amount": 2
+          },
+          "range": "self",
+          "effect": {
+            "op": "reduce_damage",
+            "dice": "1d6",
+            "min": 0,
+            "trigger": "incoming_hit_before_damage"
+          },
+          "flavor": "재빠른 호흡으로 피해를 경감한다"
+        },
+        {
+          "id": "NAMGUNG_P1",
+          "name": "검가의 기품",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "skill_check_bonus",
+            "ability": "STR",
+            "bonus": 1,
+            "scope": "패검·검기"
+          },
+          "flavor": "전승의 이해를 돕는 수련"
+        },
+        {
+          "id": "NAMGUNG_P2",
+          "name": "강기 저항",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "first_cost_discount",
+            "resource": "SP",
+            "amount": 1,
+            "min_cost": 1,
+            "per_battle": 1
+          },
+          "flavor": "첫 무공의 운기 손실을 줄임"
+        },
+        {
+          "id": "NAMGUNG_P3",
+          "name": "정면 돌파",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "survival_guard",
+            "reduce_damage": 2,
+            "trigger": "would_fall_at_zero_hp",
+            "per_battle": 1
+          },
+          "flavor": "기혈을 붙잡아 치명적인 충격을 견딤"
+        },
+        {
+          "id": "NAMGUNG_U1",
+          "name": "가문의 눈",
+          "slot": "unique",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "narrative_edge",
+            "scope": "패검·검기",
+            "uses_per_scene": 1
+          },
+          "flavor": "해당 무학의 학식·문화 배경에 따른 유일한 단서 선택지"
+        },
+        {
+          "id": "NAMGUNG_U2",
+          "name": "검기 응축",
+          "slot": "unique",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "heart_art_insight",
+            "scope": "강맹",
+            "uses_per_chapter": 1
+          },
+          "flavor": "심법을 알아보거나 독문 초식을 해석하는 사건에 기여"
+        },
+        {
+          "id": "NAMGUNG_A3",
+          "name": "뇌광일식",
+          "slot": "active",
+          "level": 3,
+          "action": "main",
+          "cost": {
+            "resource": "SP",
+            "amount": 3
+          },
+          "range": "근접",
+          "effect": {
+            "op": "attack",
+            "ability": "STR",
+            "dice": "1d6+1d4",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "conditional_followup",
+              "trigger": "opening_or_stance",
+              "value": 1
+            }
+          },
+          "flavor": "기초 심법과 독문 무공을 연결하는 첫 중급 초식"
+        }
+      ]
+    },
+    {
+      "id": "peng",
+      "name": "하북팽가",
+      "faction_type": "세가",
+      "discipline": "대도·중도",
+      "primary_ability_candidate": "STR",
+      "heart_nature": "강체",
+      "principle": "묵직한 칼끝에 흔들리지 않는 축기를 싣는다",
+      "entrance_scenario": "하북팽가 수련 경로의 입문·전수 시험을 거쳐 첫 심법을 배우는 장면",
+      "teacher_role": "사부/장로/전수자 (실명 OPEN)",
+      "opening_choices": [
+        "사문/전승 조건을 확인한다",
+        "첫 심법 구결의 일부를 이해한다",
+        "사문 계율·자유로운 독행의 대가를 확인한다"
+      ],
+      "secret": {
+        "name": "파산팔도 비전의 단서",
+        "unlock_condition": "승부의 무게를 지탱하는 하체 수련",
+        "status": "LOCKED_PROPOSED",
+        "effect": "OPEN_NOT_IMPLEMENTED"
+      },
+      "heart_id": "PENG_HEART",
+      "starter_loadout": {
+        "heart": [
+          "PENG_HEART"
+        ],
+        "active": [
+          "PENG_A1",
+          "PENG_A2"
+        ],
+        "bonus": [
+          "PENG_BONUS"
+        ],
+        "reaction": [
+          "PENG_REACTION"
+        ],
+        "passive": [
+          "PENG_P1",
+          "PENG_P2",
+          "PENG_P3"
+        ],
+        "unique": [
+          "PENG_U1",
+          "PENG_U2"
+        ]
+      },
+      "level3_candidate": "PENG_A3",
+      "skills": [
+        {
+          "id": "PENG_HEART",
+          "name": "철하축기결",
+          "slot": "heart",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "heart_affinity",
+            "nature": "강체",
+            "trigger": "first_matching_martial_action",
+            "bonus": 1,
+            "per_round": 1
+          },
+          "flavor": "묵직한 칼끝에 흔들리지 않는 축기를 싣는다"
+        },
+        {
+          "id": "PENG_A1",
+          "name": "홍산개도",
+          "slot": "active",
+          "level": 1,
+          "action": "main",
+          "cost": {
+            "resource": "SP",
+            "amount": 2
+          },
+          "range": "근접",
+          "effect": {
+            "op": "attack",
+            "ability": "STR",
+            "dice": "1d6",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "create_opening",
+              "value": 1,
+              "duration_rounds": 1
+            }
+          },
+          "flavor": "공격으로 적의 방어 리듬에 틈을 만든다"
+        },
+        {
+          "id": "PENG_A2",
+          "name": "협곡단도",
+          "slot": "active",
+          "level": 1,
+          "action": "main",
+          "cost": {
+            "resource": "SP",
+            "amount": 3
+          },
+          "range": "근접",
+          "effect": {
+            "op": "attack",
+            "ability": "STR",
+            "dice": "1d6",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "defense_penalty",
+              "value": 1,
+              "duration_rounds": 1
+            }
+          },
+          "flavor": "문파 고유의 기운을 실어 상대의 다음 행동을 제약한다"
+        },
+        {
+          "id": "PENG_BONUS",
+          "name": "중산보",
+          "slot": "bonus",
+          "level": 1,
+          "action": "bonus",
+          "cost": {
+            "resource": "SP",
+            "amount": 1
+          },
+          "range": "self",
+          "effect": {
+            "op": "stance",
+            "mode": "extra_movement_zone",
+            "value": 1,
+            "expires": "end_of_turn"
+          },
+          "flavor": "정해진 교전 리듬을 조절한다"
+        },
+        {
+          "id": "PENG_REACTION",
+          "name": "칼등막기",
+          "slot": "reaction",
+          "level": 1,
+          "action": "reaction",
+          "cost": {
+            "resource": "SP",
+            "amount": 2
+          },
+          "range": "self",
+          "effect": {
+            "op": "reduce_damage",
+            "dice": "1d6",
+            "min": 0,
+            "trigger": "incoming_hit_before_damage"
+          },
+          "flavor": "재빠른 호흡으로 피해를 경감한다"
+        },
+        {
+          "id": "PENG_P1",
+          "name": "중도 감각",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "skill_check_bonus",
+            "ability": "STR",
+            "bonus": 1,
+            "scope": "대도·중도"
+          },
+          "flavor": "전승의 이해를 돕는 수련"
+        },
+        {
+          "id": "PENG_P2",
+          "name": "중심의 무게",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "first_cost_discount",
+            "resource": "SP",
+            "amount": 1,
+            "min_cost": 1,
+            "per_battle": 1
+          },
+          "flavor": "첫 무공의 운기 손실을 줄임"
+        },
+        {
+          "id": "PENG_P3",
+          "name": "역공 단련",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "survival_guard",
+            "reduce_damage": 2,
+            "trigger": "would_fall_at_zero_hp",
+            "per_battle": 1
+          },
+          "flavor": "기혈을 붙잡아 치명적인 충격을 견딤"
+        },
+        {
+          "id": "PENG_U1",
+          "name": "기세 포착",
+          "slot": "unique",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "narrative_edge",
+            "scope": "대도·중도",
+            "uses_per_scene": 1
+          },
+          "flavor": "해당 무학의 학식·문화 배경에 따른 유일한 단서 선택지"
+        },
+        {
+          "id": "PENG_U2",
+          "name": "도세 확장",
+          "slot": "unique",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "heart_art_insight",
+            "scope": "강체",
+            "uses_per_chapter": 1
+          },
+          "flavor": "심법을 알아보거나 독문 초식을 해석하는 사건에 기여"
+        },
+        {
+          "id": "PENG_A3",
+          "name": "파악도식",
+          "slot": "active",
+          "level": 3,
+          "action": "main",
+          "cost": {
+            "resource": "SP",
+            "amount": 3
+          },
+          "range": "근접",
+          "effect": {
+            "op": "attack",
+            "ability": "STR",
+            "dice": "1d6+1d4",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "conditional_followup",
+              "trigger": "opening_or_stance",
+              "value": 1
+            }
+          },
+          "flavor": "기초 심법과 독문 무공을 연결하는 첫 중급 초식"
+        }
+      ]
+    },
+    {
+      "id": "tang",
+      "name": "사천당문",
+      "faction_type": "세가",
+      "discipline": "암기·의독",
+      "primary_ability_candidate": "DEX",
+      "heart_nature": "정밀",
+      "principle": "미세한 혈맥을 읽어 살상이 아닌 제압도 가능케 한다",
+      "entrance_scenario": "사천당문 수련 경로의 입문·전수 시험을 거쳐 첫 심법을 배우는 장면",
+      "teacher_role": "사부/장로/전수자 (실명 OPEN)",
+      "opening_choices": [
+        "사문/전승 조건을 확인한다",
+        "첫 심법 구결의 일부를 이해한다",
+        "사문 계율·자유로운 독행의 대가를 확인한다"
+      ],
+      "secret": {
+        "name": "금침 비전의 단서",
+        "unlock_condition": "해독의 도리와 문중의 금기를 함께 통과한다",
+        "status": "LOCKED_PROPOSED",
+        "effect": "OPEN_NOT_IMPLEMENTED"
+      },
+      "heart_id": "TANG_HEART",
+      "starter_loadout": {
+        "heart": [
+          "TANG_HEART"
+        ],
+        "active": [
+          "TANG_A1",
+          "TANG_A2"
+        ],
+        "bonus": [
+          "TANG_BONUS"
+        ],
+        "reaction": [
+          "TANG_REACTION"
+        ],
+        "passive": [
+          "TANG_P1",
+          "TANG_P2",
+          "TANG_P3"
+        ],
+        "unique": [
+          "TANG_U1",
+          "TANG_U2"
+        ]
+      },
+      "level3_candidate": "TANG_A3",
+      "skills": [
+        {
+          "id": "TANG_HEART",
+          "name": "세맥유도결",
+          "slot": "heart",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "heart_affinity",
+            "nature": "정밀",
+            "trigger": "first_matching_martial_action",
+            "bonus": 1,
+            "per_round": 1
+          },
+          "flavor": "미세한 혈맥을 읽어 살상이 아닌 제압도 가능케 한다"
+        },
+        {
+          "id": "TANG_A1",
+          "name": "비우침",
+          "slot": "active",
+          "level": 1,
+          "action": "main",
+          "cost": {
+            "resource": "SP",
+            "amount": 2
+          },
+          "range": "중거리",
+          "effect": {
+            "op": "attack",
+            "ability": "DEX",
+            "dice": "1d6",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "create_opening",
+              "value": 1,
+              "duration_rounds": 1
+            }
+          },
+          "flavor": "공격으로 적의 방어 리듬에 틈을 만든다"
+        },
+        {
+          "id": "TANG_A2",
+          "name": "봉맥투침",
+          "slot": "active",
+          "level": 1,
+          "action": "main",
+          "cost": {
+            "resource": "SP",
+            "amount": 3
+          },
+          "range": "중거리",
+          "effect": {
+            "op": "attack",
+            "ability": "DEX",
+            "dice": "1d6",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "movement_penalty",
+              "value": 1,
+              "duration_rounds": 1
+            }
+          },
+          "flavor": "문파 고유의 기운을 실어 상대의 다음 행동을 제약한다"
+        },
+        {
+          "id": "TANG_BONUS",
+          "name": "삼영보",
+          "slot": "bonus",
+          "level": 1,
+          "action": "bonus",
+          "cost": {
+            "resource": "SP",
+            "amount": 1
+          },
+          "range": "self",
+          "effect": {
+            "op": "stance",
+            "mode": "next_attack_bonus",
+            "value": 1,
+            "expires": "end_of_turn"
+          },
+          "flavor": "정해진 교전 리듬을 조절한다"
+        },
+        {
+          "id": "TANG_REACTION",
+          "name": "유독해수",
+          "slot": "reaction",
+          "level": 1,
+          "action": "reaction",
+          "cost": {
+            "resource": "SP",
+            "amount": 2
+          },
+          "range": "self",
+          "effect": {
+            "op": "reduce_damage",
+            "dice": "1d6",
+            "min": 0,
+            "trigger": "incoming_hit_before_damage"
+          },
+          "flavor": "재빠른 호흡으로 피해를 경감한다"
+        },
+        {
+          "id": "TANG_P1",
+          "name": "약성 지식",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "skill_check_bonus",
+            "ability": "DEX",
+            "bonus": 1,
+            "scope": "암기·의독"
+          },
+          "flavor": "전승의 이해를 돕는 수련"
+        },
+        {
+          "id": "TANG_P2",
+          "name": "손끝 감각",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "first_cost_discount",
+            "resource": "SP",
+            "amount": 1,
+            "min_cost": 1,
+            "per_battle": 1
+          },
+          "flavor": "첫 무공의 운기 손실을 줄임"
+        },
+        {
+          "id": "TANG_P3",
+          "name": "비살상 통제",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "survival_guard",
+            "reduce_damage": 2,
+            "trigger": "would_fall_at_zero_hp",
+            "per_battle": 1
+          },
+          "flavor": "기혈을 붙잡아 치명적인 충격을 견딤"
+        },
+        {
+          "id": "TANG_U1",
+          "name": "독물 감별",
+          "slot": "unique",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "narrative_edge",
+            "scope": "암기·의독",
+            "uses_per_scene": 1
+          },
+          "flavor": "해당 무학의 학식·문화 배경에 따른 유일한 단서 선택지"
+        },
+        {
+          "id": "TANG_U2",
+          "name": "침의 조율",
+          "slot": "unique",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "heart_art_insight",
+            "scope": "정밀",
+            "uses_per_chapter": 1
+          },
+          "flavor": "심법을 알아보거나 독문 초식을 해석하는 사건에 기여"
+        },
+        {
+          "id": "TANG_A3",
+          "name": "백맥봉침",
+          "slot": "active",
+          "level": 3,
+          "action": "main",
+          "cost": {
+            "resource": "SP",
+            "amount": 3
+          },
+          "range": "중거리",
+          "effect": {
+            "op": "attack",
+            "ability": "DEX",
+            "dice": "1d6+1d4",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "conditional_followup",
+              "trigger": "opening_or_stance",
+              "value": 1
+            }
+          },
+          "flavor": "기초 심법과 독문 무공을 연결하는 첫 중급 초식"
+        }
+      ]
+    },
+    {
+      "id": "zhuge",
+      "name": "제갈세가",
+      "faction_type": "세가",
+      "discipline": "진법·기관·책략",
+      "primary_ability_candidate": "INT",
+      "heart_nature": "진식",
+      "principle": "땅의 기맥을 읽고 작은 진식을 연결해 전황을 조율한다",
+      "entrance_scenario": "제갈세가 수련 경로의 입문·전수 시험을 거쳐 첫 심법을 배우는 장면",
+      "teacher_role": "사부/장로/전수자 (실명 OPEN)",
+      "opening_choices": [
+        "사문/전승 조건을 확인한다",
+        "첫 심법 구결의 일부를 이해한다",
+        "사문 계율·자유로운 독행의 대가를 확인한다"
+      ],
+      "secret": {
+        "name": "봉인 진도 비전의 단서",
+        "unlock_condition": "진법 설계가 누구의 삶을 희생하는지 논증한다",
+        "status": "LOCKED_PROPOSED",
+        "effect": "OPEN_NOT_IMPLEMENTED"
+      },
+      "heart_id": "ZHUGE_HEART",
+      "starter_loadout": {
+        "heart": [
+          "ZHUGE_HEART"
+        ],
+        "active": [
+          "ZHUGE_A1",
+          "ZHUGE_A2"
+        ],
+        "bonus": [
+          "ZHUGE_BONUS"
+        ],
+        "reaction": [
+          "ZHUGE_REACTION"
+        ],
+        "passive": [
+          "ZHUGE_P1",
+          "ZHUGE_P2",
+          "ZHUGE_P3"
+        ],
+        "unique": [
+          "ZHUGE_U1",
+          "ZHUGE_U2"
+        ]
+      },
+      "level3_candidate": "ZHUGE_A3",
+      "skills": [
+        {
+          "id": "ZHUGE_HEART",
+          "name": "문진공명결",
+          "slot": "heart",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "heart_affinity",
+            "nature": "진식",
+            "trigger": "first_matching_martial_action",
+            "bonus": 1,
+            "per_round": 1
+          },
+          "flavor": "땅의 기맥을 읽고 작은 진식을 연결해 전황을 조율한다"
+        },
+        {
+          "id": "ZHUGE_A1",
+          "name": "이문점위",
+          "slot": "active",
+          "level": 1,
+          "action": "main",
+          "cost": {
+            "resource": "MP",
+            "amount": 2
+          },
+          "range": "중거리",
+          "effect": {
+            "op": "attack",
+            "ability": "INT",
+            "dice": "1d6",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "create_opening",
+              "value": 1,
+              "duration_rounds": 1
+            }
+          },
+          "flavor": "공격으로 적의 방어 리듬에 틈을 만든다"
+        },
+        {
+          "id": "ZHUGE_A2",
+          "name": "쇄류소진",
+          "slot": "active",
+          "level": 1,
+          "action": "main",
+          "cost": {
+            "resource": "MP",
+            "amount": 3
+          },
+          "range": "중거리",
+          "effect": {
+            "op": "attack",
+            "ability": "INT",
+            "dice": "1d8",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "attack_penalty",
+              "value": 1,
+              "duration_rounds": 1
+            }
+          },
+          "flavor": "문파 고유의 기운을 실어 상대의 다음 행동을 제약한다"
+        },
+        {
+          "id": "ZHUGE_BONUS",
+          "name": "개문보",
+          "slot": "bonus",
+          "level": 1,
+          "action": "bonus",
+          "cost": {
+            "resource": "SP",
+            "amount": 1
+          },
+          "range": "self",
+          "effect": {
+            "op": "stance",
+            "mode": "extra_movement_zone",
+            "value": 1,
+            "expires": "end_of_turn"
+          },
+          "flavor": "정해진 교전 리듬을 조절한다"
+        },
+        {
+          "id": "ZHUGE_REACTION",
+          "name": "진장호신",
+          "slot": "reaction",
+          "level": 1,
+          "action": "reaction",
+          "cost": {
+            "resource": "MP",
+            "amount": 2
+          },
+          "range": "self",
+          "effect": {
+            "op": "reduce_damage",
+            "dice": "1d6",
+            "min": 0,
+            "trigger": "incoming_hit_before_damage"
+          },
+          "flavor": "재빠른 호흡으로 피해를 경감한다"
+        },
+        {
+          "id": "ZHUGE_P1",
+          "name": "전장 계산",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "skill_check_bonus",
+            "ability": "INT",
+            "bonus": 1,
+            "scope": "진법·기관·책략"
+          },
+          "flavor": "전승의 이해를 돕는 수련"
+        },
+        {
+          "id": "ZHUGE_P2",
+          "name": "문양 해독",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "first_cost_discount",
+            "resource": "MP",
+            "amount": 1,
+            "min_cost": 1,
+            "per_battle": 1
+          },
+          "flavor": "첫 무공의 운기 손실을 줄임"
+        },
+        {
+          "id": "ZHUGE_P3",
+          "name": "진식 보존",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "survival_guard",
+            "reduce_damage": 2,
+            "trigger": "would_fall_at_zero_hp",
+            "per_battle": 1
+          },
+          "flavor": "기혈을 붙잡아 치명적인 충격을 견딤"
+        },
+        {
+          "id": "ZHUGE_U1",
+          "name": "위험 관찰",
+          "slot": "unique",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "narrative_edge",
+            "scope": "진법·기관·책략",
+            "uses_per_scene": 1
+          },
+          "flavor": "해당 무학의 학식·문화 배경에 따른 유일한 단서 선택지"
+        },
+        {
+          "id": "ZHUGE_U2",
+          "name": "소진 가동",
+          "slot": "unique",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "heart_art_insight",
+            "scope": "진식",
+            "uses_per_chapter": 1
+          },
+          "flavor": "심법을 알아보거나 독문 초식을 해석하는 사건에 기여"
+        },
+        {
+          "id": "ZHUGE_A3",
+          "name": "구궁연환",
+          "slot": "active",
+          "level": 3,
+          "action": "main",
+          "cost": {
+            "resource": "MP",
+            "amount": 3
+          },
+          "range": "중거리",
+          "effect": {
+            "op": "attack",
+            "ability": "INT",
+            "dice": "1d6+1d4",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "conditional_followup",
+              "trigger": "opening_or_stance",
+              "value": 1
+            }
+          },
+          "flavor": "기초 심법과 독문 무공을 연결하는 첫 중급 초식"
+        }
+      ]
+    },
+    {
+      "id": "cheonma",
+      "name": "천마신교",
+      "faction_type": "교단",
+      "discipline": "마공·근접 운기",
+      "primary_ability_candidate": "STR",
+      "heart_nature": "강맹",
+      "principle": "공세에서 파생된 기운을 되돌려 강한 일격을 만든다",
+      "entrance_scenario": "천마신교 수련 경로의 입문·전수 시험을 거쳐 첫 심법을 배우는 장면",
+      "teacher_role": "사부/장로/전수자 (실명 OPEN)",
+      "opening_choices": [
+        "사문/전승 조건을 확인한다",
+        "첫 심법 구결의 일부를 이해한다",
+        "사문 계율·자유로운 독행의 대가를 확인한다"
+      ],
+      "secret": {
+        "name": "교주 직계 심공의 단서",
+        "unlock_condition": "호법의 전수 시험을 넘어서도 인간성을 지킨다",
+        "status": "LOCKED_PROPOSED",
+        "effect": "OPEN_NOT_IMPLEMENTED"
+      },
+      "heart_id": "CHEONMA_HEART",
+      "starter_loadout": {
+        "heart": [
+          "CHEONMA_HEART"
+        ],
+        "active": [
+          "CHEONMA_A1",
+          "CHEONMA_A2"
+        ],
+        "bonus": [
+          "CHEONMA_BONUS"
+        ],
+        "reaction": [
+          "CHEONMA_REACTION"
+        ],
+        "passive": [
+          "CHEONMA_P1",
+          "CHEONMA_P2",
+          "CHEONMA_P3"
+        ],
+        "unique": [
+          "CHEONMA_U1",
+          "CHEONMA_U2"
+        ]
+      },
+      "level3_candidate": "CHEONMA_A3",
+      "skills": [
+        {
+          "id": "CHEONMA_HEART",
+          "name": "흑뢰환류결",
+          "slot": "heart",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "heart_affinity",
+            "nature": "강맹",
+            "trigger": "first_matching_martial_action",
+            "bonus": 1,
+            "per_round": 1
+          },
+          "flavor": "공세에서 파생된 기운을 되돌려 강한 일격을 만든다"
+        },
+        {
+          "id": "CHEONMA_A1",
+          "name": "흑월난격",
+          "slot": "active",
+          "level": 1,
+          "action": "main",
+          "cost": {
+            "resource": "SP",
+            "amount": 2
+          },
+          "range": "근접",
+          "effect": {
+            "op": "attack",
+            "ability": "STR",
+            "dice": "1d6",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "create_opening",
+              "value": 1,
+              "duration_rounds": 1
+            }
+          },
+          "flavor": "공격으로 적의 방어 리듬에 틈을 만든다"
+        },
+        {
+          "id": "CHEONMA_A2",
+          "name": "수라관입",
+          "slot": "active",
+          "level": 1,
+          "action": "main",
+          "cost": {
+            "resource": "SP",
+            "amount": 3
+          },
+          "range": "근접",
+          "effect": {
+            "op": "attack",
+            "ability": "STR",
+            "dice": "1d6",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "defense_penalty",
+              "value": 1,
+              "duration_rounds": 1
+            }
+          },
+          "flavor": "문파 고유의 기운을 실어 상대의 다음 행동을 제약한다"
+        },
+        {
+          "id": "CHEONMA_BONUS",
+          "name": "혈영보",
+          "slot": "bonus",
+          "level": 1,
+          "action": "bonus",
+          "cost": {
+            "resource": "SP",
+            "amount": 1
+          },
+          "range": "self",
+          "effect": {
+            "op": "stance",
+            "mode": "next_attack_bonus",
+            "value": 1,
+            "expires": "end_of_turn"
+          },
+          "flavor": "정해진 교전 리듬을 조절한다"
+        },
+        {
+          "id": "CHEONMA_REACTION",
+          "name": "역맥호신",
+          "slot": "reaction",
+          "level": 1,
+          "action": "reaction",
+          "cost": {
+            "resource": "SP",
+            "amount": 2
+          },
+          "range": "self",
+          "effect": {
+            "op": "reduce_damage",
+            "dice": "1d6",
+            "min": 0,
+            "trigger": "incoming_hit_before_damage"
+          },
+          "flavor": "재빠른 호흡으로 피해를 경감한다"
+        },
+        {
+          "id": "CHEONMA_P1",
+          "name": "수라의 집중",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "skill_check_bonus",
+            "ability": "STR",
+            "bonus": 1,
+            "scope": "마공·근접 운기"
+          },
+          "flavor": "전승의 이해를 돕는 수련"
+        },
+        {
+          "id": "CHEONMA_P2",
+          "name": "고통 인내",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "first_cost_discount",
+            "resource": "SP",
+            "amount": 1,
+            "min_cost": 1,
+            "per_battle": 1
+          },
+          "flavor": "첫 무공의 운기 손실을 줄임"
+        },
+        {
+          "id": "CHEONMA_P3",
+          "name": "잔력 활용",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "survival_guard",
+            "reduce_damage": 2,
+            "trigger": "would_fall_at_zero_hp",
+            "per_battle": 1
+          },
+          "flavor": "기혈을 붙잡아 치명적인 충격을 견딤"
+        },
+        {
+          "id": "CHEONMA_U1",
+          "name": "권력 감지",
+          "slot": "unique",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "narrative_edge",
+            "scope": "마공·근접 운기",
+            "uses_per_scene": 1
+          },
+          "flavor": "해당 무학의 학식·문화 배경에 따른 유일한 단서 선택지"
+        },
+        {
+          "id": "CHEONMA_U2",
+          "name": "역류 축적",
+          "slot": "unique",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "heart_art_insight",
+            "scope": "강맹",
+            "uses_per_chapter": 1
+          },
+          "flavor": "심법을 알아보거나 독문 초식을 해석하는 사건에 기여"
+        },
+        {
+          "id": "CHEONMA_A3",
+          "name": "흑천파식",
+          "slot": "active",
+          "level": 3,
+          "action": "main",
+          "cost": {
+            "resource": "SP",
+            "amount": 3
+          },
+          "range": "근접",
+          "effect": {
+            "op": "attack",
+            "ability": "STR",
+            "dice": "1d6+1d4",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "conditional_followup",
+              "trigger": "opening_or_stance",
+              "value": 1
+            }
+          },
+          "flavor": "기초 심법과 독문 무공을 연결하는 첫 중급 초식"
+        }
+      ]
+    },
+    {
+      "id": "bukhae",
+      "name": "북해",
+      "faction_type": "세외",
+      "discipline": "빙공·빙검",
+      "primary_ability_candidate": "WIS",
+      "heart_nature": "음한",
+      "principle": "차가운 기운을 안정적으로 순환시켜 움직임을 늦춘다",
+      "entrance_scenario": "북해 수련 경로의 입문·전수 시험을 거쳐 첫 심법을 배우는 장면",
+      "teacher_role": "사부/장로/전수자 (실명 OPEN)",
+      "opening_choices": [
+        "사문/전승 조건을 확인한다",
+        "첫 심법 구결의 일부를 이해한다",
+        "사문 계율·자유로운 독행의 대가를 확인한다"
+      ],
+      "secret": {
+        "name": "북해 비전 한맥의 단서",
+        "unlock_condition": "얼어붙은 생명을 해치지 않고 기맥을 되돌린다",
+        "status": "LOCKED_PROPOSED",
+        "effect": "OPEN_NOT_IMPLEMENTED"
+      },
+      "heart_id": "BUKHAE_HEART",
+      "starter_loadout": {
+        "heart": [
+          "BUKHAE_HEART"
+        ],
+        "active": [
+          "BUKHAE_A1",
+          "BUKHAE_A2"
+        ],
+        "bonus": [
+          "BUKHAE_BONUS"
+        ],
+        "reaction": [
+          "BUKHAE_REACTION"
+        ],
+        "passive": [
+          "BUKHAE_P1",
+          "BUKHAE_P2",
+          "BUKHAE_P3"
+        ],
+        "unique": [
+          "BUKHAE_U1",
+          "BUKHAE_U2"
+        ]
+      },
+      "level3_candidate": "BUKHAE_A3",
+      "skills": [
+        {
+          "id": "BUKHAE_HEART",
+          "name": "설혼한맥결",
+          "slot": "heart",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "heart_affinity",
+            "nature": "음한",
+            "trigger": "first_matching_martial_action",
+            "bonus": 1,
+            "per_round": 1
+          },
+          "flavor": "차가운 기운을 안정적으로 순환시켜 움직임을 늦춘다"
+        },
+        {
+          "id": "BUKHAE_A1",
+          "name": "설혼빙장",
+          "slot": "active",
+          "level": 1,
+          "action": "main",
+          "cost": {
+            "resource": "MP",
+            "amount": 2
+          },
+          "range": "중거리",
+          "effect": {
+            "op": "attack",
+            "ability": "WIS",
+            "dice": "1d6",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "create_opening",
+              "value": 1,
+              "duration_rounds": 1
+            }
+          },
+          "flavor": "공격으로 적의 방어 리듬에 틈을 만든다"
+        },
+        {
+          "id": "BUKHAE_A2",
+          "name": "한맥검선",
+          "slot": "active",
+          "level": 1,
+          "action": "main",
+          "cost": {
+            "resource": "MP",
+            "amount": 3
+          },
+          "range": "중거리",
+          "effect": {
+            "op": "attack",
+            "ability": "WIS",
+            "dice": "1d8",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "movement_penalty",
+              "value": 1,
+              "duration_rounds": 1
+            }
+          },
+          "flavor": "문파 고유의 기운을 실어 상대의 다음 행동을 제약한다"
+        },
+        {
+          "id": "BUKHAE_BONUS",
+          "name": "설보",
+          "slot": "bonus",
+          "level": 1,
+          "action": "bonus",
+          "cost": {
+            "resource": "SP",
+            "amount": 1
+          },
+          "range": "self",
+          "effect": {
+            "op": "stance",
+            "mode": "extra_movement_zone",
+            "value": 1,
+            "expires": "end_of_turn"
+          },
+          "flavor": "정해진 교전 리듬을 조절한다"
+        },
+        {
+          "id": "BUKHAE_REACTION",
+          "name": "빙벽호신",
+          "slot": "reaction",
+          "level": 1,
+          "action": "reaction",
+          "cost": {
+            "resource": "MP",
+            "amount": 2
+          },
+          "range": "self",
+          "effect": {
+            "op": "reduce_damage",
+            "dice": "1d6",
+            "min": 0,
+            "trigger": "incoming_hit_before_damage"
+          },
+          "flavor": "재빠른 호흡으로 피해를 경감한다"
+        },
+        {
+          "id": "BUKHAE_P1",
+          "name": "한기 관찰",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "skill_check_bonus",
+            "ability": "WIS",
+            "bonus": 1,
+            "scope": "빙공·빙검"
+          },
+          "flavor": "전승의 이해를 돕는 수련"
+        },
+        {
+          "id": "BUKHAE_P2",
+          "name": "혹한 적응",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "first_cost_discount",
+            "resource": "MP",
+            "amount": 1,
+            "min_cost": 1,
+            "per_battle": 1
+          },
+          "flavor": "첫 무공의 운기 손실을 줄임"
+        },
+        {
+          "id": "BUKHAE_P3",
+          "name": "기맥 저온",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "survival_guard",
+            "reduce_damage": 2,
+            "trigger": "would_fall_at_zero_hp",
+            "per_battle": 1
+          },
+          "flavor": "기혈을 붙잡아 치명적인 충격을 견딤"
+        },
+        {
+          "id": "BUKHAE_U1",
+          "name": "한풍 감응",
+          "slot": "unique",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "narrative_edge",
+            "scope": "빙공·빙검",
+            "uses_per_scene": 1
+          },
+          "flavor": "해당 무학의 학식·문화 배경에 따른 유일한 단서 선택지"
+        },
+        {
+          "id": "BUKHAE_U2",
+          "name": "냉기 제어",
+          "slot": "unique",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "heart_art_insight",
+            "scope": "음한",
+            "uses_per_chapter": 1
+          },
+          "flavor": "심법을 알아보거나 독문 초식을 해석하는 사건에 기여"
+        },
+        {
+          "id": "BUKHAE_A3",
+          "name": "빙륜쇄",
+          "slot": "active",
+          "level": 3,
+          "action": "main",
+          "cost": {
+            "resource": "MP",
+            "amount": 3
+          },
+          "range": "중거리",
+          "effect": {
+            "op": "attack",
+            "ability": "WIS",
+            "dice": "1d6+1d4",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "conditional_followup",
+              "trigger": "opening_or_stance",
+              "value": 1
+            }
+          },
+          "flavor": "기초 심법과 독문 무공을 연결하는 첫 중급 초식"
+        }
+      ]
+    },
+    {
+      "id": "joseon",
+      "name": "조선 궁술 계열",
+      "faction_type": "세외",
+      "discipline": "궁술·편전·군영",
+      "primary_ability_candidate": "DEX",
+      "heart_nature": "정밀",
+      "principle": "호흡을 다스려 활의 연속 조준과 몸의 균형을 유지한다",
+      "entrance_scenario": "조선 궁술 계열 수련 경로의 입문·전수 시험을 거쳐 첫 심법을 배우는 장면",
+      "teacher_role": "사부/장로/전수자 (실명 OPEN)",
+      "opening_choices": [
+        "사문/전승 조건을 확인한다",
+        "첫 심법 구결의 일부를 이해한다",
+        "사문 계율·자유로운 독행의 대가를 확인한다"
+      ],
+      "secret": {
+        "name": "군영 비전 궁법의 단서",
+        "unlock_condition": "활의 표적을 죽이지 않고 막아야 할 때 판단한다",
+        "status": "LOCKED_PROPOSED",
+        "effect": "OPEN_NOT_IMPLEMENTED"
+      },
+      "heart_id": "JOSEON_HEART",
+      "starter_loadout": {
+        "heart": [
+          "JOSEON_HEART"
+        ],
+        "active": [
+          "JOSEON_A1",
+          "JOSEON_A2"
+        ],
+        "bonus": [
+          "JOSEON_BONUS"
+        ],
+        "reaction": [
+          "JOSEON_REACTION"
+        ],
+        "passive": [
+          "JOSEON_P1",
+          "JOSEON_P2",
+          "JOSEON_P3"
+        ],
+        "unique": [
+          "JOSEON_U1",
+          "JOSEON_U2"
+        ]
+      },
+      "level3_candidate": "JOSEON_A3",
+      "skills": [
+        {
+          "id": "JOSEON_HEART",
+          "name": "청연균식법",
+          "slot": "heart",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "heart_affinity",
+            "nature": "정밀",
+            "trigger": "first_matching_martial_action",
+            "bonus": 1,
+            "per_round": 1
+          },
+          "flavor": "호흡을 다스려 활의 연속 조준과 몸의 균형을 유지한다"
+        },
+        {
+          "id": "JOSEON_A1",
+          "name": "청류편전",
+          "slot": "active",
+          "level": 1,
+          "action": "main",
+          "cost": {
+            "resource": "SP",
+            "amount": 2
+          },
+          "range": "중거리",
+          "effect": {
+            "op": "attack",
+            "ability": "DEX",
+            "dice": "1d6",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "create_opening",
+              "value": 1,
+              "duration_rounds": 1
+            }
+          },
+          "flavor": "공격으로 적의 방어 리듬에 틈을 만든다"
+        },
+        {
+          "id": "JOSEON_A2",
+          "name": "순연연시",
+          "slot": "active",
+          "level": 1,
+          "action": "main",
+          "cost": {
+            "resource": "SP",
+            "amount": 3
+          },
+          "range": "중거리",
+          "effect": {
+            "op": "attack",
+            "ability": "DEX",
+            "dice": "1d6",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "attack_penalty",
+              "value": 1,
+              "duration_rounds": 1
+            }
+          },
+          "flavor": "문파 고유의 기운을 실어 상대의 다음 행동을 제약한다"
+        },
+        {
+          "id": "JOSEON_BONUS",
+          "name": "사행보",
+          "slot": "bonus",
+          "level": 1,
+          "action": "bonus",
+          "cost": {
+            "resource": "SP",
+            "amount": 1
+          },
+          "range": "self",
+          "effect": {
+            "op": "stance",
+            "mode": "next_attack_bonus",
+            "value": 1,
+            "expires": "end_of_turn"
+          },
+          "flavor": "정해진 교전 리듬을 조절한다"
+        },
+        {
+          "id": "JOSEON_REACTION",
+          "name": "응시호신",
+          "slot": "reaction",
+          "level": 1,
+          "action": "reaction",
+          "cost": {
+            "resource": "SP",
+            "amount": 2
+          },
+          "range": "self",
+          "effect": {
+            "op": "reduce_damage",
+            "dice": "1d6",
+            "min": 0,
+            "trigger": "incoming_hit_before_damage"
+          },
+          "flavor": "재빠른 호흡으로 피해를 경감한다"
+        },
+        {
+          "id": "JOSEON_P1",
+          "name": "풍향 읽기",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "skill_check_bonus",
+            "ability": "DEX",
+            "bonus": 1,
+            "scope": "궁술·편전·군영"
+          },
+          "flavor": "전승의 이해를 돕는 수련"
+        },
+        {
+          "id": "JOSEON_P2",
+          "name": "군영 협동",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "first_cost_discount",
+            "resource": "SP",
+            "amount": 1,
+            "min_cost": 1,
+            "per_battle": 1
+          },
+          "flavor": "첫 무공의 운기 손실을 줄임"
+        },
+        {
+          "id": "JOSEON_P3",
+          "name": "정확한 거리",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "survival_guard",
+            "reduce_damage": 2,
+            "trigger": "would_fall_at_zero_hp",
+            "per_battle": 1
+          },
+          "flavor": "기혈을 붙잡아 치명적인 충격을 견딤"
+        },
+        {
+          "id": "JOSEON_U1",
+          "name": "시선 포착",
+          "slot": "unique",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "narrative_edge",
+            "scope": "궁술·편전·군영",
+            "uses_per_scene": 1
+          },
+          "flavor": "해당 무학의 학식·문화 배경에 따른 유일한 단서 선택지"
+        },
+        {
+          "id": "JOSEON_U2",
+          "name": "연사 호흡",
+          "slot": "unique",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "heart_art_insight",
+            "scope": "정밀",
+            "uses_per_chapter": 1
+          },
+          "flavor": "심법을 알아보거나 독문 초식을 해석하는 사건에 기여"
+        },
+        {
+          "id": "JOSEON_A3",
+          "name": "흑우연궁",
+          "slot": "active",
+          "level": 3,
+          "action": "main",
+          "cost": {
+            "resource": "SP",
+            "amount": 3
+          },
+          "range": "중거리",
+          "effect": {
+            "op": "attack",
+            "ability": "DEX",
+            "dice": "1d6+1d4",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "conditional_followup",
+              "trigger": "opening_or_stance",
+              "value": 1
+            }
+          },
+          "flavor": "기초 심법과 독문 무공을 연결하는 첫 중급 초식"
+        }
+      ]
+    },
+    {
+      "id": "wanderer",
+      "name": "무문파 독행",
+      "faction_type": "독행",
+      "discipline": "자유 무학",
+      "primary_ability_candidate": "WIS",
+      "heart_nature": "정순",
+      "principle": "남의 가르침이 없더라도 구결의 결손을 탐구하며 자신만의 길을 찾는다",
+      "entrance_scenario": "무문파 독행 수련 경로의 입문·전수 시험을 거쳐 첫 심법을 배우는 장면",
+      "teacher_role": "없음 또는 기연으로 뒤늦게 만나는 은거고수",
+      "opening_choices": [
+        "사문/전승 조건을 확인한다",
+        "첫 심법 구결의 일부를 이해한다",
+        "사문 계율·자유로운 독행의 대가를 확인한다"
+      ],
+      "secret": {
+        "name": "파손된 고서와 독자 심공의 단서",
+        "unlock_condition": "기연의 정체를 추적하고 스스로 빈 구절을 해독한다",
+        "status": "LOCKED_PROPOSED",
+        "effect": "OPEN_NOT_IMPLEMENTED"
+      },
+      "heart_id": "WANDERER_HEART",
+      "starter_loadout": {
+        "heart": [
+          "WANDERER_HEART"
+        ],
+        "active": [
+          "WANDERER_A1",
+          "WANDERER_A2"
+        ],
+        "bonus": [
+          "WANDERER_BONUS"
+        ],
+        "reaction": [
+          "WANDERER_REACTION"
+        ],
+        "passive": [
+          "WANDERER_P1",
+          "WANDERER_P2",
+          "WANDERER_P3"
+        ],
+        "unique": [
+          "WANDERER_U1",
+          "WANDERER_U2"
+        ]
+      },
+      "level3_candidate": "WANDERER_A3",
+      "skills": [
+        {
+          "id": "WANDERER_HEART",
+          "name": "무명토납결",
+          "slot": "heart",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "heart_affinity",
+            "nature": "정순",
+            "trigger": "first_matching_martial_action",
+            "bonus": 1,
+            "per_round": 1
+          },
+          "flavor": "남의 가르침이 없더라도 구결의 결손을 탐구하며 자신만의 길을 찾는다"
+        },
+        {
+          "id": "WANDERER_A1",
+          "name": "무명일격",
+          "slot": "active",
+          "level": 1,
+          "action": "main",
+          "cost": {
+            "resource": "SP",
+            "amount": 2
+          },
+          "range": "근접",
+          "effect": {
+            "op": "attack",
+            "ability": "WIS",
+            "dice": "1d6",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "create_opening",
+              "value": 1,
+              "duration_rounds": 1
+            }
+          },
+          "flavor": "공격으로 적의 방어 리듬에 틈을 만든다"
+        },
+        {
+          "id": "WANDERER_A2",
+          "name": "상황전환",
+          "slot": "active",
+          "level": 1,
+          "action": "main",
+          "cost": {
+            "resource": "SP",
+            "amount": 3
+          },
+          "range": "근접",
+          "effect": {
+            "op": "attack",
+            "ability": "WIS",
+            "dice": "1d6",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "defense_penalty",
+              "value": 1,
+              "duration_rounds": 1
+            }
+          },
+          "flavor": "문파 고유의 기운을 실어 상대의 다음 행동을 제약한다"
+        },
+        {
+          "id": "WANDERER_BONUS",
+          "name": "유운보",
+          "slot": "bonus",
+          "level": 1,
+          "action": "bonus",
+          "cost": {
+            "resource": "SP",
+            "amount": 1
+          },
+          "range": "self",
+          "effect": {
+            "op": "stance",
+            "mode": "extra_movement_zone",
+            "value": 1,
+            "expires": "end_of_turn"
+          },
+          "flavor": "정해진 교전 리듬을 조절한다"
+        },
+        {
+          "id": "WANDERER_REACTION",
+          "name": "자구호신",
+          "slot": "reaction",
+          "level": 1,
+          "action": "reaction",
+          "cost": {
+            "resource": "SP",
+            "amount": 2
+          },
+          "range": "self",
+          "effect": {
+            "op": "reduce_damage",
+            "dice": "1d6",
+            "min": 0,
+            "trigger": "incoming_hit_before_damage"
+          },
+          "flavor": "재빠른 호흡으로 피해를 경감한다"
+        },
+        {
+          "id": "WANDERER_P1",
+          "name": "기연의 눈",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "skill_check_bonus",
+            "ability": "WIS",
+            "bonus": 1,
+            "scope": "자유 무학"
+          },
+          "flavor": "전승의 이해를 돕는 수련"
+        },
+        {
+          "id": "WANDERER_P2",
+          "name": "임기응변",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "first_cost_discount",
+            "resource": "SP",
+            "amount": 1,
+            "min_cost": 1,
+            "per_battle": 1
+          },
+          "flavor": "첫 무공의 운기 손실을 줄임"
+        },
+        {
+          "id": "WANDERER_P3",
+          "name": "홀로 버티기",
+          "slot": "passive",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "survival_guard",
+            "reduce_damage": 2,
+            "trigger": "would_fall_at_zero_hp",
+            "per_battle": 1
+          },
+          "flavor": "기혈을 붙잡아 치명적인 충격을 견딤"
+        },
+        {
+          "id": "WANDERER_U1",
+          "name": "낯선 글 해독",
+          "slot": "unique",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "narrative_edge",
+            "scope": "자유 무학",
+            "uses_per_scene": 1
+          },
+          "flavor": "해당 무학의 학식·문화 배경에 따른 유일한 단서 선택지"
+        },
+        {
+          "id": "WANDERER_U2",
+          "name": "깨달음의 씨앗",
+          "slot": "unique",
+          "level": 1,
+          "action": "passive",
+          "cost": null,
+          "range": "self",
+          "effect": {
+            "op": "heart_art_insight",
+            "scope": "정순",
+            "uses_per_chapter": 1
+          },
+          "flavor": "심법을 알아보거나 독문 초식을 해석하는 사건에 기여"
+        },
+        {
+          "id": "WANDERER_A3",
+          "name": "만상합류",
+          "slot": "active",
+          "level": 3,
+          "action": "main",
+          "cost": {
+            "resource": "SP",
+            "amount": 3
+          },
+          "range": "근접",
+          "effect": {
+            "op": "attack",
+            "ability": "WIS",
+            "dice": "1d6+1d4",
+            "flat": "ability_mod",
+            "precision": "proficiency_plus_ability",
+            "secondary": {
+              "op": "conditional_followup",
+              "trigger": "opening_or_stance",
+              "value": 1
+            }
+          },
+          "flavor": "기초 심법과 독문 무공을 연결하는 첫 중급 초식"
+        }
+      ]
+    }
+  ]
+}
