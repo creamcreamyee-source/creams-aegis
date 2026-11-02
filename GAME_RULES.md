@@ -1,6 +1,6 @@
 # CREAM’S AEGIS — GAME RULES / Chat Campaign Overlay
 
-- 문서 버전: 1.0.0
+- 문서 버전: 1.1.0
 - 작성일: 2026-11-02
 - 상태: **운영 원장**. 확정 세계관 원칙은 `MASTER_CANON.md` 및 `DECISION_LOG.md`가 최상위.
 - 운영 모드: D-037 CHAT_CAMPAIGN (기존 웹게임 D-001과 병행)
@@ -52,3 +52,24 @@
 `event_id, in_world_time, scene_id, actor, choice, roll(if any), before, delta, after, witnesses, knowledge_changes, irreversible_cost, unresolved_hooks, source`.
 
 모르는 항목은 `unknown`이나 `null`로 남기고 임의 채우지 않는다. GitHub 공개 저장소에는 비밀·실명·연락처·민감한 현실 정보 금지.
+
+## 6. 신무협 문파·심법 운영 원칙 [D-038~D-041 CONFIRMED]
+
+1. 플레이어에게 더 이상 과거의 강제 5직업 선택지를 요구하지 않는다. **출신/종족/혈통·재능·사문/독행·활성 심법·무학 전문 분야**를 분리해 구성한다.
+2. 다섯 과거 전투 스타일은 선택적 전문성 태그로만 남기며, 과거 proposals/STATS_SKILLS_V1.md의 직업별 기술·내공/HP/SP/MP 공식은 **PROPOSED이며 현재 운용 금지**.
+3. 핵심 심법은 활성 슬롯 **1개**. 구결 보유, 정식 전수, 운용 가능, 숙련, 내공량·성질·안정, 경지를 각각 구분한다.
+4. 고재능(괴물/초월 등)은 입교 첫 심법 지도·전수 수준·접근권에서 실질 이득을 제공한다. 독행자 고재능은 유산·기연·깨달음으로 이에 대응하는 심법 시작 기회를 가진다. 상세 등급별 품질 수치/획득 방법은 [OPEN].
+5. 문파/세가, 무림맹 같은 연합, 천마신교 같은 교단, 세외 전승, 무문파는 서로 다른 지위다. 문파 졸업·파문·소속 변경은 기억/기술을 자동 삭제하지 않으며, 정통 사승과 실제 전수 이력을 추적한다.
+6. 27PB, Lv.1 10슬롯의 분류, Lv.1~12 XP, d20/행동권, 크림이의 자율성 및 레벨과 경지의 독립은 보존한다. 문파를 선택해도 XP, 기술 슬롯, 레벨업 보상 중복 지급 금지.
+7. 채팅 캠페인에서 새로 습득한 심법의 정확한 데이터/지도 NPC/획득·수련 과정/시간/전후 수치를 CAMPAIGN_STATE와 STORY_LEDGER에 기록한다.
+8. 실제 문파명·독문무공 이름·개별 심법 수치·재능 획득법은 별도 승인이 필요하다. PROPOSED 후보를 사용자 승인 정본으로 속여 쓰지 않는다.
+
+상세: rules/CULTIVATION_SYSTEM_V1.md / world/SECT_ATLAS_V1.md / rules/CHARACTER_CREATION_V2.md / tests/SECT_REFORM_VALIDATION.md
+
+### 현재 REBIRTH 세이브의 마이그레이션 가드
+
+- 프롤로그 완료 Lv.2·270XP·HP23/SP8/MP12, 관계·소지품·크림이·기억 상실을 그대로 보존.
+- 현재 세이브의 종족·재능·문파·심법·기술 구성은 UNKNOWN. 사용자에게 아직 **캐릭터 생성 선택**이 남아 있음.
+- 레벨업 보상 중 미선택 항목은 pendingGrowth로 처리하며 무단 기술/심법 지급·새 이야기 진행을 하지 않는다.
+- 새로운 수치 공식이 현재 세이브의 최대 자원과 충돌하면 **적용을 보류하고 불일치 사항을 제시**한다. 기존 최대 자원 수치는 REBIRTH 데모의 [EXPERIMENT] 값.
+
