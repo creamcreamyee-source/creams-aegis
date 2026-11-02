@@ -23,18 +23,26 @@
  function current(s){return s.enemies.filter(e=>e.hp>0);}
  function pathOf(pack,id){return pack.paths.find(p=>p.id===id);}
  function initialize(args){
-   const {pack,routeId,abilities,enemyCards,seed=1,initialHP,initialSP,initialMP,allyHP=null}=args||{};
+   const {pack,routeId,abilities,enemyCards,seed=1,initialHP,initialSP,initialMP,resourceCaps,allyHP=null}=args||{};
    const path=pathOf(pack||{},routeId);
    assert(path&&ROUTES.includes(routeId),"unsupported starting path");
    for(const ability of ["STR","DEX","CON","INT","WIS","CHA"])assert(Number.isInteger(abilities?.[ability])&&abilities[ability]>=8&&abilities[ability]<=15,"invalid ability "+ability);
    assert(Array.isArray(enemyCards)&&enemyCards.length>=1&&enemyCards.length<=3,"1..3 enemies required");
    assert(Number.isInteger(seed)&&seed>=0,"integer seed required");
-   const player={hp:initialHP??(20+2*mod(abilities.CON)),maxHp:initialHP??(20+2*mod(abilities.CON)),
-     sp:initialSP??(10+2*mod(abilities.WIS)),maxSp:initialSP??(10+2*mod(abilities.WIS)),
-     mp:initialMP??(10+2*mod(abilities.INT)),maxMp:initialMP??(10+2*mod(abilities.INT)),
-     def:10+mod(abilities.DEX),abilities:copy(abilities),zone:0,tokens:0,
+   const capHP=resourceCaps?.HP??(20+2*mod(abilities.CON));
+   const capSP=resourceCaps?.SP??(10+2*mod(abilities.WIS));
+   const capMP=resourceCaps?.MP??(10+2*mod(abilities.INT));
+   for(const [k,v]of Object.entries({HP:capHP,SP:capSP,MP:capMP}))
+     assert(Number.isInteger(v)&&v>0,"invalid maximum "+k);
+   const player={hp:initialHP??capHP,maxHp:capHP,
+     sp:initialSP??capSP,maxSp:capSP,
+     mp:initialMP??capMP,maxMp:capMP,
+     def:resourceCaps?.DEF??(10+mod(abilities.DEX)),abilities:copy(abilities),zone:0,tokens:0,
      firstDiscount:false,survivalUsed:false,retreatAttempted:false,parleyAttempted:false,brace:0,stanceAttack:0,stanceDefense:0};
-   for(const f of ["hp","sp","mp"])assert(Number.isInteger(player[f])&&player[f]>0,"invalid experimental resource "+f);
+   for(const f of ["hp","sp","mp"]){
+     assert(Number.isInteger(player[f])&&player[f]>=0&&player[f]<=player["max"+f[0].toUpperCase()+f.slice(1)],"invalid current resource "+f);
+   }
+   assert(player.hp>0,"character defeated; cannot start combat");
    const enemies=enemyCards.map((e,i)=>{
       assert(Number.isInteger(e.hp)&&e.hp>0&&Number.isInteger(e.def)&&e.def>=1&&Number.isInteger(e.attackBonus),"enemy stats required");
       assert(Number.isInteger(e.damageBonus),"enemy damageBonus required");
