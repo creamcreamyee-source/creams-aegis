@@ -29,12 +29,12 @@
       "state_path": "sessions/AEGIS_RYUHYEON_20261102_01.json",
       "ledger_path": "sessions/AEGIS_RYUHYEON_20261102_01_LEDGER.md",
       "phase": "CHAPTER_1_SCENE_1_POST_CHOICE",
-      "last_known_checkpoint": "WANDERER_SHRINE_HIDDEN_VEIN",
+      "last_known_checkpoint": "WANDERER_SHRINE_LATCH",
       "name": "류현 — 무문파 독행 · 초월",
       "character_name": "류현",
       "notes": "Experimental V1 numeric choices explicitly approved for this new campaign; no old records migrated",
-      "last_committed_event_id": "RYH_CH01_S01_CHOICE3_001",
-      "last_revision": 1
+      "last_committed_event_id": "RYH_CH01_S01_STONE_002",
+      "last_revision": 2
     }
   ],
   "start_policy": "No existing character may be loaded automatically. Start with blank identity, talent, sect/wanderer, point buy, heart art and 10-slot skill choice, then explicitly commit a NEW session.",
