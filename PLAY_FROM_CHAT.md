@@ -16,6 +16,8 @@
 
 - `game_data/PROGRESSION_TABLE_V1.json`: Lv1~12 누적 XP, 성장 보상 유형.
 - `game_engine/growth_reducer.js`: XP 중복 방지·전투 종료 반영·선택 대기 관리.
+- `game_engine/cultivation_reducer.js`: 비급 전수와 수련·심공 활성·경지 돌파 별도 기록.
+- `game_engine/character_builder.js`: 시작 27PB/10슬롯/재능/문파 새 캐릭터 초안 검증.
 - `rules/CHARACTER_GROWTH_V2.md`: 레벨 / 심법 숙련 / 내공 / 무공 / 경지 / 문파 신뢰의 분리.
 - 상세 공격력·회복·내공 성장 수치는 승인과 밸런스 시험이 끝날 때까지 실험안으로만 적용.
 
