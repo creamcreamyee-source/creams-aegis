@@ -47,7 +47,7 @@
     const g=state.growth;
     const pending=new Set(g.pendingGrowth.map(v=>v.level));
     const settled=new Set(g.appliedGrowth.map(v=>v.level));
-    for(let lv=2;lv<=levelAt(state.xp);lv++) {
+    for(let lv=(g.imported?2:1);lv<=levelAt(state.xp);lv++) {
       if(pending.has(lv) || settled.has(lv)) continue;
       g.pendingGrowth.push({level:lv,rewardType:rewardType(lv),status:pendingStatus,
         entitlementOnly:true,selectedOption:null,approvedEffectRef:null});
@@ -115,7 +115,7 @@
   function acknowledgeAppliedReward(input, info) {
     requireShape(input);
     if(!input.growth) throw new Error("growth ledger missing");
-    if(!info || !Number.isInteger(info.level) || info.level<2 || info.level>12) throw new TypeError("level 2..12 required");
+    if(!info || !Number.isInteger(info.level) || info.level<1 || info.level>12) throw new TypeError("level 1..12 required");
     if(typeof info.confirmedRuleRef!=="string" || !info.confirmedRuleRef.trim() ||
        typeof info.effectEventId!=="string" || !info.effectEventId.trim())
        throw new Error("confirmedRuleRef and external effectEventId required");
