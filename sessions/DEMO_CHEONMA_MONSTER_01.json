@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "session_id": "DEMO_CHEONMA_MONSTER_01",
+  "world": "CREAMS_AEGIS_WUXIA_2",
+  "track_kind": "INDEPENDENT_DEMO",
+  "canonical_status": "NON_CANON_EXPERIMENT",
+  "is_official_campaign": false,
+  "source": {
+    "starter_pack": "game_data/SECT_STARTER_PACK_V1.json",
+    "scene_pack": "game_data/SECT_INTRO_SCENES_V1.json",
+    "source_ref": "cheonma",
+    "talent_ref": "monster",
+    "previous_user_selection": "cheonma_CHOICE_3",
+    "origin": "User explicitly selected independent demo; never merge into REBIRTH without explicit approval."
+  },
+  "checkpoint": {
+    "revision": 1,
+    "chapter": "천마신교 입교편",
+    "scene_id": "CHEONMA_SCENE_02",
+    "scene_title": "거꾸로 흐르는 피",
+    "phase": "AWAITING_NEXT_CHOICE",
+    "last_committed_event": "DM-003",
+    "pending_choice_ids": [
+      "DM_NEXT_1",
+      "DM_NEXT_2",
+      "DM_NEXT_3"
+    ],
+    "pending_roll": null,
+    "in_world_time_minutes": null
+  },
+  "character": {
+    "name": null,
+    "race": null,
+    "heritage": null,
+    "talent": "괴물",
+    "sect_path": "cheonma",
+    "sect_name_candidate": "천마신교",
+    "sect_membership_status": "입교 시험 중",
+    "current_affiliation": "입교 후보",
+    "martial_discipline": "마공·환류",
+    "martial_style_token": "frenzy",
+    "stats": null,
+    "level": null,
+    "xp": null,
+    "hp": null,
+    "sp": null,
+    "mp": null,
+    "loadout_status": "STARTER_CANDIDATE_ONLY_NOT_GRANTED",
+    "active_heart_art_id": null
+  },
+  "cultivation": {
+    "scripture_id": "CHEONMA_HEART_UPPER",
+    "scripture_name": "흑뢰환류결·상승편",
+    "quality": "상급_PROPOSED",
+    "access_status": "FIRST_GATE_OPEN",
+    "teaching_status": "FIRST_VERSE_PRESENTED_BY_GUARDIAN",
+    "mastery_status": "NOT_TRAINED",
+    "cultivation_not_yet_activated": true,
+    "inner_power_reserve": null,
+    "techniques_granted": [],
+    "secret_path": "CHEONMA_HEART_SECRET",
+    "secret_path_status": "LOCKED"
+  },
+  "experimental_metrics": {
+    "sect_trust_delta": 0,
+    "personal_insight_delta": 1,
+    "scope": "DEMO_ONLY_FROM_CHOICE_3",
+    "warning": "Experimental narrative metrics; not official growth or combat values."
+  },
+  "npcs": [
+    {
+      "id": "HOFA",
+      "role": "천마신교 호법",
+      "name": "UNSPECIFIED",
+      "observable_goals": [
+        "입교 후보 검증",
+        "상승편 전수에 관한 별도 시험"
+      ],
+      "known_to_npc": [
+        "후보의 운기 실패와 반복 경고",
+        "옥패의 존재를 시선으로 알아챈 정황"
+      ],
+      "not_confirmed": [
+        "옥패 설치범",
+        "의도적으로 해를 가했는지",
+        "젊은 여인과의 사전 모의"
+      ]
+    },
+    {
+      "id": "FEMALE_CANDIDATE_OR_MEMBER",
+      "role": "단검을 든 젊은 여인",
+      "name": "UNSPECIFIED",
+      "observable_goals": [
+        "쓰러진 후보를 살리려 한다",
+        "옥패 기운을 끊을 의사가 있다"
+      ],
+      "known_to_npc": [
+        "옥패가 후보의 혈맥에 영향을 미침"
+      ],
+      "not_confirmed": [
+        "문파의 정확한 지위",
+        "호법과의 관계"
+      ]
+    },
+    {
+      "id": "FALLEN_CANDIDATE",
+      "role": "쓰러진 입교 후보",
+      "name": "UNSPECIFIED",
+      "observable_goals": [],
+      "condition": "위독해 보이나 생사 확정되지 않음",
+      "known_to_npc": [],
+      "not_confirmed": [
+        "왜 다시 위험한 운기를 시도했는지",
+        "실제 원인 단독 결정"
+      ]
+    }
+  ],
+  "observations": [
+    "검붉은 비급 첫 장의 운기 지시에는 기운이 돌아오는 종착에 관한 설명이 누락됨",
+    "주인공은 기운을 억누른 것이 손상을 악화시킨다고 추론함; 호법이 일부 인정",
+    "후보의 손목과 옥패가 붉은 실로 연결된 것을 발견함",
+    "호법은 옥패의 존재를 인지한 듯했으나 설치 경위 미상",
+    "젊은 여인은 옥패가 외부 기운으로 혈맥을 붙든다고 주장",
+    "호법은 상승편 제일관 귀맥의 구절을 보여줌; 실제 전수 완결이나 무공 숙련은 없음"
+  ],
+  "events": [
+    {
+      "id": "DM-001",
+      "type": "SCENE_PRESENTED",
+      "scene": "INTRO_CHEONMA",
+      "summary": "호법 앞의 무릎. 괴물 재능으로 상급 심법 첫 관문 개방",
+      "source": "GitHub scene and earlier in-chat narration",
+      "applied_stats": false
+    },
+    {
+      "id": "DM-002",
+      "type": "PLAYER_CHOICE",
+      "scene": "INTRO_CHEONMA",
+      "choice_id": "cheonma_CHOICE_3",
+      "summary": "비급 첫 장의 운기 오류를 지적하며 호법에게 맞섬",
+      "applied_stats": false
+    },
+    {
+      "id": "DM-003",
+      "type": "SCENE_PRESENTED",
+      "scene": "CHEONMA_SCENE_02",
+      "summary": "호법은 구결의 일부 누락을 인정. 옥패/붉은 실/위독한 후보/여인의 개입과 상승편 제일관이 드러남. 선택 보류",
+      "applied_stats": false
+    }
+  ],
+  "next_choices": [
+    {
+      "id": "DM_NEXT_1",
+      "label": "쓰러진 후보부터 살린다",
+      "risk": "옥패 단서가 사라지거나 시험이 중단될 수 있음",
+      "unresolved": true
+    },
+    {
+      "id": "DM_NEXT_2",
+      "label": "옥패 기운을 역추적한다",
+      "risk": "시간이 지체되면 후보가 위험해질 수 있음",
+      "unresolved": true
+    },
+    {
+      "id": "DM_NEXT_3",
+      "label": "호법에게 시험과 옥패의 진실을 추궁한다",
+      "risk": "교단 내부 권력갈등과 관계 악화 가능",
+      "unresolved": true
+    }
+  ],
+  "unresolved_threads": [
+    "옥패의 설치자와 목적",
+    "호법이 알고 있는 진실의 범위",
+    "쓰러진 후보의 치료/생사",
+    "젊은 여인의 이름·소속·의도",
+    "상승편 제일관의 실제 운기 성공 여부"
+  ],
+  "save_rules": {
+    "do_not_apply_to": "CAMPAIGN_STATE.json",
+    "promote_only_after": "EXPLICIT_USER_CHOICE",
+    "on_next_turn": "READ_THIS_STATE_AND_LEDGER_FIRST_THEN_RESOLVE_CHOICE_THEN_WRITE_AND_REREAD",
+    "no_unapproved_rules": "Do not turn experimental story stats into canon.",
+    "checkpoint_interval": "Important decisions and irreversible events, 2-4 per chapter; never pretend background autosave"
+  },
+  "updated_at_utc": null
+}
