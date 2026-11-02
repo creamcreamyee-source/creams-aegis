@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0.0",
+  "created_at": "2026-11-02",
+  "authority": "V10_SECONDARY_BASELINE_WEB_ENGINE_RULES_SECTION_3",
+  "status": "BASELINE_LEVEL_REWARD_TYPES__SPECIFIC_EFFECTS_OPEN",
+  "max_level": 12,
+  "point_buy_budget": 27,
+  "level1_slot_pattern": {
+    "heart": 1,
+    "active": 2,
+    "bonus": 1,
+    "reaction": 1,
+    "passive": 3,
+    "unique": 2
+  },
+  "levels": [
+    {
+      "level": 1,
+      "xp": 0,
+      "reward": "STARTER_10_SLOTS",
+      "label": "기초 심법 1 · 액티브 2 · 추가행동 1 · 반응 1 · 패시브 3 · 고유재능 2"
+    },
+    {
+      "level": 2,
+      "xp": 200,
+      "reward": "PASSIVE_CHOICE",
+      "label": "패시브 선택"
+    },
+    {
+      "level": 3,
+      "xp": 500,
+      "reward": "ACTIVE_CHOICE",
+      "label": "액티브 무공 선택"
+    },
+    {
+      "level": 4,
+      "xp": 900,
+      "reward": "ABILITY_OR_FEAT",
+      "label": "능력치 또는 특기"
+    },
+    {
+      "level": 5,
+      "xp": 1500,
+      "reward": "CORE_COMBAT_UPGRADE",
+      "label": "핵심 전투 능력 강화"
+    },
+    {
+      "level": 6,
+      "xp": 2300,
+      "reward": "BONUS_OR_REACTION_UPGRADE",
+      "label": "추가행동 또는 반응 강화"
+    },
+    {
+      "level": 7,
+      "xp": 3300,
+      "reward": "PASSIVE_CHOICE",
+      "label": "패시브 선택"
+    },
+    {
+      "level": 8,
+      "xp": 4600,
+      "reward": "ABILITY_OR_FEAT",
+      "label": "능력치 또는 특기"
+    },
+    {
+      "level": 9,
+      "xp": 6200,
+      "reward": "SUPERIOR_ACTIVE",
+      "label": "상위 액티브"
+    },
+    {
+      "level": 10,
+      "xp": 8200,
+      "reward": "HEART_ART_EVOLUTION",
+      "label": "심법 진화"
+    },
+    {
+      "level": 11,
+      "xp": 10700,
+      "reward": "ULTIMATE_TECHNIQUE",
+      "label": "궁극기"
+    },
+    {
+      "level": 12,
+      "xp": 13700,
+      "reward": "FINAL_FEAT",
+      "label": "최종 특기"
+    }
+  ],
+  "realm_guidance": [
+    {
+      "realm": "삼류",
+      "typical_levels": "1-2"
+    },
+    {
+      "realm": "이류",
+      "typical_levels": "3-4"
+    },
+    {
+      "realm": "일류",
+      "typical_levels": "5-6"
+    },
+    {
+      "realm": "절정",
+      "typical_levels": "7-8"
+    },
+    {
+      "realm": "초절정",
+      "typical_levels": "9"
+    },
+    {
+      "realm": "화경",
+      "typical_levels": "10"
+    },
+    {
+      "realm": "현경",
+      "typical_levels": "11"
+    },
+    {
+      "realm": "생사경·검선지경",
+      "typical_levels": "12"
+    }
+  ],
+  "level_growth_rules": {
+    "xp_cumulative": true,
+    "threshold_inclusive": true,
+    "can_gain_multiple_levels_from_one_award": true,
+    "level_reward_requires_user_selection": true,
+    "level_reward_requires_confirmed_effect_before_resolution": true,
+    "level_reward_during_combat": "DEFER_UNTIL_COMBAT_END",
+    "auto_restore_HP_MP_SP": false,
+    "auto_raise_realm": false,
+    "auto_grant_secret_technique": false,
+    "duplicate_objective_reward": "DENY",
+    "xp_beyond_max_level": "RETAIN_WITHOUT_BONUS_LEVEL"
+  },
+  "cultivation_progression": {
+    "talent": "BIRTH_TRAIT_NOT_LEVEL",
+    "heart_quality": "ART_PROVENANCE",
+    "heart_mastery": "TRAINING_AND_INSIGHT",
+    "realm": "SEPARATE_BREAKTHROUGH",
+    "martial_technique": "TEACHING_TRAINING_UNLOCK",
+    "faction_progression": "SEPARATE_REPUTATION_AND_RANK",
+    "inner_power": "SEPARATE_RESOURCE_AND_NATURE",
+    "source": "D-038..D-041"
+  },
+  "known_missing_facts": [
+    "Exact ability score increase at Lv4 or Lv8",
+    "Actual passive and active reward candidate catalogs",
+    "Approved HP MP SP maxima/regen by level",
+    "How cultivation mastery percentages or thresholds work",
+    "Realm breakthrough eligibility, checks and costs",
+    "Talent tier probability and mechanical speed gain",
+    "Skill effect balance and class-specific progression (fixed classes superseded)",
+    "Actual XP award amounts per objective, chapter XP budget"
+  ],
+  "previous_demo_compatibility": {
+    "rebirth_level": 2,
+    "rebirth_xp": 270,
+    "level2_reward": "UNKNOWN_NOT_DOCUMENTED_IN_IMPORTED_SAVE",
+    "action": "VERIFY_OR_PRESENT_AS_PENDING_GROWTH_WITHOUT_AUTO_GRANT"
+  }
+}
