@@ -232,11 +232,10 @@
    assert(!state.winner,"combat already completed");
    const s=copy(state);s.events=[];
    validateChoice(s,pack,choice);
-   const canMove=Math.min(2,Math.max(0,s.player.zone+(choice.moveDelta??0)));
-   s.player.zone=canMove;
    const enemyFirst=s.round===1&&s.initiative.first==="enemy";
    if(enemyFirst)enemyPhase(s,choice);
    if(s.player.hp>0&&(!s.ally||s.ally.hp>0)){
+     s.player.zone=Math.min(2,Math.max(0,s.player.zone+(choice.moveDelta??0)));
      playerBonus(s,pack,choice);
      playerMain(s,pack,choice);
    }
