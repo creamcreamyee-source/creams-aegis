@@ -1,38 +1,35 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "created_on": "2026-11-02",
+  "reset_on": "2026-11-02",
   "source_repository": "creamcreamyee-source/creams-aegis",
   "canonical_files": [
     "MASTER_CANON.md",
     "DECISION_LOG.md",
     "GAME_RULES.md"
   ],
-  "playback_policy": "ChatGPT tool-mediated read/write/re-read at checkpoints, NOT autonomous background sync",
-  "user_facing_resume_command": "CREAM’S AEGIS 이어서",
-  "last_interactive_session_id": "DEMO_CHEONMA_MONSTER_01",
-  "sessions": [
-    {
-      "id": "REBIRTH_MAIN_01",
-      "status": "PRESERVED_ORIGINAL",
-      "kind": "OFFICIAL_LEGACY_CAMPAIGN",
-      "state_path": "CAMPAIGN_STATE.json",
-      "ledger_path": "STORY_LEDGER.md",
-      "last_known_checkpoint": "REBIRTH_PROLOGUE_COMPLETED",
-      "name": "REBIRTH 프롤로그 완료, 제1장 미시작",
-      "character_setup": "UNKNOWN_SECT_TALENT_HEART_ART",
-      "promotion_required": false
-    },
-    {
-      "id": "DEMO_CHEONMA_MONSTER_01",
-      "status": "PERSISTED_PLAYTEST_TRACK",
-      "kind": "INDEPENDENT_DEMO_NON_CANON",
-      "state_path": "sessions/DEMO_CHEONMA_MONSTER_01.json",
-      "ledger_path": "sessions/DEMO_CHEONMA_MONSTER_01_LEDGER.md",
-      "last_known_checkpoint": "CHEONMA_SCENE_02_AWAITING_NEXT_CHOICE",
-      "name": "천마신교 입교 · 괴물 재능 독립 시연",
-      "character_setup": "TALENT_AND_SECT_ONLY",
-      "promotion_required": true
-    }
+  "growth_rules": [
+    "game_data/PROGRESSION_TABLE_V1.json",
+    "rules/CHARACTER_GROWTH_V2.md",
+    "game_engine/growth_reducer.js"
   ],
-  "migration_rule": "Never merge into or overwrite REBIRTH main without explicit user selection. A new main campaign from demo requires deliberate initiation and missing character fields."
+  "content_library": [
+    "game_data/SECT_STARTER_PACK_V1.json",
+    "game_data/SECT_INTRO_SCENES_V1.json"
+  ],
+  "playback_policy": "Tool-mediated read/write/re-read at checkpoints. No background automatic saves.",
+  "user_facing_resume_command": "CREAM’S AEGIS 새 캐릭터 시작",
+  "active_session_id": null,
+  "last_interactive_session_id": null,
+  "sessions": [],
+  "start_policy": "No existing character may be loaded automatically. Start with blank identity, talent, sect/wanderer, point buy, heart art and 10-slot skill choice, then explicitly commit a NEW session.",
+  "deprecated_data_paths": [
+    "CAMPAIGN_STATE.json",
+    "STORY_LEDGER.md",
+    "GROWTH_TRACKING.json",
+    "sessions/DEMO_CHEONMA_MONSTER_01.json",
+    "sessions/DEMO_CHEONMA_MONSTER_01_LEDGER.md"
+  ],
+  "deprecated_data_usage": "DELETED_FROM_MAIN. Do not fetch old commit contents to restore previous characters absent fresh user consent.",
+  "history_note": "Git historical commits are not removed by file deletion; repo history rewriting is out of scope."
 }
