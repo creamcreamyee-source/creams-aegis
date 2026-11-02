@@ -24,13 +24,13 @@ CREAM’S AEGIS는 선택의 결과가 동료와 세력, 지역에 오래 남는
 - [rules/CHARACTER_CREATION_V2.md](rules/CHARACTER_CREATION_V2.md) — 문파/무문파 선택·출신·전수·현재 캐릭터 호환 절차.
 - [tests/SECT_REFORM_VALIDATION.md](tests/SECT_REFORM_VALIDATION.md) — 정본 구조 16개 검사 통과, 150개 조합 구성 확인. **전투 밸런스 검증과 구분**.
 
-## 3. 진행 중인 채팅 캠페인
+## 3. 새 캐릭터 시작 준비 — 현재 캐릭터 0개
 
-- [CAMPAIGN_STATE.json](CAMPAIGN_STATE.json) — 마지막으로 **실제 저장된** 캐릭터/세계 상태.
-- [STORY_LEDGER.md](STORY_LEDGER.md) — 과거 선택, 증인, 소지품, 기억 상실, 미회수 복선.
-- 기존 REBIRTH 프롤로그는 종료, **Lv.2/270XP/HP23/SP8/MP12**를 보존.
-- 현재 캐릭터의 종족·선천 재능·사문·활성 심법·10슬롯은 **아직 플레이어가 선택하지 않았으므로 UNKNOWN**.
-- 제1장 다음 선택, 무공 전수, 새로운 난수 결과는 아직 진행되지 않았습니다.
+- [CAMPAIGN_REGISTRY.json](CAMPAIGN_REGISTRY.json): 세션 등록부. 현재 **활성 세션 없음 / 캐릭터 0개**.
+- 기존 REBIRTH·천마신교 시연의 캐릭터별 세이브·서사·성장 원장은 현재 브랜치에서 삭제됨. 과거 플레이 기록은 Git 커밋 이력에 남을 수 있음.
+- 다음 플레이는 종족·재능·출신·사문/독행·27 Point Buy·핵심 심법·시작 기술 10슬롯을 **전부 새로 선택**한다.
+- 새로운 세이브는 새 캠페인 생성 후 `sessions/<NEW_ID>.json`, `sessions/<NEW_ID>_LEDGER.md`로 만든다.
+- [PLAY_FROM_CHAT.md](PLAY_FROM_CHAT.md): 신규 플레이·재개·체크포인트 저장 절차.
 
 ## 4. 과거 설계자료 및 상태
 
@@ -41,10 +41,14 @@ CREAM’S AEGIS는 선택의 결과가 동료와 세력, 지역에 오래 남는
 
 ## 5. 다음 개발 순서
 
+- [rules/CHARACTER_GROWTH_V2.md](rules/CHARACTER_GROWTH_V2.md): 레벨·성장 선택·심공·경지 분리 운영 원칙.
+- [game_engine/growth_reducer.js](game_engine/growth_reducer.js): XP·레벨 보상 선택권·중복 지급 제어 엔진.
+- [game_data/PROGRESSION_TABLE_V1.json](game_data/PROGRESSION_TABLE_V1.json): Lv1~12 성장 보상 데이터.
+
 1. 재능 등급을 선택/판정하는 방법, 심법 품질·숙련 등급 표 및 시작 특혜 **구체 승인**.
 2. 대표 문파·세외·무문파 출발 경로별 심법과 비기 완전 명세 작성.
 3. 27PB/10슬롯/XP/HP·SP·MP 호환성 및 동료·전투 규칙 전수 검증.
-4. 실제 채팅 캠페인 캐릭터 선택·심법 전수 후 제1장 진행, 챕터 중간 체크포인트 동기화.
+4. 신규 캐릭터 생성부터 새 캠페인의 제1장으로 진행, 중요한 선택·성장마다 GitHub 체크포인트 검증.
 
 이 저장소는 현재 **Public**이므로 게임 세계의 허구 데이터만 저장합니다. 현실 개인정보나 비밀은 업로드하지 않습니다.
 
@@ -54,5 +58,5 @@ CREAM’S AEGIS는 선택의 결과가 동료와 세력, 지역에 오래 남는
 - [11개 문파/독행 도입 장면](game_data/SECT_INTRO_SCENES_V1.json): 시작 이야기 11개, 선택지 33개, 5재능×11경로 오버레이 55개.
 - **정적 무결성 감사:** 27개 항목 검사 통과(검사 시점의 원본 데이터를 재조회하여 슬롯·ID·관문·세이브 불변성 확인).
 - **미검증:** 엔진을 통한 효과 실행/실전 전투 승률/레벨 고도화/출판 유사성. 효과·명칭·구체 수치는 공식 정본으로 자동 승인하지 않음.
-- 현재 CAMPAIGN_STATE.json은 그대로이며 어떤 문파·재능·비기도 주인공에게 자동 지급하지 않았다.
+- 현재 캐릭터 0명. 삭제된 옛 세이브를 새로운 캐릭터에 이식하지 않는다.
 
