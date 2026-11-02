@@ -87,21 +87,21 @@
      if(p.tokens===0){s.events.push({type:"UNPRIMED",message:"No style token; advanced effect unavailable"});return 0;}
      p.tokens-=1;
      switch(route){
-       case"shaolin": target.skip=Math.max(target.skip,1);return 1;
-       case"wudang": target.weaken=Math.max(target.weaken,2);return dice(s,1,4);
-       case"hwasan": return dice(s,1,6)+(p.tokens>0?2:0);
+       case"shaolin": target.skip=Math.max(target.skip,1);return dice(s,1,4)+1;
+       case"wudang": target.weaken=Math.max(target.weaken,2);return dice(s,1,6)+1;
+       case"hwasan": return dice(s,1,6)+2+(p.tokens>0?2:0);
        case"namgung": target.def=Math.max(8,target.def-2);return dice(s,1,4);
        case"peng": target.skip=Math.max(target.skip,1);return dice(s,1,3);
        case"tang": target.skip=Math.max(target.skip,1);target.mark=1;return 0;
        case"zhuge": {
          const splash=current(s).filter(e=>e.id!==target.id&&e.zone===target.zone);
          for(const enemy of splash){const n=dice(s,1,3);enemy.hp=Math.max(0,enemy.hp-n);s.events.push({type:"FORMATION_SPLASH",target:enemy.id,damage:n});}
-         return dice(s,1,6);
+         return dice(s,1,4);
        }
        case"cheonma": p.hp=Math.max(1,p.hp-1);s.events.push({type:"SELF_BURDEN",hp:-1});return dice(s,1,6)+1;
        case"bukhae": if(target.slow>=2){target.skip=Math.max(target.skip,1);target.slow=0;}else target.slow=1;return dice(s,1,3);
-       case"joseon": return dice(s,1,6)+1;
-       case"wanderer": p.sp=Math.min(p.maxSp,p.sp+1);return dice(s,1,4);
+       case"joseon": return dice(s,1,4)+1;
+       case"wanderer": p.sp=Math.min(p.maxSp,p.sp+1);return dice(s,1,6)+2;
      }
    }
    return 0;
@@ -177,7 +177,7 @@
    const base=dice(s,1,6),stat=Math.max(0,mod(p.abilities[ability]));
    const add=card?effect(s,route,id,target,true):0;
    const critical=atk.natural===20?dice(s,1,6):0;
-   const damage=Math.max(1,base+stat+add+critical+(target.mark>0&&route==="joseon"?1:0));
+   const damage=Math.max(1,base+stat+add+critical+(target.mark>0&&route==="joseon"&&id==="A2"?1:0));
    target.hp=Math.max(0,target.hp-damage);
    s.events.push({type:"DAMAGE",target:target.id,skill:id,base,stat,bonus:add,critical,amount:damage,hpAfter:target.hp});
  }
