@@ -99,6 +99,54 @@
    }
    return 0;
  }
+ function projectedCost(player,cardCosts){
+   let sp=player.sp,mp=player.mp,firstDiscount=player.firstDiscount;
+   for(const entry of cardCosts){
+     if(!entry)continue;
+     const k=entry.resource.toLowerCase();
+     if(k!=="sp"&&k!=="mp")return false;
+     let amount=entry.amount;
+     if(!firstDiscount&&amount>1){amount-=1;firstDiscount=true;}
+     if(k==="sp"){sp-=amount;if(sp<0)return false;}
+     else {mp-=amount;if(mp<0)return false;}
+   }
+   return true;
+ }
+ function validateChoice(s,pack,choice){
+   assert(choice&&typeof choice==="object","choice required");
+   assert(["A1","A2","BASIC","GUARD","RECOVER"].includes(choice.main),"unknown main");
+   assert(choice.bonus==null||choice.bonus==="BONUS","unknown bonus");
+   assert(Number.isInteger(choice.moveDelta??0)&&Math.abs(choice.moveDelta??0)<=1,"moveDelta out of range");
+   assert(Number.isInteger(choice.bonusZoneDelta??0)&&Math.abs(choice.bonusZoneDelta??0)<=1,"bonusZoneDelta out of range");
+   const route=s.routeId,p=s.player,path=pathOf(pack,route);
+   const movingBonus=["hwasan","joseon","bukhae","wanderer","cheonma"].includes(route);
+   let zone=Math.max(0,Math.min(2,p.zone+(choice.moveDelta??0)));
+   if(choice.bonus==="BONUS"&&movingBonus)zone=Math.max(0,Math.min(2,zone+(choice.bonusZoneDelta??0)));
+   else assert((choice.bonusZoneDelta??0)===0,"non-movement bonus cannot change zone");
+   const costs=[];
+   if(choice.bonus==="BONUS")costs.push(path.skills.find(x=>x.slot==="bonus").cost);
+   if(choice.main==="A1"||choice.main==="A2"){
+     const card=path.skills.find(x=>x.id===route.toUpperCase()+"_"+choice.main);
+     assert(card&&card.level===1&&card.slot==="active","unknown starter technique");
+     costs.push(card.cost);
+   }
+   assert(projectedCost(p,costs),"not enough SP/MP; use BASIC, GUARD or RECOVER");
+   if(["BASIC","A1","A2"].includes(choice.main)){
+      const target=s.enemies.find(x=>x.id===choice.targetId&&x.hp>0);
+      assert(target,"living target required");
+      const card=choice.main==="BASIC"?null:path.skills.find(x=>x.id===route.toUpperCase()+"_"+choice.main);
+      assert(Math.abs(zone-target.zone)<=(card?range(card.range):0),"target out of range");
+   }
+   return true;
+ }
+ function legalActions(s,pack,opts){
+   const targetId=opts?.targetId;
+   const main=["BASIC","A1","A2","GUARD","RECOVER"];
+   return main.filter(which=>{
+     try {validateChoice(s,pack,{main:which,targetId,moveDelta:opts?.moveDelta??0});return true;}
+     catch{return false;}
+   });
+ }
  function playerMain(s,pack,choice){
    const p=s.player,route=s.routeId,path=pathOf(pack,route),id=choice.main;
    assert(["A1","A2","BASIC","GUARD","RECOVER"].includes(id),"unknown main action");
@@ -164,8 +212,7 @@
    assert(state&&state.scope===STATUS,"state must be experimental battle");
    assert(!state.winner,"combat already completed");
    const s=copy(state);s.events=[];
-   assert(choice&&typeof choice==="object","choice required");
-   assert(Number.isInteger(choice.moveDelta??0)&&Math.abs(choice.moveDelta??0)<=1,"move max one zone");
+   validateChoice(s,pack,choice);
    const canMove=Math.min(2,Math.max(0,s.player.zone+(choice.moveDelta??0)));
    s.player.zone=canMove;
    playerBonus(s,pack,choice);
@@ -180,5 +227,5 @@
  function shortState(s){return {round:s.round,route:s.routeId,hp:s.player.hp,sp:s.player.sp,mp:s.player.mp,
    tokens:s.player.tokens,zone:s.player.zone,enemies:s.enemies.map(e=>({id:e.id,hp:e.hp,zone:e.zone})),
    winner:s.winner};}
- return Object.freeze({STATUS,ROUTES,initialize,resolveRound,shortState});
+ return Object.freeze({STATUS,ROUTES,initialize,legalActions,resolveRound,shortState});
 });
