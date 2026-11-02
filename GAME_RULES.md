@@ -1,6 +1,6 @@
 # CREAM’S AEGIS — GAME RULES / Chat Campaign Overlay
 
-- 문서 버전: 1.2.0
+- 문서 버전: 1.3.0
 - 작성일: 2026-11-02
 - 상태: **운영 원장**. 확정 세계관 원칙은 `MASTER_CANON.md` 및 `DECISION_LOG.md`가 최상위.
 - 운영 모드: D-037 CHAT_CAMPAIGN (기존 웹게임 D-001과 병행)
@@ -66,3 +66,11 @@
 - 신규 세션 ID와 플레이어가 선택한 캐릭터 정보를 실제 저장하기 전 옛 저장본을 다시 연결하지 않는다.
 - 성장 보상은 `game_data/PROGRESSION_TABLE_V1.json` / `game_engine/growth_reducer.js`에 따라 지급권과 실제 효과를 분리한다.
 - 현재 확인되지 않은 기술·심법·경지/자원 수치를 공식 확정인 것처럼 사용하지 않는다.
+
+## 7. 성장 엔진 연결 [D-043 CONFIRMED STRUCTURE]
+
+1. `game_engine/growth_reducer.js`는 누적 XP, Lv1 시작 10슬롯을 포함한 `pendingGrowth`, 전투 후 XP, 중복 보상을 처리한다.
+2. `game_engine/cultivation_reducer.js`는 선천 재능이 고정된 상태에서 심법 비급 접근권/실제 입문/숙련/활성, 무공 전수 증거 및 경지 돌파 기록을 별도로 관리한다.
+3. `game_engine/character_builder.js`로 새 종족·재능·문파/독행·27PB 후보를 검증한 뒤 사용자 선택에 의해서만 실세션을 생성한다.
+4. 세부 HP/MP/SP 공식·수련 시간·재능 계수는 `game_data/GROWTH_EXPERIMENT_V1.json`의 [EXPERIMENT] 값. `rules/CHARACTER_GROWTH_V2.md`의 테스트 범위 참고. **공식 수치로 간주하지 않는다.**
+5. 누적 XP·레벨업·심법 품질·내공 축적·비기·독립 경지·사문 공헌은 서로 다른 원장으로 취급. 한 이벤트로 모든 보너스 자동 중복 지급 금지.
