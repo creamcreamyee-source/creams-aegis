@@ -237,8 +237,9 @@
        const blocked=Math.min(dmg,s.ally.guard);s.ally.guard=0;dmg-=blocked;
        s.events.push({type:"ALLY_GUARD",blocked});
      }
-     const canReact=choice.autoReaction&&p.sp>=2&&(!allyTarget||s.routeId==="shaolin"&&Math.abs(p.zone-s.ally.zone)<=1);
+     const canReact=choice.autoReaction&&!p.reactionUsedThisRound&&p.sp>=2&&(!allyTarget||s.routeId==="shaolin"&&Math.abs(p.zone-s.ally.zone)<=1);
      if(canReact){
+       p.reactionUsedThisRound=true;
        spend(s,"SP",2);
        const prevented=dice(s,1,6);
        dmg=Math.max(0,dmg-prevented);
@@ -259,6 +260,7 @@
    assert(!state.winner,"combat already completed");
    const s=copy(state);s.events=[];
    validateChoice(s,pack,choice);
+   s.player.reactionUsedThisRound=false;
    const enemyFirst=s.round===1&&s.initiative.first==="enemy";
    if(enemyFirst)enemyPhase(s,choice);
    if(s.player.hp>0&&(!s.ally||s.ally.hp>0)){
