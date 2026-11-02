@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "created_on": "2026-11-02",
+  "status": "EXPERIMENTAL_STARTER_ENCOUNTERS_NOT_CANON",
+  "scope": "Levels 1-3 initial chat campaign; all difficulty numbers require later player approval",
+  "mechanics_engine": "game_engine/combat_v1.js",
+  "difficulty_guidance": [
+    {
+      "id": "TRAINING",
+      "recommended_level": 1,
+      "description": "첫 심법·초식 시연, 패배해도 대부분 생사 위협이 없는 대련."
+    },
+    {
+      "id": "EASY",
+      "recommended_level": 1,
+      "description": "기본 공격/회피/교섭/퇴각이 성립하는 초반 위협."
+    },
+    {
+      "id": "STANDARD",
+      "recommended_level": "1-2",
+      "description": "자원과 전술을 신중하게 써야 하는 실전."
+    },
+    {
+      "id": "DANGEROUS",
+      "recommended_level": "2-3",
+      "description": "동료/수련/환경 우위 또는 여러 해결 경로가 필요."
+    },
+    {
+      "id": "BOSS_FOR_LATER",
+      "recommended_level": "3+",
+      "description": "미숙한 Lv1이 정면 충돌하면 생존 가능성이 낮음. 최초 장면에 강제하지 말 것."
+    }
+  ],
+  "encounters": [
+    {
+      "id": "training_duel",
+      "name": "입교 대련용 목검 수련생",
+      "tier": "TRAINING",
+      "enemies": [
+        {
+          "id": "sparring_student",
+          "hp": 14,
+          "def": 11,
+          "attackBonus": 2,
+          "damageBonus": 0,
+          "zone": 0,
+          "attackRange": 0,
+          "negotiable": true,
+          "negotiationDC": 10
+        }
+      ],
+      "allyHP": null,
+      "combat_intent": "nonlethal_sparring",
+      "failure_outcome": "수련 실패·일시적 체면 손상/재시도 조건, 즉사 아님",
+      "alternative": "사부에게 운기 원리를 묻거나 대련 방식 변경"
+    },
+    {
+      "id": "rookie_fight",
+      "name": "산길 수상한 강도",
+      "tier": "EASY",
+      "enemies": [
+        {
+          "id": "bandit",
+          "hp": 18,
+          "def": 12,
+          "attackBonus": 2,
+          "damageBonus": 1,
+          "zone": 0,
+          "attackRange": 0,
+          "negotiable": true,
+          "negotiationDC": 13
+        }
+      ],
+      "allyHP": null,
+      "combat_intent": "lethal_possible",
+      "failure_outcome": "부상·강탈 위험; 치명 상황은 실제 사전 고지와 처리",
+      "alternative": "교섭·퇴각·정보 제공·비살상 제압"
+    },
+    {
+      "id": "martial_guard",
+      "name": "무장 호위무사",
+      "tier": "STANDARD",
+      "enemies": [
+        {
+          "id": "guard",
+          "hp": 28,
+          "def": 14,
+          "attackBonus": 4,
+          "damageBonus": 2,
+          "zone": 0,
+          "attackRange": 0,
+          "negotiable": true,
+          "negotiationDC": 16
+        }
+      ],
+      "allyHP": null,
+      "combat_intent": "hostile_guard",
+      "failure_outcome": "패배/포획/부상 가능한 상황",
+      "alternative": "권력자와 거래하거나 우회·퇴각"
+    },
+    {
+      "id": "two_scouts",
+      "name": "녹림의 산길 추적조",
+      "tier": "DANGEROUS",
+      "enemies": [
+        {
+          "id": "scout_a",
+          "hp": 19,
+          "def": 13,
+          "attackBonus": 3,
+          "damageBonus": 1,
+          "zone": 0,
+          "attackRange": 0,
+          "negotiable": true,
+          "negotiationDC": 15
+        },
+        {
+          "id": "scout_b",
+          "hp": 19,
+          "def": 13,
+          "attackBonus": 3,
+          "damageBonus": 1,
+          "zone": 1,
+          "attackRange": 0,
+          "negotiable": true,
+          "negotiationDC": 15
+        }
+      ],
+      "allyHP": null,
+      "combat_intent": "group_tactical",
+      "failure_outcome": "포위·분리·속박",
+      "alternative": "장소 이용·교섭·은신·분산"
+    },
+    {
+      "id": "northern_archer",
+      "name": "북방 사수",
+      "tier": "DANGEROUS",
+      "enemies": [
+        {
+          "id": "archer",
+          "hp": 25,
+          "def": 13,
+          "attackBonus": 4,
+          "damageBonus": 1,
+          "zone": 2,
+          "attackRange": 2,
+          "negotiable": true,
+          "negotiationDC": 14
+        }
+      ],
+      "allyHP": null,
+      "combat_intent": "ranged_ambush",
+      "failure_outcome": "원거리 부상 또는 협상 기회",
+      "alternative": "엄폐·경공·사거리 우회·투항 요구"
+    },
+    {
+      "id": "protect_civilian",
+      "name": "상인을 노리는 위협",
+      "tier": "STANDARD",
+      "enemies": [
+        {
+          "id": "thug",
+          "hp": 22,
+          "def": 12,
+          "attackBonus": 3,
+          "damageBonus": 1,
+          "zone": 0,
+          "targetPreference": "ally",
+          "negotiable": true,
+          "negotiationDC": 12
+        }
+      ],
+      "allyHP": 12,
+      "combat_intent": "escort",
+      "failure_outcome": "호위 대상 손실 시 전투 승패와 별도로 임무 실패",
+      "alternative": "호위 대상 대피·교섭·보호"
+    },
+    {
+      "id": "elite_challenge",
+      "name": "정예 무인의 살기 어린 시험",
+      "tier": "BOSS_FOR_LATER",
+      "enemies": [
+        {
+          "id": "elite",
+          "hp": 38,
+          "def": 15,
+          "attackBonus": 5,
+          "damageBonus": 3,
+          "zone": 0,
+          "attackRange": 0,
+          "negotiable": false
+        }
+      ],
+      "allyHP": null,
+      "combat_intent": "deadly_elite",
+      "failure_outcome": "Lv1 정면전은 위험. 초반에는 전투 강제 금지",
+      "alternative": "전투 회피·지도자 개입·수련 후 재도전"
+    }
+  ],
+  "narrative_contract": {
+    "player_first_choice": "전투 / 대화 / 우회 / 퇴각 선택 가능",
+    "enemy_awareness": "NPC는 스스로 아는 사실에 기반해 움직임",
+    "player_expense_visibility": "DC/자원/실험 수치는 판정 전 안내",
+    "result_aftercare": "판정 결과를 세계 사건·상처·사승·관계 원장에 기록",
+    "xp_policy": "Only one confirmed objective reward; no double payout for parley and killing the same target",
+    "death_policy": "Defeat outcomes defined per scene; do not invent forced player death by experimental numbers",
+    "source": "CHAT_CAMPAIGN_PROTOCOL.md + MASTER_CANON D-038..043"
+  },
+  "warnings": [
+    "동료의 실제 전투 행동과 크림이 자율 기술 효과는 아직 구현 전. 이 팩의 allyHP는 구조 대상 HP다.",
+    "거리 0/1/2 구역과 최대 주행동1·이동1·추가행동1을 사용한다. 세계관 내 이동 거리는 추가 확정 필요.",
+    "모든 수치 EXPERIMENTAL. 입교 시험의 정식 공식 내력과 독문 비기 명칭은 별도 사용자 승인 대상."
+  ]
+}
