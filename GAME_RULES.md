@@ -1,6 +1,6 @@
 # CREAM’S AEGIS — GAME RULES / Chat Campaign Overlay
 
-- 문서 버전: 1.3.0
+- 문서 버전: 1.4.0
 - 작성일: 2026-11-02
 - 상태: **운영 원장**. 확정 세계관 원칙은 `MASTER_CANON.md` 및 `DECISION_LOG.md`가 최상위.
 - 운영 모드: D-037 CHAT_CAMPAIGN (기존 웹게임 D-001과 병행)
@@ -74,3 +74,12 @@
 3. `game_engine/character_builder.js`로 새 종족·재능·문파/독행·27PB 후보를 검증한 뒤 사용자 선택에 의해서만 실세션을 생성한다.
 4. 세부 HP/MP/SP 공식·수련 시간·재능 계수는 `game_data/GROWTH_EXPERIMENT_V1.json`의 [EXPERIMENT] 값. `rules/CHARACTER_GROWTH_V2.md`의 테스트 범위 참고. **공식 수치로 간주하지 않는다.**
 5. 누적 XP·레벨업·심법 품질·내공 축적·비기·독립 경지·사문 공헌은 서로 다른 원장으로 취급. 한 이벤트로 모든 보너스 자동 중복 지급 금지.
+
+## 8. 실전 플레이 우선형 운영 오버레이 [EXPERIMENTAL RULES / D-038~D-043 PRESERVED]
+
+- `rules/PLAY_FIRST_CORE_V1.md`가 현 시점의 실험적 Lv1~3 플레이 규칙을 설명한다. 전투는 `game_engine/combat_v1.js`, 실제 캠페인 무공 사용 검증은 `game_engine/campaign_battle_gate_v1.js`를 쓴다.
+- 사문별 고유 무공, 심법 품질/숙련, HP/SP/MP와 d20의 **세부 수치**는 새 정본 승인이 아니라 `[EXPERIMENT]`이다. 사용자에게 고지하고 해당 세션에서 동일 버전을 유지한다.
+- 시작 인물은 `game_engine/session_bootstrap_v1.js`로 **명시적 사용자 확정 후** 준비한다. 현재 활성 세션 0개를 옛 REBIRTH/천마 시연으로 대체하지 않는다.
+- 실제 전투 주행동 1·이동 1·추가행동 최대 1·반응 최대 1. 주도권 우선, 실제 자원 비용, 범위, 적·아군의 후속 상황을 기록한다.
+- 제압·교섭·퇴각은 공격 이외의 정식 선택이다. 미습득 초식/심법은 사용을 거절하고, 아이템·NPC 지식·사문 공헌·경지는 자동 증가하지 않는다.
+- 전투나 심법 수련의 실제 장면은 원장에 이벤트 ID 및 전후값과 함께 기록하고 재조회한다. 엔진 테스트 **44/44 + 11,000회 시드 전투**, 그러나 정예 보스·Lv4~12·크림이 완전 AI 밸런스는 미검증.
