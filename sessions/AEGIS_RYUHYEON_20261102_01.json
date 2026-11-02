@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "session_id": "AEGIS_RYUHYEON_20261102_01",
+  "kind": "NEW_OFFICIAL_CHAT_CAMPAIGN",
+  "mode": "CHAT_CAMPAIGN",
+  "rule_status": "EXPERIMENTAL_NUMERICS_NOT_CANON",
+  "numeric_rules_snapshot": "game_data/GROWTH_EXPERIMENT_V1.json (version at creation; change requires explicit migration)",
+  "canonical_decisions": [
+    "D-038",
+    "D-039",
+    "D-040",
+    "D-041",
+    "D-042",
+    "D-043"
+  ],
+  "checkpoint": {
+    "chapter": 1,
+    "scene_id": "INTRO_WANDERER",
+    "scene_title": "무문파 독행 · 낡은 구결",
+    "phase": "INTRO_AWAITING_FIRST_USER_CHOICE",
+    "revision": 0,
+    "last_committed_event_id": "CHARACTER_CREATION",
+    "pending_choices": [
+      {
+        "id": "wanderer_CHOICE_1",
+        "label": "비급의 출처를 순례자에게 묻는다"
+      },
+      {
+        "id": "wanderer_CHOICE_2",
+        "label": "세 줄의 호흡을 재구성한다"
+      },
+      {
+        "id": "wanderer_CHOICE_3",
+        "label": "비급을 숨기고 사당 안의 기맥부터 살핀다"
+      }
+    ],
+    "in_world_minutes": 0
+  },
+  "character": {
+    "name": "류현",
+    "raceType": "human",
+    "raceOfficialNameStatus": "PROPOSED_TYPE_LABEL",
+    "origin": "방랑 필사공 — 고문서와 비급을 찾아 떠도는 인물",
+    "talentId": "transcendent",
+    "talentName": "초월",
+    "sectPathId": "wanderer",
+    "sectNameCandidate": "무문파 독행",
+    "sectStatus": "UNAFFILIATED_WANDERER",
+    "currentAffiliation": null,
+    "abilities": {
+      "STR": 10,
+      "DEX": 14,
+      "CON": 13,
+      "INT": 12,
+      "WIS": 15,
+      "CHA": 8
+    },
+    "abilityMods": {
+      "STR": 0,
+      "DEX": 2,
+      "CON": 1,
+      "INT": 1,
+      "WIS": 2,
+      "CHA": -1
+    },
+    "level": 1,
+    "xp": 0,
+    "hp": 22,
+    "sp": 14,
+    "mp": 12,
+    "resourceCaps": {
+      "HP": 22,
+      "SP": 14,
+      "MP": 12,
+      "proficiency": 2,
+      "DEF": 12,
+      "formula_status": "EXPERIMENTAL_NOT_CANON"
+    },
+    "resourceStatus": "EXPERIMENTAL_V1",
+    "trainedDisciplines": [],
+    "knownTechniqueIds": [],
+    "starterLoadoutProposed": {
+      "heart": [
+        "WANDERER_HEART"
+      ],
+      "active": [
+        "WANDERER_A1",
+        "WANDERER_A2"
+      ],
+      "bonus": [
+        "WANDERER_BONUS"
+      ],
+      "reaction": [
+        "WANDERER_REACTION"
+      ],
+      "passive": [
+        "WANDERER_P1",
+        "WANDERER_P2",
+        "WANDERER_P3"
+      ],
+      "unique": [
+        "WANDERER_U1",
+        "WANDERER_U2"
+      ]
+    },
+    "loadoutStatus": "TEN_SLOTS_RESERVED_PENDING_REAL_TRAINING",
+    "uniqueTalentRights": {
+      "rank": "초월",
+      "text": "비전 심법의 첫 관문이 열렸다. 다른 이는 수년을 찾아 헤맬 전승이지만, 첫 호흡의 의미를 이해하는 데도 시련이 남아 있다.",
+      "entitlement": "secret_first_gate",
+      "heart_quality_candidate": "비전",
+      "guaranteed_manuscript_id": "WANDERER_HEART_SECRET",
+      "entitlement_type": "guaranteed_higher_art_first_gate",
+      "active_heart_status": "FIRST_GATE_ONLY_NOT_MASTERED",
+      "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
+    },
+    "activeHeartArtId": null
+  },
+  "growth": {
+    "schemaVersion": 1,
+    "earnedRewards": [],
+    "queuedAwards": [],
+    "pendingGrowth": [
+      {
+        "level": 1,
+        "rewardType": "STARTER_10_SLOTS",
+        "status": "AWAITING_USER_SELECTION",
+        "entitlementOnly": true,
+        "selectedOption": null,
+        "approvedEffectRef": null
+      }
+    ],
+    "appliedGrowth": [],
+    "cultivation": {
+      "heartArtId": null,
+      "heartMastery": "UNKNOWN",
+      "innerPower": null,
+      "realm": "UNKNOWN",
+      "breakthroughStatus": "NOT_ASSESSED",
+      "arts": [],
+      "trainingEvents": [],
+      "masteryEvents": [],
+      "breakthroughEvents": [],
+      "techniqueRecords": [],
+      "realmStartEvents": [],
+      "activationEvents": [],
+      "innateTalentId": "transcendent"
+    },
+    "imported": false
+  },
+  "story": {
+    "eventIds": [
+      "CHARACTER_CREATION"
+    ],
+    "relationships": [],
+    "npcKnowledge": [],
+    "irreversibleCosts": [],
+    "clues": [],
+    "inventory": [],
+    "openThreads": [
+      "고비급의 출처",
+      "비전 심법 첫 관문",
+      "순례자의 정체"
+    ]
+  },
+  "run": {
+    "combatStarted": false,
+    "synchronized": false,
+    "lastVerifiedSha": null
+  },
+  "creation_audit": {
+    "player_confirmation": "2026-11-02 explicit selection in chat",
+    "numeric_rules": "EXPERIMENTAL_V1 — approved only for this newly created campaign, not global canon",
+    "source_shas": {
+      "game_data/SECT_STARTER_PACK_V1.json": "7e81d5c1f68c8ff727ab2df18cdb2af35aa58a16",
+      "game_data/SECT_INTRO_SCENES_V1.json": "f261357ed8fa061a3978d5ae90061bd825165c20",
+      "game_engine/session_bootstrap_v1.js": "afe8fcf2b1cfb814f5f8072b4d65a5e743b4d31e",
+      "game_engine/character_builder.js": "c70e4630e99b49b95e166f1d215f4f0043867940",
+      "game_engine/growth_reducer.js": "a5309ebc5667db72ecda7086836c97c6119dee18",
+      "game_engine/cultivation_reducer.js": "7a3ab3c178b00f1773e32e82780535717ababb3a",
+      "rules/PLAY_FIRST_CORE_V1.md": "2d5f476f089d95dcd96f5be893559e35b58f9d12"
+    },
+    "starting_slots_reserved": 10,
+    "starting_slots_learned": 0,
+    "first_scene_unplayed": true
+  }
+}
