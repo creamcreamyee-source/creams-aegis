@@ -52,7 +52,7 @@
    const s=combat.initialize({pack,routeId:session.character.sectPathId,
       abilities:session.character.abilities,enemyCards:encounter.enemies,
       seed,initialHP:session.character.hp,initialSP:session.character.sp,
-      initialMP:session.character.mp,allyHP:encounter.allyHP});
+      initialMP:session.character.mp,resourceCaps:session.character.resourceCaps,allyHP:encounter.allyHP});
    s.sessionId=session.session_id;
    s.encounterId=encounter.id;
    s.provenance="OFFICIAL_CAMPAIGN_EXPERIMENTAL_RULES";
