@@ -44,7 +44,7 @@
        name:draft.character.name,raceType:draft.character.raceType,
        raceOfficialNameStatus:"PROPOSED_TYPE_LABEL",origin:draft.character.origin,
        talentId:draft.character.talentId,talentName,sectPathId:selection.pathId,
-       sectNameCandidate:path.name,sectStatus:"ENTRY_CANDIDATE",currentAffiliation:null,
+       sectNameCandidate:path.name,sectStatus:selection.pathId==="wanderer"?"UNAFFILIATED_WANDERER":"ENTRY_CANDIDATE",currentAffiliation:null,
        abilities:draft.character.abilities,abilityMods:draft.character.abilityMods,
        level:1,xp:0,hp:draft.character.HP,sp:draft.character.SP,mp:draft.character.MP,
        resourceCaps:draft.character.resourceCaps,resourceStatus:"EXPERIMENTAL_V1",
@@ -54,7 +54,7 @@
        uniqueTalentRights:clone(overlay),activeHeartArtId:null},
      growth:trained.growth,
      story:{eventIds:["CHARACTER_CREATION"],relationships:[],npcKnowledge:[],
-       irreversibleCosts:[],clues:[],inventory:[],openThreads:["입문 시험","심법 첫 관문","사부/기연 정체"]},
+       irreversibleCosts:[],clues:[],inventory:[],openThreads:selection.pathId==="wanderer"?["고비급의 출처","비전 심법 첫 관문","순례자의 정체"]:["입문 시험","심법 첫 관문","사부/기연 정체"]},
      run:{combatStarted:false,synchronized:false,lastVerifiedSha:null}
    };
    check(state.growth.pendingGrowth.some(x=>x.level===1&&x.rewardType==="STARTER_10_SLOTS"),
@@ -63,7 +63,7 @@
    const ledger=[
      "# CREAM’S AEGIS — 신규 캠페인 "+selection.sessionId,
      "",
-     "- 상태: 신규 캐릭터 생성 완료 / 입교·독행 첫 선택 미진행.",
+     "- 상태: 신규 캐릭터 생성 완료 / 첫 독행·입교 장면 선택 미진행.",
      "- 규칙: D-038~D-043, 현재 수치 [EXPERIMENTAL_V1].",
      "- 인물: "+state.character.name+" / "+talentName+" / "+path.name+" / Lv1·XP0.",
      "- 비급: "+draft.cultivationSelection.entitlementArtId+" 첫 관문 접근 후보. 실제 전수·운기 미실행.",
