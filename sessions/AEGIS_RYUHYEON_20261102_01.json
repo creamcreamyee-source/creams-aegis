@@ -15,26 +15,26 @@
   ],
   "checkpoint": {
     "chapter": 1,
-    "scene_id": "INTRO_WANDERER",
-    "scene_title": "무문파 독행 · 낡은 구결",
-    "phase": "INTRO_AWAITING_FIRST_USER_CHOICE",
-    "revision": 0,
-    "last_committed_event_id": "CHARACTER_CREATION",
+    "scene_id": "WANDERER_SHRINE_HIDDEN_VEIN",
+    "scene_title": "낡은 구결 — 돌 아래의 숨결",
+    "phase": "AWAITING_FOLLOWUP_CHOICE",
+    "revision": 1,
+    "last_committed_event_id": "RYH_CH01_S01_CHOICE3_001",
     "pending_choices": [
       {
-        "id": "wanderer_CHOICE_1",
-        "label": "비급의 출처를 순례자에게 묻는다"
+        "id": "WANDERER_SHRINE_2_1",
+        "label": "순례자의 물음에 답하면서 그가 찾는 물건을 묻는다"
       },
       {
-        "id": "wanderer_CHOICE_2",
-        "label": "세 줄의 호흡을 재구성한다"
+        "id": "WANDERER_SHRINE_2_2",
+        "label": "금속성 모서리와 돌 틈을 조용히 조사한다"
       },
       {
-        "id": "wanderer_CHOICE_3",
-        "label": "비급을 숨기고 사당 안의 기맥부터 살핀다"
+        "id": "WANDERER_SHRINE_2_3",
+        "label": "비급을 품고 사당 뒤편으로 물러나 순례자의 동향을 살핀다"
       }
     ],
-    "in_world_minutes": 0
+    "in_world_minutes": 12
   },
   "character": {
     "name": "류현",
@@ -137,7 +137,19 @@
       "innerPower": null,
       "realm": "UNKNOWN",
       "breakthroughStatus": "NOT_ASSESSED",
-      "arts": [],
+      "arts": [
+        {
+          "id": "WANDERER_HEART_SECRET",
+          "quality": "secret",
+          "sourceType": "PARTIAL_FRAGMENT_QI_RESONANCE",
+          "provenance": "제1장 첫 절 낡은 구결: 비급 반쪽과 사당 석판 기맥의 상호 대응. 오직 첫 운기 관문 접근, 전문/대성/운용 미확보.",
+          "sourceEventId": "RYH_CH01_S01_CHOICE3_001",
+          "accessStatus": "MANUSCRIPT_ACQUIRED",
+          "masteryStage": "untrained",
+          "trainingMarks": 0,
+          "active": false
+        }
+      ],
       "trainingEvents": [],
       "masteryEvents": [],
       "breakthroughEvents": [],
@@ -150,22 +162,104 @@
   },
   "story": {
     "eventIds": [
-      "CHARACTER_CREATION"
+      "CHARACTER_CREATION",
+      "RYH_CH01_S01_CHOICE3_001"
     ],
-    "relationships": [],
-    "npcKnowledge": [],
+    "relationships": [
+      {
+        "npcId": "PILGRIM_001",
+        "npcName": null,
+        "role": "삿갓을 쓴 낯선 순례자",
+        "status": "UNKNOWN_NOT_HOSTILE_CONFIRMED",
+        "trust": null,
+        "notes": "구결과의 관계 미확정, 류현의 정체도 미확인"
+      }
+    ],
+    "npcKnowledge": [
+      {
+        "npcId": "PILGRIM_001",
+        "knows": [
+          "사당 안에 사람의 움직임이 있다",
+          "잃어버린 물건을 찾기 위해 사당을 방문했다"
+        ],
+        "doesNotKnow": [
+          "류현이 비급의 반쪽을 옷 안에 감췄다",
+          "류현이 기맥과 구결의 상관관계를 알아차렸다",
+          "석판 밑 금속성 모서리를 발견했다"
+        ],
+        "actions": [
+          "문턱에서 사당 안의 소리를 확인했다",
+          "발소리를 줄이고 문가에서 모습을 드러내지 않은 채 말을 걸었다"
+        ],
+        "secretGoal": "NOT_YET_RESOLVED"
+      }
+    ],
     "irreversibleCosts": [],
-    "clues": [],
-    "inventory": [],
+    "clues": [
+      {
+        "id": "SHRINE_VEIN_RESONANCE",
+        "foundAt": "RYH_CH01_S01_CHOICE3_001",
+        "knownTo": "류현",
+        "text": "사당 바닥 기맥은 대체로 한곳으로 모이지 않고 돌 아래 빈 공간을 피해 둘로 갈라진다. 구결에 지워진 글자와 유사한 세 점의 흔적이 석판 밑에서 확인됨.",
+        "certainty": "OBSERVED"
+      },
+      {
+        "id": "SHRINE_METAL_EDGE",
+        "foundAt": "RYH_CH01_S01_CHOICE3_001",
+        "knownTo": "류현",
+        "text": "석판 틈 깊숙이 무언가 금속성 모서리가 잠시 반사됨. 물체 종류와 소유자 미확인.",
+        "certainty": "PARTIAL"
+      },
+      {
+        "id": "PILGRIM_SOUGHT_OBJECT",
+        "foundAt": "RYH_CH01_S01_CHOICE3_001",
+        "knownTo": "류현",
+        "text": "순례자는 잃어버린 물건을 찾는다고 말했으나 비급을 찾는지는 확인되지 않음.",
+        "certainty": "REPORTED"
+      }
+    ],
+    "inventory": [
+      {
+        "id": "WANDERER_FRAGMENT_001",
+        "name": "먹이 번진 낡은 구결 반쪽",
+        "status": "POSSESSED_CONCEALED",
+        "description": "세 구절 중 둘이 소실된 낡은 종이 비급의 반쪽. 전체 비전편은 아님.",
+        "acquiredAt": "RYH_CH01_S01_CHOICE3_001"
+      }
+    ],
     "openThreads": [
       "고비급의 출처",
       "비전 심법 첫 관문",
-      "순례자의 정체"
-    ]
+      "순례자의 정체",
+      "석판 아래 금속성 물건의 정체",
+      "순례자가 찾는 물건과 사당 유산의 관계"
+    ],
+    "experimental_metrics": {
+      "personal_insight_delta": 1,
+      "sect_trust_delta": 0,
+      "source": "wanderer_CHOICE_3.proposed_effects",
+      "status": "EXPERIMENTAL_STORY_METRIC_NOT_XP"
+    },
+    "lastAction": {
+      "eventId": "RYH_CH01_S01_CHOICE3_001",
+      "choiceId": "wanderer_CHOICE_3",
+      "action": "비급 반쪽을 몸 안에 숨긴 뒤 사당 바닥 기맥을 조사함",
+      "resolved": [
+        "비급 소지·은닉",
+        "석판 아래 기맥 이상과 금속성 물체 모서리 관찰",
+        "초월 재능으로 비전 심법 첫 관문에 접근"
+      ],
+      "notResolved": [
+        "순례자의 의도",
+        "석판 아래 물건 회수",
+        "실제 심공 운기·입문·수련",
+        "첫 장 XP 지급"
+      ]
+    }
   },
   "run": {
     "combatStarted": false,
-    "synchronized": false,
+    "synchronized": true,
     "lastVerifiedSha": null
   },
   "creation_audit": {
