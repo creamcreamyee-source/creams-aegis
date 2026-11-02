@@ -41,12 +41,15 @@
       assert(Number.isInteger(e.zone)&&e.zone>=0&&e.zone<=2,"enemy zone 0..2");
       assert(e.attackRange===undefined||Number.isInteger(e.attackRange)&&e.attackRange>=0&&e.attackRange<=2,"enemy attackRange 0..2");
       return {id:e.id||"enemy"+i,hp:e.hp,maxHp:e.hp,def:e.def,attackBonus:e.attackBonus,
-        damageBonus:e.damageBonus,attackRange:e.attackRange??0,zone:e.zone,skip:0,weaken:0,slow:0,mark:0,cover:e.cover||0};
+        damageBonus:e.damageBonus,attackRange:e.attackRange??0,targetPreference:e.targetPreference==="ally"?"ally":"player",zone:e.zone,skip:0,weaken:0,slow:0,mark:0,cover:e.cover||0};
    });
    assert(new Set(enemies.map(e=>e.id)).size===enemies.length,"enemy IDs must be unique");
-   return {version:1,scope:STATUS,rng:seed>>>0,round:1,routeId,style:path.martial_identity.token,
-     player,enemies,ally:allyHP==null?null:{hp:allyHP,maxHp:allyHP,def:12,guard:0},
+   const state={version:1,scope:STATUS,rng:seed>>>0,round:1,routeId,style:path.martial_identity.token,
+     player,enemies,ally:allyHP==null?null:{hp:allyHP,maxHp:allyHP,def:12,guard:0,zone:0},
      winner:null,events:[],history:[],spent:{sp:0,mp:0},turns:0};
+   const playerRoll=roll(state,20),enemyRoll=roll(state,20);
+   state.initiative={playerRoll,enemyRoll,first:playerRoll+mod(abilities.DEX)>=enemyRoll+2?"player":"enemy"};
+   return state;
  }
  function spend(s,res,base){
    assert(Number.isInteger(base)&&base>=0,"bad cost");
@@ -66,7 +69,7 @@
    const p=s.player, token=()=>{p.tokens=Math.min(2,p.tokens+1);};
    if(which==="A1"){
      switch(route){
-       case"shaolin":token();if(s.ally)s.ally.guard+=3;break;
+       case"shaolin":token();if(s.ally)s.ally.guard=Math.min(6,s.ally.guard+3);break;
        case"wudang":case"hwasan":case"namgung":case"peng":case"tang":case"zhuge":
        case"bukhae":case"joseon":case"wanderer":token();break;
        case"cheonma":token();p.hp=Math.max(1,p.hp-1);s.events.push({type:"SELF_BURDEN",hp:-1});break;
@@ -191,24 +194,36 @@
    const p=s.player;
    for(const enemy of current(s)){
      if(enemy.skip>0){enemy.skip-=1;s.events.push({type:"ENEMY_SKIPPED",enemy:enemy.id});continue;}
-     if(Math.abs(enemy.zone-p.zone)>enemy.attackRange){if(enemy.slow>0){enemy.slow--;s.events.push({type:"ENEMY_SLOWED",enemy:enemy.id});continue;}enemy.zone+=enemy.zone>p.zone?-1:1;s.events.push({type:"ENEMY_MOVE",enemy:enemy.id,zone:enemy.zone});continue;}
-     const hit=attackRoll(s,enemy.attackBonus-Math.min(2,enemy.weaken),p.def+p.stanceDefense);
+     const allyTarget=Boolean(s.ally&&s.ally.hp>0&&enemy.targetPreference==="ally");
+     const defender=allyTarget?s.ally:p;
+     const distance=Math.abs(enemy.zone-defender.zone);
+     if(distance>enemy.attackRange){
+       if(enemy.slow>0){enemy.slow--;s.events.push({type:"ENEMY_SLOWED",enemy:enemy.id});continue;}
+       enemy.zone+=enemy.zone>defender.zone?-1:1;
+       s.events.push({type:"ENEMY_MOVE",enemy:enemy.id,zone:enemy.zone});continue;
+     }
+     const hit=attackRoll(s,enemy.attackBonus-Math.min(2,enemy.weaken),defender.def+(allyTarget?0:p.stanceDefense));
      enemy.weaken=0;
-     if(!hit.success){s.events.push({type:"ENEMY_MISS",enemy:enemy.id});continue;}
+     if(!hit.success){s.events.push({type:"ENEMY_MISS",enemy:enemy.id,target:allyTarget?"ally":"player"});continue;}
      let dmg=Math.max(1,dice(s,1,6)+enemy.damageBonus);
-     if(choice.autoReaction&&p.sp>=2){
+     if(allyTarget&&s.ally.guard>0){
+       const blocked=Math.min(dmg,s.ally.guard);s.ally.guard=0;dmg-=blocked;
+       s.events.push({type:"ALLY_GUARD",blocked});
+     }
+     const canReact=choice.autoReaction&&p.sp>=2&&(!allyTarget||s.routeId==="shaolin"&&Math.abs(p.zone-s.ally.zone)<=1);
+     if(canReact){
        spend(s,"SP",2);
        const prevented=dice(s,1,6);
        dmg=Math.max(0,dmg-prevented);
-       s.events.push({type:"REACTION",prevented,remainingDamage:dmg,kind:s.routeId});
-       if(s.routeId==="wudang")p.tokens=Math.min(2,p.tokens+1);
+       s.events.push({type:"REACTION",prevented,remainingDamage:dmg,target:allyTarget?"ally":"player"});
+       if(s.routeId==="wudang"&&!allyTarget)p.tokens=Math.min(2,p.tokens+1);
      }
-     if(!p.survivalUsed&&p.hp-dmg<=0){
+     if(!allyTarget&&!p.survivalUsed&&p.hp-dmg<=0){
        p.survivalUsed=true;dmg=Math.max(0,dmg-2);s.events.push({type:"PASSIVE_LAST_STAND",prevented:2});
      }
-     p.hp=Math.max(0,p.hp-dmg);
-     s.events.push({type:"ENEMY_DAMAGE",enemy:enemy.id,amount:dmg,hpAfter:p.hp});
-     if(p.hp<=0)break;
+     defender.hp=Math.max(0,defender.hp-dmg);
+     s.events.push({type:"ENEMY_DAMAGE",enemy:enemy.id,target:allyTarget?"ally":"player",amount:dmg,hpAfter:defender.hp});
+     if(defender.hp<=0)break;
    }
    p.stanceDefense=0;
  }
@@ -219,17 +234,21 @@
    validateChoice(s,pack,choice);
    const canMove=Math.min(2,Math.max(0,s.player.zone+(choice.moveDelta??0)));
    s.player.zone=canMove;
-   playerBonus(s,pack,choice);
-   playerMain(s,pack,choice);
-   if(current(s).length>0&&s.player.hp>0)enemyPhase(s,choice);
-   if(s.player.hp<=0)s.winner="enemies";
+   const enemyFirst=s.round===1&&s.initiative.first==="enemy";
+   if(enemyFirst)enemyPhase(s,choice);
+   if(s.player.hp>0&&(!s.ally||s.ally.hp>0)){
+     playerBonus(s,pack,choice);
+     playerMain(s,pack,choice);
+   }
+   if(!enemyFirst&&current(s).length>0&&s.player.hp>0)enemyPhase(s,choice);
+   if(s.player.hp<=0||s.ally&&s.ally.hp<=0)s.winner="enemies";
    else if(current(s).length===0)s.winner="player";
-   const result={round:s.round,choice:copy(choice),events:copy(s.events),hp:s.player.hp,sp:s.player.sp,mp:s.player.mp,enemies:s.enemies.map(x=>({id:x.id,hp:x.hp})),winner:s.winner};
+   const result={round:s.round,choice:copy(choice),events:copy(s.events),hp:s.player.hp,sp:s.player.sp,mp:s.player.mp,enemies:s.enemies.map(x=>({id:x.id,hp:x.hp})),winner:s.winner,allyHp:s.ally?.hp??null};
    s.history.push(result);s.round++;s.turns++;
    return s;
  }
  function shortState(s){return {round:s.round,route:s.routeId,hp:s.player.hp,sp:s.player.sp,mp:s.player.mp,
    tokens:s.player.tokens,zone:s.player.zone,enemies:s.enemies.map(e=>({id:e.id,hp:e.hp,zone:e.zone})),
-   winner:s.winner};}
+   winner:s.winner,allyHp:s.ally?.hp??null};}
  return Object.freeze({STATUS,ROUTES,initialize,legalActions,resolveRound,shortState});
 });
