@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "created_on": "2026-11-02",
+  "status": "ENTIRELY_EXPERIMENTAL_PARAMETERS_NOT_APPROVED",
+  "canonical_source": "D-038..D-041 structure + WEB_ENGINE_RULES v10 baseline (XP only)",
+  "numerics_to_approve_separately": true,
+  "point_buy_cost": {
+    "8": 0,
+    "9": 1,
+    "10": 2,
+    "11": 3,
+    "12": 4,
+    "13": 5,
+    "14": 7,
+    "15": 9
+  },
+  "budget": 27,
+  "max_level": 12,
+  "xp_thresholds": [
+    0,
+    200,
+    500,
+    900,
+    1500,
+    2300,
+    3300,
+    4600,
+    6200,
+    8200,
+    10700,
+    13700
+  ],
+  "resource_formula_candidate": {
+    "type": "OPTION_A_UNAPPROVED",
+    "status": "NOT_CANON_NOT_BALANCED",
+    "max_stat_from_start": 15,
+    "stat_formula": "floor((stat-10)/2)",
+    "proficiency": [
+      {
+        "levels": [
+          1,
+          4
+        ],
+        "value": 2
+      },
+      {
+        "levels": [
+          5,
+          8
+        ],
+        "value": 3
+      },
+      {
+        "levels": [
+          9,
+          12
+        ],
+        "value": 4
+      }
+    ],
+    "hp": {
+      "base": 20,
+      "perCONMod": 2,
+      "perLevelAbove1": 6
+    },
+    "sp": {
+      "base": 10,
+      "perWISMod": 2,
+      "perLevelAbove1": 2
+    },
+    "mp": {
+      "base": 10,
+      "perINTMod": 2,
+      "perLevelAbove1": 2
+    },
+    "note": "Inherited candidate from STATS_SKILLS_V1 and preserves former sample cap but needs re-balance against new sect combat. Never auto assign to new character."
+  },
+  "heart_art_growth": {
+    "quality_tiers": [
+      {
+        "id": "basic",
+        "name": "기초",
+        "complexity": 1
+      },
+      {
+        "id": "orthodox",
+        "name": "정통",
+        "complexity": 1.2
+      },
+      {
+        "id": "upper",
+        "name": "상급",
+        "complexity": 1.5
+      },
+      {
+        "id": "secret",
+        "name": "비전",
+        "complexity": 2
+      },
+      {
+        "id": "supreme",
+        "name": "절세",
+        "complexity": 3
+      }
+    ],
+    "mastery_stages": [
+      {
+        "id": "untrained",
+        "name": "미운용",
+        "index": 0,
+        "baseMarksCumulative": 0
+      },
+      {
+        "id": "entry",
+        "name": "입문",
+        "index": 1,
+        "baseMarksCumulative": 1
+      },
+      {
+        "id": "small",
+        "name": "소성",
+        "index": 2,
+        "baseMarksCumulative": 4
+      },
+      {
+        "id": "great",
+        "name": "대성",
+        "index": 3,
+        "baseMarksCumulative": 10
+      },
+      {
+        "id": "complete",
+        "name": "원만",
+        "index": 4,
+        "baseMarksCumulative": 20
+      }
+    ],
+    "talent_effort_factors": [
+      {
+        "id": "ordinary",
+        "name": "범재",
+        "trainingEffort": 1
+      },
+      {
+        "id": "promising",
+        "name": "수재",
+        "trainingEffort": 0.9
+      },
+      {
+        "id": "gifted",
+        "name": "천재",
+        "trainingEffort": 0.8
+      },
+      {
+        "id": "monster",
+        "name": "괴물",
+        "trainingEffort": 0.65
+      },
+      {
+        "id": "transcendent",
+        "name": "초월",
+        "trainingEffort": 0.5
+      }
+    ],
+    "mark_gain_policy": {
+      "minimum_session_minutes": 60,
+      "base_marks_per_session": 1,
+      "bonus_marks_for_major_insight": 1,
+      "max_marks_per_day": 2,
+      "require_unique_training_event": true,
+      "world_day_index_required": true
+    },
+    "threshold_formula": "ceil(baseMarksCumulative * quality.complexity * talent.trainingEffort), minimum 1 for stage>0",
+    "breakthrough_gate": "marks alone do not improve mastery; requires explicit verified insight-event proof and stage-adjudication",
+    "quality_and_mastery_dont_alter_stats_automatically": true,
+    "active_heart_limit": 1
+  },
+  "realm_growth": {
+    "tiers": [
+      "삼류",
+      "이류",
+      "일류",
+      "절정",
+      "초절정",
+      "화경",
+      "현경",
+      "생사경·검선지경"
+    ],
+    "automatic_level_mapping": false,
+    "require_distinct_event": true,
+    "required_condition_evidence": [
+      "active_heart_and_stability",
+      "insight_or_combat_trial",
+      "realm_breakthrough_proof",
+      "cost_and_consequences_logged"
+    ],
+    "realm_failure_not_automatic_character_death": true
+  },
+  "chapter20_xp_pacing": {
+    "status": "PLANNING_TARGET_ONLY_NOT_A_FIXED_REWARD",
+    "targetCumulativeXP": [
+      200,
+      500,
+      700,
+      900,
+      1200,
+      1500,
+      1900,
+      2300,
+      2800,
+      3300,
+      3950,
+      4600,
+      5400,
+      6200,
+      7200,
+      8200,
+      9450,
+      10700,
+      12200,
+      13700
+    ],
+    "warning": "XP follows unique objectives, not automatic per-chapter awards. No rubberbanding/forced reward to hit pacing."
+  },
+  "progression_guardrails": [
+    "Talent tier must never be rerolled freely to gain free scripture",
+    "Training events unique; time passes; per-day earned marks capped",
+    "No XP granted solely for repeating the same target",
+    "Technique unlocked only after transmission/qualification event",
+    "No XP or resource healing from selecting a growth reward",
+    "Heart art access vs activation vs mastery separated",
+    "Realm stage only changes after a distinct approved breakthrough event",
+    "All numerical training factors experimental until accepted and tested"
+  ]
+}
