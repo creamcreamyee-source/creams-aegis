@@ -26,6 +26,20 @@ function runSuite({combat,pack}){
  check("ranged style allows range zone2",()=>combat.legalActions(start("joseon",1,[{...guard,zone:2}]),pack,{targetId:"guard"}).includes("A1"));
  check("no attacks after completed victory",()=>{let s=start("joseon",31,[{...guard,hp:1}]);for(let i=0;i<15&&!s.winner;i++)s=combat.resolveRound(s,pack,{main:"A1",targetId:"guard"});return s.winner==="player"&&fails(()=>combat.resolveRound(s,pack,{main:"GUARD"}));});
  check("non-unique reactions do not duplicate resource",()=>{let s=combat.resolveRound(start("cheonma",91),pack,{main:"GUARD",autoReaction:true});return s.spent.sp<=2;});
+ check("multi-opponent combat permits only one player reaction",()=>{
+   for(let seed=1;seed<=60;seed++){
+     const s=start("wudang",seed,[{...guard,id:"a",attackBonus:18},{...second,id:"b",attackBonus:18}]);
+     const next=combat.resolveRound(s,pack,{main:"GUARD",autoReaction:true});
+     const reactions=next.history[0].events.filter(x=>x.type==="REACTION");
+     if(next.history[0].events.filter(x=>x.type==="ENEMY_DAMAGE").length>=1&&reactions.length>0)
+       return reactions.length===1;
+   }
+   return false;});
+ check("current and maximum HP SP MP remain separate",()=>{
+   const s=combat.initialize({pack,routeId:"shaolin",abilities,seed:1,enemyCards:[guard],
+     initialHP:8,initialSP:1,initialMP:2,resourceCaps:{HP:24,SP:12,MP:14,DEF:12}});
+   return s.player.hp===8&&s.player.maxHp===24&&s.player.sp===1&&s.player.maxSp===12&&s.player.mp===2&&s.player.maxMp===14;
+ });
  check("resource unchanged on invalid choice",()=>{const s=start("hwasan",1,[{...guard,zone:2}]);fails(()=>combat.resolveRound(s,pack,{main:"A1",targetId:"guard"}));return s.player.sp===s.player.maxSp&&s.history.length===0;});
  check("recover never exceeds max",()=>{let s=start();s.player.sp=1;s.player.mp=1;s=combat.resolveRound(s,pack,{main:"RECOVER"});return s.player.sp<=s.player.maxSp&&s.player.mp<=s.player.maxMp;});
  check("SP can't be negative",()=>{let s=start();s.player.sp=0;return !combat.legalActions(s,pack,{targetId:"guard"}).includes("A1");});
