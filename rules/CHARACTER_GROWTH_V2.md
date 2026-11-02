@@ -3,7 +3,7 @@
 - 2026-11-02
 - **운영 기준:** 기존 v10 2차 정리의 XP 임계치·레벨별 보상·경지 독립 원칙.
 - **미승인 상세:** HP/MP/SP 최대치 증가 공식, 능력치 증가량, 스킬별 실수치, 내공 수련 속도, 주화입마 확률. 임의 공식으로 확정하지 않는다.
-- **연계:** game_data/PROGRESSION_TABLE_V1.json / game_engine/growth_reducer.js / GROWTH_TRACKING.json.
+- **연계:** game_data/PROGRESSION_TABLE_V1.json / game_engine/growth_reducer.js / 새 세션 전용 성장 원장.
 - 정본 우선순위: MASTER_CANON.md 및 DECISION_LOG.md > v10 원본(확인 가능할 때) > WEB_ENGINE_RULES.md 2차 정리 > 이 운영 명세.
 
 ## 1. 여섯 개의 독립 성장 축
@@ -65,18 +65,17 @@
 
 이것은 권장 수준 참고표이며 레벨업에 따른 실제 경지 변경 규칙이 아니다. 경지 돌파 조건·실패/재도전·지식·기혈·내공·시련은 따로 정해야 한다.
 
-## 6. 저장 스키마 및 초기 세이브 복구
+## 6. 신규 캐릭터 성장 원장
 
-- earnedRewards: 이미 지급한 XP의 objective ID·rewardKey·수치·출처.
-- queuedAwards: 전투 중 누적하고 전투 종료 시 반영할 XP.
-- pendingGrowth: 잠금 해제됐지만 미선택/미적용인 레벨 보상.
-- appliedGrowth: 기술·능력치 반영 증거와 함께 확인된 보상.
-- cultivation: 심법/운기/공력/경지의 별도 상태.
-- trainingEvents: 매 수련/기연/비기 전수의 전후 차이.
+- 새 인물의 상태는 `CAMPAIGN_REGISTRY.json`에 등록된 별도 `sessions/<NEW_ID>.json` 파일의 `growth` 필드로 관리한다.
+- `earnedRewards[]`: 지급 완료 XP의 objective ID와 rewardKey.
+- `queuedAwards[]`: 전투 중 획득했으나 종료 후 반영할 XP.
+- `pendingGrowth[]`: 레벨 도달로 열렸으나 아직 사용자가 고르지 않은 보상.
+- `appliedGrowth[]`: 승인된 기술/능력치 반영 증거가 있는 보상.
+- `cultivation`: 심법 구결·숙련/공력/경지/돌파를 기록(수치 공식 미확정 시 UNKNOWN).
+- `trainingEvents[]`: 심법·초식 수련의 실제 결과와 시간·교사·대가.
 
-**REBIRTH 메인:** Lv2/270XP/HP23/SP8/MP12, 종족·사문·재능·심법 미확정. Lv2 패시브의 지급 이력은 현재 원본으로 확인 불가 → pendingGrowth Lv2는 REVIEW_REQUIRED로 격리하고 무공 자동 지급 금지.
-
-**천마신교 독립 시연:** 괴물 재능·입문 시험·상급 심공 첫 관문만 확인. XP·레벨·스탯은 결정된 적 없음 → null 유지, REBIRTH의 수치 유입 차단.
+현재는 **저장된 캐릭터가 0명**이다. 이미 삭제한 옛 시연 캐릭터의 Lv/XP/초식/심법을 신규 세이브에 복원하지 않는다.
 
 ## 7. 실전 배포 전 남은 OPEN 항목
 
