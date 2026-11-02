@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0.0",
+  "status": "CONFIRMED_D044",
+  "date": "2026-11-02",
+  "authority": "D-044; preserves D-043 cumulative level thresholds and reward types",
+  "baseline": "game_data/PROGRESSION_TABLE_V1.json",
+  "talent_xp_multiplier": {
+    "ordinary": {
+      "name": "범재",
+      "numerator": 100,
+      "denominator": 100
+    },
+    "promising": {
+      "name": "수재",
+      "numerator": 110,
+      "denominator": 100
+    },
+    "gifted": {
+      "name": "천재",
+      "numerator": 125,
+      "denominator": 100
+    },
+    "monster": {
+      "name": "괴물",
+      "numerator": 150,
+      "denominator": 100
+    },
+    "transcendent": {
+      "name": "초월",
+      "numerator": 200,
+      "denominator": 100
+    }
+  },
+  "award_formula": "effectiveXP = floor(baseXP * numerator / denominator) per unique objective; remainder is not carried",
+  "rules": [
+    "Talent fixed at character creation; no rerolls",
+    "Only objective XP multiplied; never multiply pre-existing effective XP twice",
+    "Existing threshold 0/200/500/900/1500/2300/3300/4600/6200/8200/10700/13700 unchanged",
+    "Existing level reward type unchanged; no automatic ability points",
+    "Duplicate rewardKey/objectiveId blocked; combat XP deferred until end",
+    "Level and martial realm independent; mastery requires training evidence",
+    "Level-up does not heal or grant techniques; pending reward selected by player"
+  ],
+  "chat_reconciliation": {
+    "status": "EXPLICIT_MIGRATION_NOT_MAIN_SESSION",
+    "session_id": "AEGIS_RYUHYEON_20261102_01",
+    "source": "unsaved chat scenes 27-30, base XP accumulated 155",
+    "base_xp": 155,
+    "talent_id": "transcendent",
+    "effective_xp": 310,
+    "level": 2,
+    "next_threshold": 500,
+    "pending_level_2_reward": "PASSIVE_CHOICE",
+    "note": "This is a separately tracked chat-only continuation. Do not overwrite GitHub revision 4 or treat unsaved scenes as official session checkpoint. XP155 provenance is chat experimental awards; apply multiplier once only."
+  }
+}
