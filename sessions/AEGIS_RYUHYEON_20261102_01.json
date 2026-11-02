@@ -15,26 +15,26 @@
   ],
   "checkpoint": {
     "chapter": 1,
-    "scene_id": "WANDERER_SHRINE_HIDDEN_VEIN",
-    "scene_title": "낡은 구결 — 돌 아래의 숨결",
+    "scene_id": "WANDERER_SHRINE_LATCH",
+    "scene_title": "낡은 구결 — 세 점의 쇠걸쇠",
     "phase": "AWAITING_FOLLOWUP_CHOICE",
-    "revision": 1,
-    "last_committed_event_id": "RYH_CH01_S01_CHOICE3_001",
+    "revision": 2,
+    "last_committed_event_id": "RYH_CH01_S01_STONE_002",
     "pending_choices": [
       {
-        "id": "WANDERER_SHRINE_2_1",
-        "label": "순례자의 물음에 답하면서 그가 찾는 물건을 묻는다"
+        "id": "SHRINE_LATCH_1",
+        "label": "순례자에게 물러서라고 한 뒤 걸쇠를 자세히 살핀다"
       },
       {
-        "id": "WANDERER_SHRINE_2_2",
-        "label": "금속성 모서리와 돌 틈을 조용히 조사한다"
+        "id": "SHRINE_LATCH_2",
+        "label": "순례자에게 돌 밑에 무엇이 있는지 알고 있는지 묻는다"
       },
       {
-        "id": "WANDERER_SHRINE_2_3",
-        "label": "비급을 품고 사당 뒤편으로 물러나 순례자의 동향을 살핀다"
+        "id": "SHRINE_LATCH_3",
+        "label": "돌을 건드리지 않고 기맥의 세 번째 흐름을 따라가 본다"
       }
     ],
-    "in_world_minutes": 12
+    "in_world_minutes": 19
   },
   "character": {
     "name": "류현",
@@ -163,7 +163,8 @@
   "story": {
     "eventIds": [
       "CHARACTER_CREATION",
-      "RYH_CH01_S01_CHOICE3_001"
+      "RYH_CH01_S01_CHOICE3_001",
+      "RYH_CH01_S01_STONE_002"
     ],
     "relationships": [
       {
@@ -172,7 +173,7 @@
         "role": "삿갓을 쓴 낯선 순례자",
         "status": "UNKNOWN_NOT_HOSTILE_CONFIRMED",
         "trust": null,
-        "notes": "구결과의 관계 미확정, 류현의 정체도 미확인"
+        "notes": "구결과의 관계 미확정, 류현의 정체도 미확인 사당의 돌 밑이 위험할 수 있다고 경고. 구체적 이유 및 정체는 확인되지 않음."
       }
     ],
     "npcKnowledge": [
@@ -180,16 +181,20 @@
         "npcId": "PILGRIM_001",
         "knows": [
           "사당 안에 사람의 움직임이 있다",
-          "잃어버린 물건을 찾기 위해 사당을 방문했다"
+          "잃어버린 물건을 찾기 위해 사당을 방문했다",
+          "사당 안 사람이 석판 부근에서 움직이고 돌 틈을 건드리는 소리가 들렸다"
         ],
         "doesNotKnow": [
           "류현이 비급의 반쪽을 옷 안에 감췄다",
           "류현이 기맥과 구결의 상관관계를 알아차렸다",
-          "석판 밑 금속성 모서리를 발견했다"
+          "류현이 쇠걸쇠와 세 점의 홈을 알아보았다",
+          "류현이 초월 재능으로 기맥의 되돌아오는 흐름을 파악했다"
         ],
         "actions": [
           "문턱에서 사당 안의 소리를 확인했다",
-          "발소리를 줄이고 문가에서 모습을 드러내지 않은 채 말을 걸었다"
+          "발소리를 줄이고 문가에서 모습을 드러내지 않은 채 말을 걸었다",
+          "바닥을 긁는 소리가 나자 사당 문턱까지 걸어 들어와 손에 든 죽장을 바닥에 짚었다",
+          "돌 아래를 함부로 건드리지 말라고 경고했다"
         ],
         "secretGoal": "NOT_YET_RESOLVED"
       }
@@ -216,6 +221,20 @@
         "knownTo": "류현",
         "text": "순례자는 잃어버린 물건을 찾는다고 말했으나 비급을 찾는지는 확인되지 않음.",
         "certainty": "REPORTED"
+      },
+      {
+        "id": "SHRINE_LATCH_THREE_DOTS",
+        "foundAt": "RYH_CH01_S01_STONE_002",
+        "knownTo": "류현",
+        "text": "금속성 모서리는 작은 쇠걸쇠로, 세 점을 삼각형으로 찍은 홈이 석판 아래의 나무틀에 연결된다. 돌을 들어올리는 자물쇠가 아니라 측면 고정장치로 보인다. 장치의 내부 구조와 함정 유무는 아직 모른다.",
+        "certainty": "OBSERVED_PARTIAL"
+      },
+      {
+        "id": "SHRINE_QI_BREATH_PATTERN",
+        "foundAt": "RYH_CH01_S01_STONE_002",
+        "knownTo": "류현",
+        "text": "바닥의 기맥은 세 점 중 한곳에서만 약하게 되돌아온다. 비급의 소실된 구절을 복원할 수 있는 단서지만 실제 운기를 해본 것은 아니다.",
+        "certainty": "OBSERVED"
       }
     ],
     "inventory": [
@@ -241,19 +260,19 @@
       "status": "EXPERIMENTAL_STORY_METRIC_NOT_XP"
     },
     "lastAction": {
-      "eventId": "RYH_CH01_S01_CHOICE3_001",
-      "choiceId": "wanderer_CHOICE_3",
-      "action": "비급 반쪽을 몸 안에 숨긴 뒤 사당 바닥 기맥을 조사함",
+      "eventId": "RYH_CH01_S01_STONE_002",
+      "choiceId": "WANDERER_SHRINE_2_2",
+      "action": "순례자를 경계하며 석판 틈과 금속성 모서리를 조용히 조사",
       "resolved": [
-        "비급 소지·은닉",
-        "석판 아래 기맥 이상과 금속성 물체 모서리 관찰",
-        "초월 재능으로 비전 심법 첫 관문에 접근"
+        "금속 모서리가 3점 홈과 연결된 쇠걸쇠임을 관찰",
+        "기맥 흐름이 3점 중 하나에서 되돌아오는 것을 감지",
+        "순례자가 긁는 소리를 듣고 문턱까지 접근하며 경고"
       ],
       "notResolved": [
-        "순례자의 의도",
-        "석판 아래 물건 회수",
-        "실제 심공 운기·입문·수련",
-        "첫 장 XP 지급"
+        "쇠걸쇠의 개폐/함정/그 아래 유물 정체",
+        "순례자의 목적과 신분",
+        "비전 심법 실제 운기",
+        "금속 물체 회수"
       ]
     }
   },
