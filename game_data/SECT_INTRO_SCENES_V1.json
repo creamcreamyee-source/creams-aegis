@@ -96,31 +96,51 @@
           "rank": "범재",
           "text": "입문 시험의 기본 구절을 충분히 반복해야 한다. 기초를 견고히 다지는 선택이 열려 있다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "기초"
+          "heart_quality_candidate": "기초",
+          "guaranteed_manuscript_id": "SHAOLIN_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "수재",
           "text": "구결의 맥락을 빠르게 이해하자 전수자는 정통 구절을 맡겨 보려 한다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "정통"
+          "heart_quality_candidate": "정통",
+          "guaranteed_manuscript_id": "SHAOLIN_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "천재",
           "text": "전수자는 당신의 이해력을 보고 상급 심법의 시험 구절을 꺼낸다. 시험에 통과해야 다음 구절을 받을 수 있다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "정통"
+          "heart_quality_candidate": "정통",
+          "guaranteed_manuscript_id": "SHAOLIN_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "괴물",
           "text": "전수자 또는 기연의 매개는 평범한 초식을 건너뛰어 상급 심법의 첫 관문을 실제로 연다. 구결을 소지하는 것과 숙련은 다르다.",
           "entitlement": "upper_first_gate",
-          "heart_quality_candidate": "상급"
+          "heart_quality_candidate": "상급",
+          "guaranteed_manuscript_id": "SHAOLIN_HEART_UPPER",
+          "entitlement_type": "guaranteed_higher_art_first_gate",
+          "active_heart_status": "FIRST_GATE_ONLY_NOT_MASTERED",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "초월",
           "text": "비전 심법의 첫 관문이 열렸다. 다른 이는 수년을 찾아 헤맬 전승이지만, 첫 호흡의 의미를 이해하는 데도 시련이 남아 있다.",
           "entitlement": "secret_first_gate",
-          "heart_quality_candidate": "비전"
+          "heart_quality_candidate": "비전",
+          "guaranteed_manuscript_id": "SHAOLIN_HEART_SECRET",
+          "entitlement_type": "guaranteed_higher_art_first_gate",
+          "active_heart_status": "FIRST_GATE_ONLY_NOT_MASTERED",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         }
       ]
     },
@@ -175,31 +195,51 @@
           "rank": "범재",
           "text": "입문 시험의 기본 구절을 충분히 반복해야 한다. 기초를 견고히 다지는 선택이 열려 있다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "기초"
+          "heart_quality_candidate": "기초",
+          "guaranteed_manuscript_id": "WUDANG_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "수재",
           "text": "구결의 맥락을 빠르게 이해하자 전수자는 정통 구절을 맡겨 보려 한다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "정통"
+          "heart_quality_candidate": "정통",
+          "guaranteed_manuscript_id": "WUDANG_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "천재",
           "text": "전수자는 당신의 이해력을 보고 상급 심법의 시험 구절을 꺼낸다. 시험에 통과해야 다음 구절을 받을 수 있다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "정통"
+          "heart_quality_candidate": "정통",
+          "guaranteed_manuscript_id": "WUDANG_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "괴물",
           "text": "전수자 또는 기연의 매개는 평범한 초식을 건너뛰어 상급 심법의 첫 관문을 실제로 연다. 구결을 소지하는 것과 숙련은 다르다.",
           "entitlement": "upper_first_gate",
-          "heart_quality_candidate": "상급"
+          "heart_quality_candidate": "상급",
+          "guaranteed_manuscript_id": "WUDANG_HEART_UPPER",
+          "entitlement_type": "guaranteed_higher_art_first_gate",
+          "active_heart_status": "FIRST_GATE_ONLY_NOT_MASTERED",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "초월",
           "text": "비전 심법의 첫 관문이 열렸다. 다른 이는 수년을 찾아 헤맬 전승이지만, 첫 호흡의 의미를 이해하는 데도 시련이 남아 있다.",
           "entitlement": "secret_first_gate",
-          "heart_quality_candidate": "비전"
+          "heart_quality_candidate": "비전",
+          "guaranteed_manuscript_id": "WUDANG_HEART_SECRET",
+          "entitlement_type": "guaranteed_higher_art_first_gate",
+          "active_heart_status": "FIRST_GATE_ONLY_NOT_MASTERED",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         }
       ]
     },
@@ -254,31 +294,51 @@
           "rank": "범재",
           "text": "입문 시험의 기본 구절을 충분히 반복해야 한다. 기초를 견고히 다지는 선택이 열려 있다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "기초"
+          "heart_quality_candidate": "기초",
+          "guaranteed_manuscript_id": "HWASAN_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "수재",
           "text": "구결의 맥락을 빠르게 이해하자 전수자는 정통 구절을 맡겨 보려 한다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "정통"
+          "heart_quality_candidate": "정통",
+          "guaranteed_manuscript_id": "HWASAN_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "천재",
           "text": "전수자는 당신의 이해력을 보고 상급 심법의 시험 구절을 꺼낸다. 시험에 통과해야 다음 구절을 받을 수 있다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "정통"
+          "heart_quality_candidate": "정통",
+          "guaranteed_manuscript_id": "HWASAN_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "괴물",
           "text": "전수자 또는 기연의 매개는 평범한 초식을 건너뛰어 상급 심법의 첫 관문을 실제로 연다. 구결을 소지하는 것과 숙련은 다르다.",
           "entitlement": "upper_first_gate",
-          "heart_quality_candidate": "상급"
+          "heart_quality_candidate": "상급",
+          "guaranteed_manuscript_id": "HWASAN_HEART_UPPER",
+          "entitlement_type": "guaranteed_higher_art_first_gate",
+          "active_heart_status": "FIRST_GATE_ONLY_NOT_MASTERED",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "초월",
           "text": "비전 심법의 첫 관문이 열렸다. 다른 이는 수년을 찾아 헤맬 전승이지만, 첫 호흡의 의미를 이해하는 데도 시련이 남아 있다.",
           "entitlement": "secret_first_gate",
-          "heart_quality_candidate": "비전"
+          "heart_quality_candidate": "비전",
+          "guaranteed_manuscript_id": "HWASAN_HEART_SECRET",
+          "entitlement_type": "guaranteed_higher_art_first_gate",
+          "active_heart_status": "FIRST_GATE_ONLY_NOT_MASTERED",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         }
       ]
     },
@@ -333,31 +393,51 @@
           "rank": "범재",
           "text": "입문 시험의 기본 구절을 충분히 반복해야 한다. 기초를 견고히 다지는 선택이 열려 있다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "기초"
+          "heart_quality_candidate": "기초",
+          "guaranteed_manuscript_id": "NAMGUNG_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "수재",
           "text": "구결의 맥락을 빠르게 이해하자 전수자는 정통 구절을 맡겨 보려 한다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "정통"
+          "heart_quality_candidate": "정통",
+          "guaranteed_manuscript_id": "NAMGUNG_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "천재",
           "text": "전수자는 당신의 이해력을 보고 상급 심법의 시험 구절을 꺼낸다. 시험에 통과해야 다음 구절을 받을 수 있다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "정통"
+          "heart_quality_candidate": "정통",
+          "guaranteed_manuscript_id": "NAMGUNG_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "괴물",
           "text": "전수자 또는 기연의 매개는 평범한 초식을 건너뛰어 상급 심법의 첫 관문을 실제로 연다. 구결을 소지하는 것과 숙련은 다르다.",
           "entitlement": "upper_first_gate",
-          "heart_quality_candidate": "상급"
+          "heart_quality_candidate": "상급",
+          "guaranteed_manuscript_id": "NAMGUNG_HEART_UPPER",
+          "entitlement_type": "guaranteed_higher_art_first_gate",
+          "active_heart_status": "FIRST_GATE_ONLY_NOT_MASTERED",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "초월",
           "text": "비전 심법의 첫 관문이 열렸다. 다른 이는 수년을 찾아 헤맬 전승이지만, 첫 호흡의 의미를 이해하는 데도 시련이 남아 있다.",
           "entitlement": "secret_first_gate",
-          "heart_quality_candidate": "비전"
+          "heart_quality_candidate": "비전",
+          "guaranteed_manuscript_id": "NAMGUNG_HEART_SECRET",
+          "entitlement_type": "guaranteed_higher_art_first_gate",
+          "active_heart_status": "FIRST_GATE_ONLY_NOT_MASTERED",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         }
       ]
     },
@@ -412,31 +492,51 @@
           "rank": "범재",
           "text": "입문 시험의 기본 구절을 충분히 반복해야 한다. 기초를 견고히 다지는 선택이 열려 있다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "기초"
+          "heart_quality_candidate": "기초",
+          "guaranteed_manuscript_id": "PENG_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "수재",
           "text": "구결의 맥락을 빠르게 이해하자 전수자는 정통 구절을 맡겨 보려 한다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "정통"
+          "heart_quality_candidate": "정통",
+          "guaranteed_manuscript_id": "PENG_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "천재",
           "text": "전수자는 당신의 이해력을 보고 상급 심법의 시험 구절을 꺼낸다. 시험에 통과해야 다음 구절을 받을 수 있다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "정통"
+          "heart_quality_candidate": "정통",
+          "guaranteed_manuscript_id": "PENG_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "괴물",
           "text": "전수자 또는 기연의 매개는 평범한 초식을 건너뛰어 상급 심법의 첫 관문을 실제로 연다. 구결을 소지하는 것과 숙련은 다르다.",
           "entitlement": "upper_first_gate",
-          "heart_quality_candidate": "상급"
+          "heart_quality_candidate": "상급",
+          "guaranteed_manuscript_id": "PENG_HEART_UPPER",
+          "entitlement_type": "guaranteed_higher_art_first_gate",
+          "active_heart_status": "FIRST_GATE_ONLY_NOT_MASTERED",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "초월",
           "text": "비전 심법의 첫 관문이 열렸다. 다른 이는 수년을 찾아 헤맬 전승이지만, 첫 호흡의 의미를 이해하는 데도 시련이 남아 있다.",
           "entitlement": "secret_first_gate",
-          "heart_quality_candidate": "비전"
+          "heart_quality_candidate": "비전",
+          "guaranteed_manuscript_id": "PENG_HEART_SECRET",
+          "entitlement_type": "guaranteed_higher_art_first_gate",
+          "active_heart_status": "FIRST_GATE_ONLY_NOT_MASTERED",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         }
       ]
     },
@@ -491,31 +591,51 @@
           "rank": "범재",
           "text": "입문 시험의 기본 구절을 충분히 반복해야 한다. 기초를 견고히 다지는 선택이 열려 있다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "기초"
+          "heart_quality_candidate": "기초",
+          "guaranteed_manuscript_id": "TANG_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "수재",
           "text": "구결의 맥락을 빠르게 이해하자 전수자는 정통 구절을 맡겨 보려 한다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "정통"
+          "heart_quality_candidate": "정통",
+          "guaranteed_manuscript_id": "TANG_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "천재",
           "text": "전수자는 당신의 이해력을 보고 상급 심법의 시험 구절을 꺼낸다. 시험에 통과해야 다음 구절을 받을 수 있다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "정통"
+          "heart_quality_candidate": "정통",
+          "guaranteed_manuscript_id": "TANG_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "괴물",
           "text": "전수자 또는 기연의 매개는 평범한 초식을 건너뛰어 상급 심법의 첫 관문을 실제로 연다. 구결을 소지하는 것과 숙련은 다르다.",
           "entitlement": "upper_first_gate",
-          "heart_quality_candidate": "상급"
+          "heart_quality_candidate": "상급",
+          "guaranteed_manuscript_id": "TANG_HEART_UPPER",
+          "entitlement_type": "guaranteed_higher_art_first_gate",
+          "active_heart_status": "FIRST_GATE_ONLY_NOT_MASTERED",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "초월",
           "text": "비전 심법의 첫 관문이 열렸다. 다른 이는 수년을 찾아 헤맬 전승이지만, 첫 호흡의 의미를 이해하는 데도 시련이 남아 있다.",
           "entitlement": "secret_first_gate",
-          "heart_quality_candidate": "비전"
+          "heart_quality_candidate": "비전",
+          "guaranteed_manuscript_id": "TANG_HEART_SECRET",
+          "entitlement_type": "guaranteed_higher_art_first_gate",
+          "active_heart_status": "FIRST_GATE_ONLY_NOT_MASTERED",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         }
       ]
     },
@@ -570,31 +690,51 @@
           "rank": "범재",
           "text": "입문 시험의 기본 구절을 충분히 반복해야 한다. 기초를 견고히 다지는 선택이 열려 있다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "기초"
+          "heart_quality_candidate": "기초",
+          "guaranteed_manuscript_id": "ZHUGE_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "수재",
           "text": "구결의 맥락을 빠르게 이해하자 전수자는 정통 구절을 맡겨 보려 한다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "정통"
+          "heart_quality_candidate": "정통",
+          "guaranteed_manuscript_id": "ZHUGE_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "천재",
           "text": "전수자는 당신의 이해력을 보고 상급 심법의 시험 구절을 꺼낸다. 시험에 통과해야 다음 구절을 받을 수 있다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "정통"
+          "heart_quality_candidate": "정통",
+          "guaranteed_manuscript_id": "ZHUGE_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "괴물",
           "text": "전수자 또는 기연의 매개는 평범한 초식을 건너뛰어 상급 심법의 첫 관문을 실제로 연다. 구결을 소지하는 것과 숙련은 다르다.",
           "entitlement": "upper_first_gate",
-          "heart_quality_candidate": "상급"
+          "heart_quality_candidate": "상급",
+          "guaranteed_manuscript_id": "ZHUGE_HEART_UPPER",
+          "entitlement_type": "guaranteed_higher_art_first_gate",
+          "active_heart_status": "FIRST_GATE_ONLY_NOT_MASTERED",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "초월",
           "text": "비전 심법의 첫 관문이 열렸다. 다른 이는 수년을 찾아 헤맬 전승이지만, 첫 호흡의 의미를 이해하는 데도 시련이 남아 있다.",
           "entitlement": "secret_first_gate",
-          "heart_quality_candidate": "비전"
+          "heart_quality_candidate": "비전",
+          "guaranteed_manuscript_id": "ZHUGE_HEART_SECRET",
+          "entitlement_type": "guaranteed_higher_art_first_gate",
+          "active_heart_status": "FIRST_GATE_ONLY_NOT_MASTERED",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         }
       ]
     },
@@ -649,31 +789,51 @@
           "rank": "범재",
           "text": "입문 시험의 기본 구절을 충분히 반복해야 한다. 기초를 견고히 다지는 선택이 열려 있다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "기초"
+          "heart_quality_candidate": "기초",
+          "guaranteed_manuscript_id": "CHEONMA_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "수재",
           "text": "구결의 맥락을 빠르게 이해하자 전수자는 정통 구절을 맡겨 보려 한다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "정통"
+          "heart_quality_candidate": "정통",
+          "guaranteed_manuscript_id": "CHEONMA_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "천재",
           "text": "전수자는 당신의 이해력을 보고 상급 심법의 시험 구절을 꺼낸다. 시험에 통과해야 다음 구절을 받을 수 있다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "정통"
+          "heart_quality_candidate": "정통",
+          "guaranteed_manuscript_id": "CHEONMA_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "괴물",
           "text": "전수자 또는 기연의 매개는 평범한 초식을 건너뛰어 상급 심법의 첫 관문을 실제로 연다. 구결을 소지하는 것과 숙련은 다르다.",
           "entitlement": "upper_first_gate",
-          "heart_quality_candidate": "상급"
+          "heart_quality_candidate": "상급",
+          "guaranteed_manuscript_id": "CHEONMA_HEART_UPPER",
+          "entitlement_type": "guaranteed_higher_art_first_gate",
+          "active_heart_status": "FIRST_GATE_ONLY_NOT_MASTERED",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "초월",
           "text": "비전 심법의 첫 관문이 열렸다. 다른 이는 수년을 찾아 헤맬 전승이지만, 첫 호흡의 의미를 이해하는 데도 시련이 남아 있다.",
           "entitlement": "secret_first_gate",
-          "heart_quality_candidate": "비전"
+          "heart_quality_candidate": "비전",
+          "guaranteed_manuscript_id": "CHEONMA_HEART_SECRET",
+          "entitlement_type": "guaranteed_higher_art_first_gate",
+          "active_heart_status": "FIRST_GATE_ONLY_NOT_MASTERED",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         }
       ]
     },
@@ -728,31 +888,51 @@
           "rank": "범재",
           "text": "입문 시험의 기본 구절을 충분히 반복해야 한다. 기초를 견고히 다지는 선택이 열려 있다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "기초"
+          "heart_quality_candidate": "기초",
+          "guaranteed_manuscript_id": "BUKHAE_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "수재",
           "text": "구결의 맥락을 빠르게 이해하자 전수자는 정통 구절을 맡겨 보려 한다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "정통"
+          "heart_quality_candidate": "정통",
+          "guaranteed_manuscript_id": "BUKHAE_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "천재",
           "text": "전수자는 당신의 이해력을 보고 상급 심법의 시험 구절을 꺼낸다. 시험에 통과해야 다음 구절을 받을 수 있다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "정통"
+          "heart_quality_candidate": "정통",
+          "guaranteed_manuscript_id": "BUKHAE_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "괴물",
           "text": "전수자 또는 기연의 매개는 평범한 초식을 건너뛰어 상급 심법의 첫 관문을 실제로 연다. 구결을 소지하는 것과 숙련은 다르다.",
           "entitlement": "upper_first_gate",
-          "heart_quality_candidate": "상급"
+          "heart_quality_candidate": "상급",
+          "guaranteed_manuscript_id": "BUKHAE_HEART_UPPER",
+          "entitlement_type": "guaranteed_higher_art_first_gate",
+          "active_heart_status": "FIRST_GATE_ONLY_NOT_MASTERED",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "초월",
           "text": "비전 심법의 첫 관문이 열렸다. 다른 이는 수년을 찾아 헤맬 전승이지만, 첫 호흡의 의미를 이해하는 데도 시련이 남아 있다.",
           "entitlement": "secret_first_gate",
-          "heart_quality_candidate": "비전"
+          "heart_quality_candidate": "비전",
+          "guaranteed_manuscript_id": "BUKHAE_HEART_SECRET",
+          "entitlement_type": "guaranteed_higher_art_first_gate",
+          "active_heart_status": "FIRST_GATE_ONLY_NOT_MASTERED",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         }
       ]
     },
@@ -807,31 +987,51 @@
           "rank": "범재",
           "text": "입문 시험의 기본 구절을 충분히 반복해야 한다. 기초를 견고히 다지는 선택이 열려 있다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "기초"
+          "heart_quality_candidate": "기초",
+          "guaranteed_manuscript_id": "JOSEON_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "수재",
           "text": "구결의 맥락을 빠르게 이해하자 전수자는 정통 구절을 맡겨 보려 한다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "정통"
+          "heart_quality_candidate": "정통",
+          "guaranteed_manuscript_id": "JOSEON_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "천재",
           "text": "전수자는 당신의 이해력을 보고 상급 심법의 시험 구절을 꺼낸다. 시험에 통과해야 다음 구절을 받을 수 있다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "정통"
+          "heart_quality_candidate": "정통",
+          "guaranteed_manuscript_id": "JOSEON_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "괴물",
           "text": "전수자 또는 기연의 매개는 평범한 초식을 건너뛰어 상급 심법의 첫 관문을 실제로 연다. 구결을 소지하는 것과 숙련은 다르다.",
           "entitlement": "upper_first_gate",
-          "heart_quality_candidate": "상급"
+          "heart_quality_candidate": "상급",
+          "guaranteed_manuscript_id": "JOSEON_HEART_UPPER",
+          "entitlement_type": "guaranteed_higher_art_first_gate",
+          "active_heart_status": "FIRST_GATE_ONLY_NOT_MASTERED",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "초월",
           "text": "비전 심법의 첫 관문이 열렸다. 다른 이는 수년을 찾아 헤맬 전승이지만, 첫 호흡의 의미를 이해하는 데도 시련이 남아 있다.",
           "entitlement": "secret_first_gate",
-          "heart_quality_candidate": "비전"
+          "heart_quality_candidate": "비전",
+          "guaranteed_manuscript_id": "JOSEON_HEART_SECRET",
+          "entitlement_type": "guaranteed_higher_art_first_gate",
+          "active_heart_status": "FIRST_GATE_ONLY_NOT_MASTERED",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         }
       ]
     },
@@ -886,31 +1086,51 @@
           "rank": "범재",
           "text": "입문 시험의 기본 구절을 충분히 반복해야 한다. 기초를 견고히 다지는 선택이 열려 있다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "기초"
+          "heart_quality_candidate": "기초",
+          "guaranteed_manuscript_id": "WANDERER_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "수재",
           "text": "구결의 맥락을 빠르게 이해하자 전수자는 정통 구절을 맡겨 보려 한다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "정통"
+          "heart_quality_candidate": "정통",
+          "guaranteed_manuscript_id": "WANDERER_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "천재",
           "text": "전수자는 당신의 이해력을 보고 상급 심법의 시험 구절을 꺼낸다. 시험에 통과해야 다음 구절을 받을 수 있다.",
           "entitlement": "entry",
-          "heart_quality_candidate": "정통"
+          "heart_quality_candidate": "정통",
+          "guaranteed_manuscript_id": "WANDERER_HEART",
+          "entitlement_type": "basic_training",
+          "active_heart_status": "INITIAL_ART_CANDIDATE",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "괴물",
           "text": "전수자 또는 기연의 매개는 평범한 초식을 건너뛰어 상급 심법의 첫 관문을 실제로 연다. 구결을 소지하는 것과 숙련은 다르다.",
           "entitlement": "upper_first_gate",
-          "heart_quality_candidate": "상급"
+          "heart_quality_candidate": "상급",
+          "guaranteed_manuscript_id": "WANDERER_HEART_UPPER",
+          "entitlement_type": "guaranteed_higher_art_first_gate",
+          "active_heart_status": "FIRST_GATE_ONLY_NOT_MASTERED",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         },
         {
           "rank": "초월",
           "text": "비전 심법의 첫 관문이 열렸다. 다른 이는 수년을 찾아 헤맬 전승이지만, 첫 호흡의 의미를 이해하는 데도 시련이 남아 있다.",
           "entitlement": "secret_first_gate",
-          "heart_quality_candidate": "비전"
+          "heart_quality_candidate": "비전",
+          "guaranteed_manuscript_id": "WANDERER_HEART_SECRET",
+          "entitlement_type": "guaranteed_higher_art_first_gate",
+          "active_heart_status": "FIRST_GATE_ONLY_NOT_MASTERED",
+          "actual_martial_art_mastery_change": "NONE_UNTIL_PLAYER_ACTION"
         }
       ]
     }
