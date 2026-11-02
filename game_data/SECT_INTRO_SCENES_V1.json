@@ -1,0 +1,918 @@
+{
+  "version": "0.1.0-experiment",
+  "status": "PROPOSED_NOT_CANON",
+  "campaign_usage": "NEW_GAME_OR_EXPLICIT_MIGRATION_ONLY",
+  "notes": [
+    "각 장면은 현재 REBIRTH 프롤로그가 아닌 신규 캐릭터의 입교 도입부 실험용. 사용자 승인 없는 사건·과거 삽입 금지.",
+    "재능 특혜는 전수/구결 관문만 보장하며 자동 심법 대성·HP/XP 상승은 발생하지 않는다.",
+    "실제로 플레이한 사건은 사용자의 선택 후 그 결과를 원장에 기록해야 하며 미리 시뮬레이션 결과처럼 기록하지 않는다."
+  ],
+  "talent_overlays": [
+    {
+      "id": "ordinary",
+      "name": "범재",
+      "insert": "입문 시험의 기본 구절을 충분히 반복해야 한다. 기초를 견고히 다지는 선택이 열려 있다.",
+      "guaranteed_stage": "entry",
+      "quality": "기초"
+    },
+    {
+      "id": "promising",
+      "name": "수재",
+      "insert": "구결의 맥락을 빠르게 이해하자 전수자는 정통 구절을 맡겨 보려 한다.",
+      "guaranteed_stage": "entry",
+      "quality": "정통"
+    },
+    {
+      "id": "gifted",
+      "name": "천재",
+      "insert": "전수자는 당신의 이해력을 보고 상급 심법의 시험 구절을 꺼낸다. 시험에 통과해야 다음 구절을 받을 수 있다.",
+      "guaranteed_stage": "entry",
+      "quality": "정통"
+    },
+    {
+      "id": "monster",
+      "name": "괴물",
+      "insert": "전수자 또는 기연의 매개는 평범한 초식을 건너뛰어 상급 심법의 첫 관문을 실제로 연다. 구결을 소지하는 것과 숙련은 다르다.",
+      "guaranteed_stage": "upper_first_gate",
+      "quality": "상급"
+    },
+    {
+      "id": "transcendent",
+      "name": "초월",
+      "insert": "비전 심법의 첫 관문이 열렸다. 다른 이는 수년을 찾아 헤맬 전승이지만, 첫 호흡의 의미를 이해하는 데도 시련이 남아 있다.",
+      "guaranteed_stage": "secret_first_gate",
+      "quality": "비전"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "INTRO_SHAOLIN",
+      "path_id": "shaolin",
+      "title": "소림 입문 · 금강이 지키지 못한 아이",
+      "paragraphs": [
+        "새벽 목탁이 세 번째 울렸을 때, 당신은 수행의 뜰에서 무릎을 꿇고 있었다. 문 앞에는 겨우 열 살 남짓한 아이가 서 있었다. 마을을 덮친 잔맥의 흉터가 그 아이의 왼팔에 검게 번져 있었다.",
+        "사부 대행은 문하의 정순 심법을 시험하겠다며 다친 사람보다 제자의 기맥을 먼저 확인했다. 그러나 회랑 뒤편의 의원은 당장 아이의 맥을 안정시키지 않으면 더 늦을 것이라 했다.",
+        "높은 재능을 타고났다면 장로가 당신을 직접 가르칠 준비를 한다. 하지만 첫 배움이 누구를 위한 것인지는 아직 당신이 정해야 한다."
+      ],
+      "time_cost_minutes_candidate": 20,
+      "choice_set": [
+        {
+          "id": "shaolin_CHOICE_1",
+          "label": "기혈을 운용해 아이를 먼저 돕는다",
+          "stakes": "자비의 대가를 직접 떠안는 선택",
+          "proposed_effects": {
+            "sect_trust_delta": 1,
+            "personal_insight_delta": 0
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        },
+        {
+          "id": "shaolin_CHOICE_2",
+          "label": "장로의 운기 시험에 응하고 비전 심법을 청한다",
+          "stakes": "전수권을 쟁취하되 아이의 상황이 변하는 선택",
+          "proposed_effects": {
+            "sect_trust_delta": 0,
+            "personal_insight_delta": 1
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        },
+        {
+          "id": "shaolin_CHOICE_3",
+          "label": "사부에게 왜 구제가 시험보다 뒤인지 묻는다",
+          "stakes": "소림의 계율을 해석하게 만드는 선택",
+          "proposed_effects": {
+            "sect_trust_delta": 0,
+            "personal_insight_delta": 1,
+            "requires_followup_npc_answer": true
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        }
+      ],
+      "talent_overlay_by_rank": [
+        {
+          "rank": "범재",
+          "text": "입문 시험의 기본 구절을 충분히 반복해야 한다. 기초를 견고히 다지는 선택이 열려 있다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "기초"
+        },
+        {
+          "rank": "수재",
+          "text": "구결의 맥락을 빠르게 이해하자 전수자는 정통 구절을 맡겨 보려 한다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "정통"
+        },
+        {
+          "rank": "천재",
+          "text": "전수자는 당신의 이해력을 보고 상급 심법의 시험 구절을 꺼낸다. 시험에 통과해야 다음 구절을 받을 수 있다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "정통"
+        },
+        {
+          "rank": "괴물",
+          "text": "전수자 또는 기연의 매개는 평범한 초식을 건너뛰어 상급 심법의 첫 관문을 실제로 연다. 구결을 소지하는 것과 숙련은 다르다.",
+          "entitlement": "upper_first_gate",
+          "heart_quality_candidate": "상급"
+        },
+        {
+          "rank": "초월",
+          "text": "비전 심법의 첫 관문이 열렸다. 다른 이는 수년을 찾아 헤맬 전승이지만, 첫 호흡의 의미를 이해하는 데도 시련이 남아 있다.",
+          "entitlement": "secret_first_gate",
+          "heart_quality_candidate": "비전"
+        }
+      ]
+    },
+    {
+      "id": "INTRO_WUDANG",
+      "path_id": "wudang",
+      "title": "무당 입문 · 흐르지 않는 물",
+      "paragraphs": [
+        "무당산의 오래된 연못에서 물소리가 사라졌다. 잔잔한 표면 아래에서는 아무것도 움직이지 않았다. 사부는 그것이 수행의 경지인지, 잘못된 기운의 징조인지 묻지 않았다.",
+        "그는 당신에게 나무검을 내밀고 돌계단 위에서 기다리는 제자의 검을 받아내 보라고 했다. 제자는 칼끝을 쉽게 움직이지 않았다. 당신이 먼저 조급해지기를 기다리고 있었다.",
+        "연못의 고요함과 제자의 숨결에 같은 어긋남이 있다. 승부보다 무엇을 읽느냐가 첫 운기를 결정한다."
+      ],
+      "time_cost_minutes_candidate": 20,
+      "choice_set": [
+        {
+          "id": "wudang_CHOICE_1",
+          "label": "검을 거두고 상대의 호흡부터 관찰한다",
+          "stakes": "상대의 공격 유도보다 통찰을 택함",
+          "proposed_effects": {
+            "sect_trust_delta": 1,
+            "personal_insight_delta": 0
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        },
+        {
+          "id": "wudang_CHOICE_2",
+          "label": "한 걸음 옮기며 힘의 흐름을 시험한다",
+          "stakes": "유전의 첫 감각을 실전으로 탐구",
+          "proposed_effects": {
+            "sect_trust_delta": 0,
+            "personal_insight_delta": 1
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        },
+        {
+          "id": "wudang_CHOICE_3",
+          "label": "연못의 기운을 조사하자고 사부에게 건의한다",
+          "stakes": "자연의 이상과 수련을 연결",
+          "proposed_effects": {
+            "sect_trust_delta": 0,
+            "personal_insight_delta": 1,
+            "requires_followup_npc_answer": true
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        }
+      ],
+      "talent_overlay_by_rank": [
+        {
+          "rank": "범재",
+          "text": "입문 시험의 기본 구절을 충분히 반복해야 한다. 기초를 견고히 다지는 선택이 열려 있다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "기초"
+        },
+        {
+          "rank": "수재",
+          "text": "구결의 맥락을 빠르게 이해하자 전수자는 정통 구절을 맡겨 보려 한다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "정통"
+        },
+        {
+          "rank": "천재",
+          "text": "전수자는 당신의 이해력을 보고 상급 심법의 시험 구절을 꺼낸다. 시험에 통과해야 다음 구절을 받을 수 있다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "정통"
+        },
+        {
+          "rank": "괴물",
+          "text": "전수자 또는 기연의 매개는 평범한 초식을 건너뛰어 상급 심법의 첫 관문을 실제로 연다. 구결을 소지하는 것과 숙련은 다르다.",
+          "entitlement": "upper_first_gate",
+          "heart_quality_candidate": "상급"
+        },
+        {
+          "rank": "초월",
+          "text": "비전 심법의 첫 관문이 열렸다. 다른 이는 수년을 찾아 헤맬 전승이지만, 첫 호흡의 의미를 이해하는 데도 시련이 남아 있다.",
+          "entitlement": "secret_first_gate",
+          "heart_quality_candidate": "비전"
+        }
+      ]
+    },
+    {
+      "id": "INTRO_HWASAN",
+      "path_id": "hwasan",
+      "title": "화산 입문 · 피지 않은 매화",
+      "paragraphs": [
+        "화산의 산문에서는 아직 매화가 피지 않았다. 검을 품은 제자들이 사형제의 순서를 따라 서고, 당신 앞에는 오래된 목검 두 자루가 놓였다.",
+        "사형은 첫 초식의 빠름을 시험하겠다고 했지만, 후미의 제자는 손목을 다쳐 검을 똑바로 들지 못했다. 사형은 누구도 늦추지 말라고 했다.",
+        "한 수의 빠름은 눈길을 끌 수 있다. 그러나 검세란 홀로 빛나는 찰나인지, 다른 이를 움직이게 하는 흐름인지는 아직 정해지지 않았다."
+      ],
+      "time_cost_minutes_candidate": 20,
+      "choice_set": [
+        {
+          "id": "hwasan_CHOICE_1",
+          "label": "다친 제자와 보폭을 맞춘다",
+          "stakes": "사형제와의 신뢰를 쌓는다",
+          "proposed_effects": {
+            "sect_trust_delta": 1,
+            "personal_insight_delta": 0
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        },
+        {
+          "id": "hwasan_CHOICE_2",
+          "label": "사형의 속도를 따라 첫 검세를 완성한다",
+          "stakes": "검세를 처음으로 이어 본다",
+          "proposed_effects": {
+            "sect_trust_delta": 0,
+            "personal_insight_delta": 1
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        },
+        {
+          "id": "hwasan_CHOICE_3",
+          "label": "목검의 균열과 잘못된 초식 연결을 지적한다",
+          "stakes": "문파 검학의 결손을 발견한다",
+          "proposed_effects": {
+            "sect_trust_delta": 0,
+            "personal_insight_delta": 1,
+            "requires_followup_npc_answer": true
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        }
+      ],
+      "talent_overlay_by_rank": [
+        {
+          "rank": "범재",
+          "text": "입문 시험의 기본 구절을 충분히 반복해야 한다. 기초를 견고히 다지는 선택이 열려 있다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "기초"
+        },
+        {
+          "rank": "수재",
+          "text": "구결의 맥락을 빠르게 이해하자 전수자는 정통 구절을 맡겨 보려 한다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "정통"
+        },
+        {
+          "rank": "천재",
+          "text": "전수자는 당신의 이해력을 보고 상급 심법의 시험 구절을 꺼낸다. 시험에 통과해야 다음 구절을 받을 수 있다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "정통"
+        },
+        {
+          "rank": "괴물",
+          "text": "전수자 또는 기연의 매개는 평범한 초식을 건너뛰어 상급 심법의 첫 관문을 실제로 연다. 구결을 소지하는 것과 숙련은 다르다.",
+          "entitlement": "upper_first_gate",
+          "heart_quality_candidate": "상급"
+        },
+        {
+          "rank": "초월",
+          "text": "비전 심법의 첫 관문이 열렸다. 다른 이는 수년을 찾아 헤맬 전승이지만, 첫 호흡의 의미를 이해하는 데도 시련이 남아 있다.",
+          "entitlement": "secret_first_gate",
+          "heart_quality_candidate": "비전"
+        }
+      ]
+    },
+    {
+      "id": "INTRO_NAMGUNG",
+      "path_id": "namgung",
+      "title": "남궁세가 입문 · 검의 값",
+      "paragraphs": [
+        "강가에 세운 남궁의 연무장에는 세 자루의 검이 걸려 있었다. 그중 가장 화려한 검은 사람의 손길이 닿지 않은 채 오래 놓여 있었다.",
+        "검교는 혈연의 이름을 먼저 물었다. 당신이 어떤 검을 원하느냐보다 누구의 명을 따를 수 있는가가 그에게 중요해 보였다. 바깥에서는 호송대가 돌아오지 않았다는 소식이 들려왔다.",
+        "세가의 검은 힘뿐 아니라 책임을 묻는다. 당신은 검교 앞에서 이름을 내세울 수도, 아직 돌아오지 않은 사람들을 먼저 생각할 수도 있다."
+      ],
+      "time_cost_minutes_candidate": 20,
+      "choice_set": [
+        {
+          "id": "namgung_CHOICE_1",
+          "label": "호송대를 찾는 임무에 자청한다",
+          "stakes": "세가의 의무를 먼저 짊어진다",
+          "proposed_effects": {
+            "sect_trust_delta": 1,
+            "personal_insight_delta": 0
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        },
+        {
+          "id": "namgung_CHOICE_2",
+          "label": "가문의 검세 시험을 신청한다",
+          "stakes": "강맹한 검기 운용 자격을 시험한다",
+          "proposed_effects": {
+            "sect_trust_delta": 0,
+            "personal_insight_delta": 1
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        },
+        {
+          "id": "namgung_CHOICE_3",
+          "label": "명검의 쓰임과 전수 자격의 차이를 묻는다",
+          "stakes": "특혜와 책임의 기준을 파고든다",
+          "proposed_effects": {
+            "sect_trust_delta": 0,
+            "personal_insight_delta": 1,
+            "requires_followup_npc_answer": true
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        }
+      ],
+      "talent_overlay_by_rank": [
+        {
+          "rank": "범재",
+          "text": "입문 시험의 기본 구절을 충분히 반복해야 한다. 기초를 견고히 다지는 선택이 열려 있다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "기초"
+        },
+        {
+          "rank": "수재",
+          "text": "구결의 맥락을 빠르게 이해하자 전수자는 정통 구절을 맡겨 보려 한다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "정통"
+        },
+        {
+          "rank": "천재",
+          "text": "전수자는 당신의 이해력을 보고 상급 심법의 시험 구절을 꺼낸다. 시험에 통과해야 다음 구절을 받을 수 있다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "정통"
+        },
+        {
+          "rank": "괴물",
+          "text": "전수자 또는 기연의 매개는 평범한 초식을 건너뛰어 상급 심법의 첫 관문을 실제로 연다. 구결을 소지하는 것과 숙련은 다르다.",
+          "entitlement": "upper_first_gate",
+          "heart_quality_candidate": "상급"
+        },
+        {
+          "rank": "초월",
+          "text": "비전 심법의 첫 관문이 열렸다. 다른 이는 수년을 찾아 헤맬 전승이지만, 첫 호흡의 의미를 이해하는 데도 시련이 남아 있다.",
+          "entitlement": "secret_first_gate",
+          "heart_quality_candidate": "비전"
+        }
+      ]
+    },
+    {
+      "id": "INTRO_PENG",
+      "path_id": "peng",
+      "title": "하북팽가 입문 · 칼등의 무게",
+      "paragraphs": [
+        "팽가의 도장은 칼을 휘두를 때마다 마루가 울렸다. 문중의 가장 어린 제자는 자기 키보다 긴 중도를 들고 발을 떨고 있었다.",
+        "교두는 묵직한 도를 쓰는 힘은 팔에 있지 않다고 말하며, 도를 놓지 않은 채 버티는 시간을 세기 시작했다. 그러나 바깥에서는 좁은 길에 짐마차가 쓰러졌다는 외침이 들렸다.",
+        "무거운 칼은 넓은 공간에선 위력이 크지만, 무너진 길을 지키는 도세에는 다른 판단이 필요하다."
+      ],
+      "time_cost_minutes_candidate": 20,
+      "choice_set": [
+        {
+          "id": "peng_CHOICE_1",
+          "label": "짐마차를 치우러 나간다",
+          "stakes": "도법의 힘을 사람 구출에 사용한다",
+          "proposed_effects": {
+            "sect_trust_delta": 1,
+            "personal_insight_delta": 0
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        },
+        {
+          "id": "peng_CHOICE_2",
+          "label": "정해진 도세 시련을 끝까지 버틴다",
+          "stakes": "중도의 기본 축기를 증명한다",
+          "proposed_effects": {
+            "sect_trust_delta": 0,
+            "personal_insight_delta": 1
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        },
+        {
+          "id": "peng_CHOICE_3",
+          "label": "도장을 떠나지 않고 좁은 길의 도법을 시연한다",
+          "stakes": "무거운 도세의 약점을 직접 탐구한다",
+          "proposed_effects": {
+            "sect_trust_delta": 0,
+            "personal_insight_delta": 1,
+            "requires_followup_npc_answer": true
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        }
+      ],
+      "talent_overlay_by_rank": [
+        {
+          "rank": "범재",
+          "text": "입문 시험의 기본 구절을 충분히 반복해야 한다. 기초를 견고히 다지는 선택이 열려 있다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "기초"
+        },
+        {
+          "rank": "수재",
+          "text": "구결의 맥락을 빠르게 이해하자 전수자는 정통 구절을 맡겨 보려 한다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "정통"
+        },
+        {
+          "rank": "천재",
+          "text": "전수자는 당신의 이해력을 보고 상급 심법의 시험 구절을 꺼낸다. 시험에 통과해야 다음 구절을 받을 수 있다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "정통"
+        },
+        {
+          "rank": "괴물",
+          "text": "전수자 또는 기연의 매개는 평범한 초식을 건너뛰어 상급 심법의 첫 관문을 실제로 연다. 구결을 소지하는 것과 숙련은 다르다.",
+          "entitlement": "upper_first_gate",
+          "heart_quality_candidate": "상급"
+        },
+        {
+          "rank": "초월",
+          "text": "비전 심법의 첫 관문이 열렸다. 다른 이는 수년을 찾아 헤맬 전승이지만, 첫 호흡의 의미를 이해하는 데도 시련이 남아 있다.",
+          "entitlement": "secret_first_gate",
+          "heart_quality_candidate": "비전"
+        }
+      ]
+    },
+    {
+      "id": "INTRO_TANG",
+      "path_id": "tang",
+      "title": "사천당문 입문 · 살아 있는 표적",
+      "paragraphs": [
+        "사천의 비밀 약방에서 아직 이름이 적히지 않은 세 병을 받았다. 얇은 유리병 안의 액체는 모두 투명했지만, 잠시 뒤 각각 다른 색으로 변하기 시작했다.",
+        "문중의 원로는 독을 쓰는 자가 독보다 먼저 사람을 읽어야 한다고 했다. 맞은편에는 증언을 거부하는 밀수꾼이 앉아 있었고, 그의 손목에 수상한 반점이 드러났다.",
+        "독침을 꺼낼 수도 있다. 먼저 해독을 시도할 수도 있다. 어느 쪽이든 당신이 살려 두려는 진실이 무엇인지 문중은 기록한다."
+      ],
+      "time_cost_minutes_candidate": 20,
+      "choice_set": [
+        {
+          "id": "tang_CHOICE_1",
+          "label": "병의 약성을 확인하고 해독을 준비한다",
+          "stakes": "의독의 구별을 우선한다",
+          "proposed_effects": {
+            "sect_trust_delta": 1,
+            "personal_insight_delta": 0
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        },
+        {
+          "id": "tang_CHOICE_2",
+          "label": "밀수꾼의 혈도만 막아 비살상으로 제압한다",
+          "stakes": "정밀한 암기의 비살상 운용을 시험한다",
+          "proposed_effects": {
+            "sect_trust_delta": 0,
+            "personal_insight_delta": 1
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        },
+        {
+          "id": "tang_CHOICE_3",
+          "label": "원로에게 시험에 실제 환자를 이용하는 이유를 묻는다",
+          "stakes": "당문의 계율과 목적에 질문한다",
+          "proposed_effects": {
+            "sect_trust_delta": 0,
+            "personal_insight_delta": 1,
+            "requires_followup_npc_answer": true
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        }
+      ],
+      "talent_overlay_by_rank": [
+        {
+          "rank": "범재",
+          "text": "입문 시험의 기본 구절을 충분히 반복해야 한다. 기초를 견고히 다지는 선택이 열려 있다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "기초"
+        },
+        {
+          "rank": "수재",
+          "text": "구결의 맥락을 빠르게 이해하자 전수자는 정통 구절을 맡겨 보려 한다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "정통"
+        },
+        {
+          "rank": "천재",
+          "text": "전수자는 당신의 이해력을 보고 상급 심법의 시험 구절을 꺼낸다. 시험에 통과해야 다음 구절을 받을 수 있다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "정통"
+        },
+        {
+          "rank": "괴물",
+          "text": "전수자 또는 기연의 매개는 평범한 초식을 건너뛰어 상급 심법의 첫 관문을 실제로 연다. 구결을 소지하는 것과 숙련은 다르다.",
+          "entitlement": "upper_first_gate",
+          "heart_quality_candidate": "상급"
+        },
+        {
+          "rank": "초월",
+          "text": "비전 심법의 첫 관문이 열렸다. 다른 이는 수년을 찾아 헤맬 전승이지만, 첫 호흡의 의미를 이해하는 데도 시련이 남아 있다.",
+          "entitlement": "secret_first_gate",
+          "heart_quality_candidate": "비전"
+        }
+      ]
+    },
+    {
+      "id": "INTRO_ZHUGE",
+      "path_id": "zhuge",
+      "title": "제갈세가 입문 · 진문 바깥의 사람들",
+      "paragraphs": [
+        "제갈의 수련실 바닥에는 아홉 개의 작은 문양이 새겨져 있었다. 서고의 관리인은 문양을 연결하면 뜰의 잔맥을 막을 수 있다고 말했다.",
+        "그러나 지도 바깥에 자리한 작은 마을은 보호 범위에서 빠져 있었다. 장로는 그 지역이 아직 계산에 포함되지 않았다고 답했다.",
+        "계산을 완성하는 것은 어렵지 않을지도 모른다. 문제는 누가 계산 밖에 남는지 당신이 이미 알아보았다는 점이다."
+      ],
+      "time_cost_minutes_candidate": 20,
+      "choice_set": [
+        {
+          "id": "zhuge_CHOICE_1",
+          "label": "아홉 진문을 우선 완성한다",
+          "stakes": "진식의 기초를 익힌다",
+          "proposed_effects": {
+            "sect_trust_delta": 1,
+            "personal_insight_delta": 0
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        },
+        {
+          "id": "zhuge_CHOICE_2",
+          "label": "보호 범위를 바꾸는 제10의 연결을 찾는다",
+          "stakes": "진법의 전제를 뒤엎어 본다",
+          "proposed_effects": {
+            "sect_trust_delta": 0,
+            "personal_insight_delta": 1
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        },
+        {
+          "id": "zhuge_CHOICE_3",
+          "label": "계산에서 제외된 마을을 직접 조사한다",
+          "stakes": "수치 바깥의 현실을 먼저 확인한다",
+          "proposed_effects": {
+            "sect_trust_delta": 0,
+            "personal_insight_delta": 1,
+            "requires_followup_npc_answer": true
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        }
+      ],
+      "talent_overlay_by_rank": [
+        {
+          "rank": "범재",
+          "text": "입문 시험의 기본 구절을 충분히 반복해야 한다. 기초를 견고히 다지는 선택이 열려 있다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "기초"
+        },
+        {
+          "rank": "수재",
+          "text": "구결의 맥락을 빠르게 이해하자 전수자는 정통 구절을 맡겨 보려 한다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "정통"
+        },
+        {
+          "rank": "천재",
+          "text": "전수자는 당신의 이해력을 보고 상급 심법의 시험 구절을 꺼낸다. 시험에 통과해야 다음 구절을 받을 수 있다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "정통"
+        },
+        {
+          "rank": "괴물",
+          "text": "전수자 또는 기연의 매개는 평범한 초식을 건너뛰어 상급 심법의 첫 관문을 실제로 연다. 구결을 소지하는 것과 숙련은 다르다.",
+          "entitlement": "upper_first_gate",
+          "heart_quality_candidate": "상급"
+        },
+        {
+          "rank": "초월",
+          "text": "비전 심법의 첫 관문이 열렸다. 다른 이는 수년을 찾아 헤맬 전승이지만, 첫 호흡의 의미를 이해하는 데도 시련이 남아 있다.",
+          "entitlement": "secret_first_gate",
+          "heart_quality_candidate": "비전"
+        }
+      ]
+    },
+    {
+      "id": "INTRO_CHEONMA",
+      "path_id": "cheonma",
+      "title": "천마신교 입교 · 호법 앞의 무릎",
+      "paragraphs": [
+        "어두운 계단의 마지막 층에서 호법은 검을 뽑지도 않았다. 대신 당신 앞에 검붉은 비급의 첫 장을 펼쳤다. 다른 후보들의 숨이 거칠어졌다.",
+        "호법은 그 심공을 운용할 자격이 있는 자에게 다음 구절을 전하겠다고 했다. 시험 방식은 의외로 단순했다. 옆에 쓰러진 후보를 버리고 마지막 계단에 먼저 도달하는 것이었다.",
+        "천마신교의 힘을 원한다면 그 문턱을 넘을 수 있다. 그러나 그 힘을 어떤 방식으로 얻었는지도 이후의 경쟁에서 누구에게나 기억될 것이다."
+      ],
+      "time_cost_minutes_candidate": 20,
+      "choice_set": [
+        {
+          "id": "cheonma_CHOICE_1",
+          "label": "쓰러진 후보를 부축해 계단을 오른다",
+          "stakes": "동료를 버리지 않고 힘을 요구한다",
+          "proposed_effects": {
+            "sect_trust_delta": 1,
+            "personal_insight_delta": 0
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        },
+        {
+          "id": "cheonma_CHOICE_2",
+          "label": "주어진 시험에 따라 먼저 문턱을 넘는다",
+          "stakes": "교단이 제시한 경쟁의 규칙을 따른다",
+          "proposed_effects": {
+            "sect_trust_delta": 0,
+            "personal_insight_delta": 1
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        },
+        {
+          "id": "cheonma_CHOICE_3",
+          "label": "비급 첫 장의 운기 오류를 지적한다",
+          "stakes": "재능과 이해력으로 다른 관문을 연다",
+          "proposed_effects": {
+            "sect_trust_delta": 0,
+            "personal_insight_delta": 1,
+            "requires_followup_npc_answer": true
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        }
+      ],
+      "talent_overlay_by_rank": [
+        {
+          "rank": "범재",
+          "text": "입문 시험의 기본 구절을 충분히 반복해야 한다. 기초를 견고히 다지는 선택이 열려 있다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "기초"
+        },
+        {
+          "rank": "수재",
+          "text": "구결의 맥락을 빠르게 이해하자 전수자는 정통 구절을 맡겨 보려 한다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "정통"
+        },
+        {
+          "rank": "천재",
+          "text": "전수자는 당신의 이해력을 보고 상급 심법의 시험 구절을 꺼낸다. 시험에 통과해야 다음 구절을 받을 수 있다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "정통"
+        },
+        {
+          "rank": "괴물",
+          "text": "전수자 또는 기연의 매개는 평범한 초식을 건너뛰어 상급 심법의 첫 관문을 실제로 연다. 구결을 소지하는 것과 숙련은 다르다.",
+          "entitlement": "upper_first_gate",
+          "heart_quality_candidate": "상급"
+        },
+        {
+          "rank": "초월",
+          "text": "비전 심법의 첫 관문이 열렸다. 다른 이는 수년을 찾아 헤맬 전승이지만, 첫 호흡의 의미를 이해하는 데도 시련이 남아 있다.",
+          "entitlement": "secret_first_gate",
+          "heart_quality_candidate": "비전"
+        }
+      ]
+    },
+    {
+      "id": "INTRO_BUKHAE",
+      "path_id": "bukhae",
+      "title": "북해 입문 · 얼음 밑의 숨",
+      "paragraphs": [
+        "북해의 얼음 동굴에서는 자신의 숨결조차 돌에 닿아 부서졌다. 당신 앞에 놓인 작은 물그릇은 표면만 얼고 중심에는 아직 물이 남아 있었다.",
+        "수련관은 그릇을 완전히 얼려 보라고 했다. 하지만 그 옆에서 저체온에 떨던 길잡이는 먼저 불을 피워 달라고 했다.",
+        "차가운 내공을 다룬다는 것은 무엇을 얼리는지 아는 일이다. 자신에게 필요한 얼음과 누군가에게 위험한 얼음을 구분할 수 있는가?"
+      ],
+      "time_cost_minutes_candidate": 20,
+      "choice_set": [
+        {
+          "id": "bukhae_CHOICE_1",
+          "label": "길잡이를 구하고 심법 시험을 나중에 받는다",
+          "stakes": "생명을 우선하는 수련",
+          "proposed_effects": {
+            "sect_trust_delta": 1,
+            "personal_insight_delta": 0
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        },
+        {
+          "id": "bukhae_CHOICE_2",
+          "label": "그릇의 중심에 냉기를 모아 한맥을 제어한다",
+          "stakes": "음한 내공의 제어를 시험",
+          "proposed_effects": {
+            "sect_trust_delta": 0,
+            "personal_insight_delta": 1
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        },
+        {
+          "id": "bukhae_CHOICE_3",
+          "label": "얼음의 패턴에서 기맥의 흐름을 읽는다",
+          "stakes": "자연 현상을 통해 깨달음을 탐색",
+          "proposed_effects": {
+            "sect_trust_delta": 0,
+            "personal_insight_delta": 1,
+            "requires_followup_npc_answer": true
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        }
+      ],
+      "talent_overlay_by_rank": [
+        {
+          "rank": "범재",
+          "text": "입문 시험의 기본 구절을 충분히 반복해야 한다. 기초를 견고히 다지는 선택이 열려 있다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "기초"
+        },
+        {
+          "rank": "수재",
+          "text": "구결의 맥락을 빠르게 이해하자 전수자는 정통 구절을 맡겨 보려 한다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "정통"
+        },
+        {
+          "rank": "천재",
+          "text": "전수자는 당신의 이해력을 보고 상급 심법의 시험 구절을 꺼낸다. 시험에 통과해야 다음 구절을 받을 수 있다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "정통"
+        },
+        {
+          "rank": "괴물",
+          "text": "전수자 또는 기연의 매개는 평범한 초식을 건너뛰어 상급 심법의 첫 관문을 실제로 연다. 구결을 소지하는 것과 숙련은 다르다.",
+          "entitlement": "upper_first_gate",
+          "heart_quality_candidate": "상급"
+        },
+        {
+          "rank": "초월",
+          "text": "비전 심법의 첫 관문이 열렸다. 다른 이는 수년을 찾아 헤맬 전승이지만, 첫 호흡의 의미를 이해하는 데도 시련이 남아 있다.",
+          "entitlement": "secret_first_gate",
+          "heart_quality_candidate": "비전"
+        }
+      ]
+    },
+    {
+      "id": "INTRO_JOSEON",
+      "path_id": "joseon",
+      "title": "조선 궁술 · 화살이 돌아오는 길",
+      "paragraphs": [
+        "군영의 넓은 사대 끝에는 세 개의 과녁이 서 있었다. 가장 먼 과녁은 바람이 닿는 방향에 가려져 있었고, 가까운 과녁 뒤에는 누군가 움직이는 그림자가 보였다.",
+        "교관은 빠른 발사만을 평가하지 않겠다고 했다. 화살 한 대를 더 쏘기 전에 누구를 해치지 않을지를 판단해야 한다는 뜻이었다.",
+        "국궁의 호흡은 전장의 속도와 연결된다. 그러나 마지막 시위에서 손을 놓을지 말지는 언제나 사람의 선택이다."
+      ],
+      "time_cost_minutes_candidate": 20,
+      "choice_set": [
+        {
+          "id": "joseon_CHOICE_1",
+          "label": "사대 안전을 확보하고 표적을 다시 확인한다",
+          "stakes": "전장의 안전 판단을 우선한다",
+          "proposed_effects": {
+            "sect_trust_delta": 1,
+            "personal_insight_delta": 0
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        },
+        {
+          "id": "joseon_CHOICE_2",
+          "label": "바람을 계산해 먼 과녁을 정확히 노린다",
+          "stakes": "궁술과 운기 집중을 시험한다",
+          "proposed_effects": {
+            "sect_trust_delta": 0,
+            "personal_insight_delta": 1
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        },
+        {
+          "id": "joseon_CHOICE_3",
+          "label": "가까운 그림자의 정체를 파악하기 위해 교관에게 정지를 요청한다",
+          "stakes": "쏘지 않는 선택의 가치를 지킨다",
+          "proposed_effects": {
+            "sect_trust_delta": 0,
+            "personal_insight_delta": 1,
+            "requires_followup_npc_answer": true
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        }
+      ],
+      "talent_overlay_by_rank": [
+        {
+          "rank": "범재",
+          "text": "입문 시험의 기본 구절을 충분히 반복해야 한다. 기초를 견고히 다지는 선택이 열려 있다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "기초"
+        },
+        {
+          "rank": "수재",
+          "text": "구결의 맥락을 빠르게 이해하자 전수자는 정통 구절을 맡겨 보려 한다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "정통"
+        },
+        {
+          "rank": "천재",
+          "text": "전수자는 당신의 이해력을 보고 상급 심법의 시험 구절을 꺼낸다. 시험에 통과해야 다음 구절을 받을 수 있다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "정통"
+        },
+        {
+          "rank": "괴물",
+          "text": "전수자 또는 기연의 매개는 평범한 초식을 건너뛰어 상급 심법의 첫 관문을 실제로 연다. 구결을 소지하는 것과 숙련은 다르다.",
+          "entitlement": "upper_first_gate",
+          "heart_quality_candidate": "상급"
+        },
+        {
+          "rank": "초월",
+          "text": "비전 심법의 첫 관문이 열렸다. 다른 이는 수년을 찾아 헤맬 전승이지만, 첫 호흡의 의미를 이해하는 데도 시련이 남아 있다.",
+          "entitlement": "secret_first_gate",
+          "heart_quality_candidate": "비전"
+        }
+      ]
+    },
+    {
+      "id": "INTRO_WANDERER",
+      "path_id": "wanderer",
+      "title": "무문파 독행 · 낡은 구결",
+      "paragraphs": [
+        "숲속의 무너진 사당에서 낡은 비급의 반쪽을 발견했다. 먹이 번진 구결은 누구의 사문에도 속하지 않은 듯 보였고, 세 줄 가운데 두 줄은 사라져 있었다.",
+        "사당 밖에서는 낯선 순례자가 잃어버린 물건을 찾는 중이었다. 그가 비급을 알아볼지, 먼저 쫓아올지 알 수 없었다.",
+        "스승이 없다면 누구도 당신에게 정답을 주지 않는다. 그러나 다른 사람의 길을 그대로 답습하지 않아도 된다는 자유가 그 자리에 남았다."
+      ],
+      "time_cost_minutes_candidate": 20,
+      "choice_set": [
+        {
+          "id": "wanderer_CHOICE_1",
+          "label": "비급의 출처를 순례자에게 묻는다",
+          "stakes": "인연의 근거를 확보한다",
+          "proposed_effects": {
+            "sect_trust_delta": 1,
+            "personal_insight_delta": 0
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        },
+        {
+          "id": "wanderer_CHOICE_2",
+          "label": "세 줄의 호흡을 재구성한다",
+          "stakes": "독자적인 깨달음의 첫 관문",
+          "proposed_effects": {
+            "sect_trust_delta": 0,
+            "personal_insight_delta": 1
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        },
+        {
+          "id": "wanderer_CHOICE_3",
+          "label": "비급을 숨기고 사당 안의 기맥부터 살핀다",
+          "stakes": "유산의 비밀과 위험을 조사한다",
+          "proposed_effects": {
+            "sect_trust_delta": 0,
+            "personal_insight_delta": 1,
+            "requires_followup_npc_answer": true
+          },
+          "resolution": "USER_CHOICE_REQUIRED",
+          "verified_outcome": "NOT_PLAYED"
+        }
+      ],
+      "talent_overlay_by_rank": [
+        {
+          "rank": "범재",
+          "text": "입문 시험의 기본 구절을 충분히 반복해야 한다. 기초를 견고히 다지는 선택이 열려 있다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "기초"
+        },
+        {
+          "rank": "수재",
+          "text": "구결의 맥락을 빠르게 이해하자 전수자는 정통 구절을 맡겨 보려 한다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "정통"
+        },
+        {
+          "rank": "천재",
+          "text": "전수자는 당신의 이해력을 보고 상급 심법의 시험 구절을 꺼낸다. 시험에 통과해야 다음 구절을 받을 수 있다.",
+          "entitlement": "entry",
+          "heart_quality_candidate": "정통"
+        },
+        {
+          "rank": "괴물",
+          "text": "전수자 또는 기연의 매개는 평범한 초식을 건너뛰어 상급 심법의 첫 관문을 실제로 연다. 구결을 소지하는 것과 숙련은 다르다.",
+          "entitlement": "upper_first_gate",
+          "heart_quality_candidate": "상급"
+        },
+        {
+          "rank": "초월",
+          "text": "비전 심법의 첫 관문이 열렸다. 다른 이는 수년을 찾아 헤맬 전승이지만, 첫 호흡의 의미를 이해하는 데도 시련이 남아 있다.",
+          "entitlement": "secret_first_gate",
+          "heart_quality_candidate": "비전"
+        }
+      ]
+    }
+  ]
+}
