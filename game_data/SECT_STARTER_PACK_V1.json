@@ -8,7 +8,8 @@
     "실제 캐릭터의 재능, 문파, 심법, HP/MP/SP는 아직 선택하지 않았으며 캠페인 세이브에 반영되지 않음.",
     "10슬롯 초기 구성은 각 사문에서 배울 수 있는 예시. 고유 재능의 출처는 최종 확정 전 시험 배정.",
     "Lv.3 추가 액티브는 후보이며 Lv.3 경험치(500 XP) 기준 미달 상태인 현재 캐릭터에는 지급 금지.",
-    "심법의 재능별 상급/비전 품질은 전수권·입문 관문 보장을 뜻하며 실제 숙련이나 전투 보너스 배율은 자동 변경하지 않는다."
+    "심법의 재능별 상급/비전 품질은 전수권·입문 관문 보장을 뜻하며 실제 숙련이나 전투 보너스 배율은 자동 변경하지 않는다.",
+    "11개 전승의 전용 토큰/초식 연계/대응 수단을 구별. secondary.op는 현재 게임마스터가 서사·판정에 활용할 후보이며 완전한 자동 전투 런타임이 아님."
   ],
   "rules": {
     "slot_counts": {
@@ -37,8 +38,9 @@
     "active_heart_limit": 1,
     "manual_state_migration_required": true,
     "balance_status": "UNVERIFIED",
-    "effect_engine_status": "SCHEMA_ONLY_NOT_EXECUTABLE",
-    "noncombat_effect_status": "NARRATIVE_GATED"
+    "effect_engine_status": "EXPERIMENTAL_MECHANIC_TAGS_AND_DAMAGE_DATA__FULL_SIMULATION_NOT_COMPLETED",
+    "noncombat_effect_status": "NARRATIVE_GATED",
+    "talent_heart_contract": "고재능 괴물은 상급편 첫 관문, 초월은 비전편 첫 관문을 실제 확보하는 장면을 초기 경로에 필수 제공. 운기 완성/레벨/경지 자동 해금 금지."
   },
   "heart_quality_candidates": [
     "기초",
@@ -147,11 +149,12 @@
           "cost": null,
           "range": "self",
           "effect": {
-            "op": "heart_affinity",
-            "nature": "정순",
-            "trigger": "first_matching_martial_action",
-            "bonus": 1,
-            "per_round": 1
+            "op": "heart_style_engine",
+            "token": "guardian",
+            "cap": 2,
+            "trigger": "guard_ally",
+            "notes": "호위·보호 전용 연계 토큰은 심법 운용·기초 초식에서 생성하며 전투 종료 시 제거",
+            "numeric_bonus": "OPEN"
           },
           "flavor": "들숨을 바르게 다스려 충격을 견디고 타인을 보호한다"
         },
@@ -173,9 +176,11 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "create_opening",
-              "value": 1,
-              "duration_rounds": 1
+              "op": "guard_ally",
+              "token": "guardian",
+              "cap": 2,
+              "trigger": "on_hit",
+              "duration_rounds": 2
             }
           },
           "flavor": "공격으로 적의 방어 리듬에 틈을 만든다"
@@ -198,8 +203,10 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "attack_penalty",
-              "value": 1,
+              "op": "seal_nonlethal",
+              "token": "guardian",
+              "required_tokens": 0,
+              "trigger": "on_hit_or_action",
               "duration_rounds": 1
             }
           },
@@ -217,10 +224,10 @@
           },
           "range": "self",
           "effect": {
-            "op": "stance",
-            "mode": "extra_movement_zone",
-            "value": 1,
-            "expires": "end_of_turn"
+            "op": "interpose",
+            "token": "guardian",
+            "cost_unchanged": true,
+            "details": "PROPOSED_MANUAL_RESOLUTION_PENDING"
           },
           "flavor": "정해진 교전 리듬을 조절한다"
         },
@@ -236,10 +243,11 @@
           },
           "range": "self",
           "effect": {
-            "op": "reduce_damage",
-            "dice": "1d6",
-            "min": 0,
-            "trigger": "incoming_hit_before_damage"
+            "op": "absorb_for_ally",
+            "token": "guardian",
+            "trigger": "valid_reaction_window",
+            "damage_reduction_dice": "1d6",
+            "details": "PROPOSED_MANUAL_RESOLUTION_PENDING"
           },
           "flavor": "재빠른 호흡으로 피해를 경감한다"
         },
@@ -340,14 +348,52 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "conditional_followup",
-              "trigger": "opening_or_stance",
-              "value": 1
+              "op": "advanced_seal_nonlethal",
+              "token": "guardian",
+              "required_tokens": 1,
+              "trigger": "on_hit",
+              "duration_rounds": 1
             }
           },
           "flavor": "기초 심법과 독문 무공을 연결하는 첫 중급 초식"
         }
-      ]
+      ],
+      "martial_identity": {
+        "name": "호위·보호",
+        "decision_loop": "아군을 보호한 뒤 적의 빈틈을 권장으로 봉한다",
+        "tradeoff": "처음부터 누구나 지킬 수 있으나 측면 기동에 취약",
+        "signature_scene": "옆에 있는 동료를 대신 지키는 근거리 수호",
+        "token": "guardian",
+        "token_cap": 2,
+        "special_action_1": "guard_ally",
+        "special_action_2": "seal_nonlethal",
+        "bonus_action": "interpose",
+        "reaction_action": "absorb_for_ally",
+        "noncombat_use": "escort_weak",
+        "mechanics_status": "PROPOSED_NOT_BALANCED"
+      },
+      "heart_variants": {
+        "entry": {
+          "id": "SHAOLIN_HEART",
+          "name": "정심호흡결",
+          "quality_candidate": "기초/정통",
+          "status": "STARTER_CANDIDATE"
+        },
+        "advanced": {
+          "id": "SHAOLIN_HEART_UPPER",
+          "name": "정심호흡결·상승편",
+          "quality_candidate": "상급",
+          "entry_test": "사부 지도 또는 정당한 비급의 첫 관문",
+          "status": "UNLOCK_CANDIDATE"
+        },
+        "secret": {
+          "id": "SHAOLIN_HEART_SECRET",
+          "name": "정심호흡결·비전편",
+          "quality_candidate": "비전",
+          "entry_test": "문파의 비전 전수 또는 독행의 희귀 깨달음",
+          "status": "UNLOCK_CANDIDATE"
+        }
+      }
     },
     {
       "id": "wudang",
@@ -406,11 +452,12 @@
           "cost": null,
           "range": "self",
           "effect": {
-            "op": "heart_affinity",
-            "nature": "유전",
-            "trigger": "first_matching_martial_action",
-            "bonus": 1,
-            "per_round": 1
+            "op": "heart_style_engine",
+            "token": "redirect",
+            "cap": 2,
+            "trigger": "gain_balance",
+            "notes": "유도·반격 전용 연계 토큰은 심법 운용·기초 초식에서 생성하며 전투 종료 시 제거",
+            "numeric_bonus": "OPEN"
           },
           "flavor": "물 흐르듯 상대의 기세를 읽어 반격의 길을 연다"
         },
@@ -432,9 +479,11 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "create_opening",
-              "value": 1,
-              "duration_rounds": 1
+              "op": "gain_balance",
+              "token": "redirect",
+              "cap": 2,
+              "trigger": "on_hit",
+              "duration_rounds": 2
             }
           },
           "flavor": "공격으로 적의 방어 리듬에 틈을 만든다"
@@ -457,8 +506,10 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "defense_penalty",
-              "value": 1,
+              "op": "consume_balance_counter",
+              "token": "redirect",
+              "required_tokens": 1,
+              "trigger": "on_hit_or_action",
               "duration_rounds": 1
             }
           },
@@ -476,10 +527,10 @@
           },
           "range": "self",
           "effect": {
-            "op": "stance",
-            "mode": "next_attack_bonus",
-            "value": 1,
-            "expires": "end_of_turn"
+            "op": "circle_stance",
+            "token": "redirect",
+            "cost_unchanged": true,
+            "details": "PROPOSED_MANUAL_RESOLUTION_PENDING"
           },
           "flavor": "정해진 교전 리듬을 조절한다"
         },
@@ -495,10 +546,11 @@
           },
           "range": "self",
           "effect": {
-            "op": "reduce_damage",
-            "dice": "1d6",
-            "min": 0,
-            "trigger": "incoming_hit_before_damage"
+            "op": "parry_to_balance",
+            "token": "redirect",
+            "trigger": "valid_reaction_window",
+            "damage_reduction_dice": "1d6",
+            "details": "PROPOSED_MANUAL_RESOLUTION_PENDING"
           },
           "flavor": "재빠른 호흡으로 피해를 경감한다"
         },
@@ -599,14 +651,52 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "conditional_followup",
-              "trigger": "opening_or_stance",
-              "value": 1
+              "op": "advanced_consume_balance_counter",
+              "token": "redirect",
+              "required_tokens": 1,
+              "trigger": "on_hit",
+              "duration_rounds": 1
             }
           },
           "flavor": "기초 심법과 독문 무공을 연결하는 첫 중급 초식"
         }
-      ]
+      ],
+      "martial_identity": {
+        "name": "유도·반격",
+        "decision_loop": "상대의 첫 공격을 흘린 다음 역회전을 만든다",
+        "tradeoff": "적이 공격하지 않거나 교란 상태면 균형 생성이 어려움",
+        "signature_scene": "상대 공세가 거셀수록 반격 타이밍 확보",
+        "token": "redirect",
+        "token_cap": 2,
+        "special_action_1": "gain_balance",
+        "special_action_2": "consume_balance_counter",
+        "bonus_action": "circle_stance",
+        "reaction_action": "parry_to_balance",
+        "noncombat_use": "read_footwork",
+        "mechanics_status": "PROPOSED_NOT_BALANCED"
+      },
+      "heart_variants": {
+        "entry": {
+          "id": "WUDANG_HEART",
+          "name": "현유순기결",
+          "quality_candidate": "기초/정통",
+          "status": "STARTER_CANDIDATE"
+        },
+        "advanced": {
+          "id": "WUDANG_HEART_UPPER",
+          "name": "현유순기결·상승편",
+          "quality_candidate": "상급",
+          "entry_test": "사부 지도 또는 정당한 비급의 첫 관문",
+          "status": "UNLOCK_CANDIDATE"
+        },
+        "secret": {
+          "id": "WUDANG_HEART_SECRET",
+          "name": "현유순기결·비전편",
+          "quality_candidate": "비전",
+          "entry_test": "문파의 비전 전수 또는 독행의 희귀 깨달음",
+          "status": "UNLOCK_CANDIDATE"
+        }
+      }
     },
     {
       "id": "hwasan",
@@ -665,11 +755,12 @@
           "cost": null,
           "range": "self",
           "effect": {
-            "op": "heart_affinity",
-            "nature": "경쾌",
-            "trigger": "first_matching_martial_action",
-            "bonus": 1,
-            "per_round": 1
+            "op": "heart_style_engine",
+            "token": "combo",
+            "cap": 2,
+            "trigger": "gain_combo",
+            "notes": "쾌검·연계 전용 연계 토큰은 심법 운용·기초 초식에서 생성하며 전투 종료 시 제거",
+            "numeric_bonus": "OPEN"
           },
           "flavor": "짧고 빠른 운기로 검세의 리듬을 쌓는다"
         },
@@ -691,9 +782,11 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "create_opening",
-              "value": 1,
-              "duration_rounds": 1
+              "op": "gain_combo",
+              "token": "combo",
+              "cap": 2,
+              "trigger": "on_hit",
+              "duration_rounds": 2
             }
           },
           "flavor": "공격으로 적의 방어 리듬에 틈을 만든다"
@@ -716,8 +809,10 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "movement_penalty",
-              "value": 1,
+              "op": "spend_combo_burst",
+              "token": "combo",
+              "required_tokens": 0,
+              "trigger": "on_hit_or_action",
               "duration_rounds": 1
             }
           },
@@ -735,10 +830,10 @@
           },
           "range": "self",
           "effect": {
-            "op": "stance",
-            "mode": "extra_movement_zone",
-            "value": 1,
-            "expires": "end_of_turn"
+            "op": "flash_step",
+            "token": "combo",
+            "cost_unchanged": true,
+            "details": "PROPOSED_MANUAL_RESOLUTION_PENDING"
           },
           "flavor": "정해진 교전 리듬을 조절한다"
         },
@@ -754,10 +849,11 @@
           },
           "range": "self",
           "effect": {
-            "op": "reduce_damage",
-            "dice": "1d6",
-            "min": 0,
-            "trigger": "incoming_hit_before_damage"
+            "op": "evade_and_keep_combo",
+            "token": "combo",
+            "trigger": "valid_reaction_window",
+            "damage_reduction_dice": "1d6",
+            "details": "PROPOSED_MANUAL_RESOLUTION_PENDING"
           },
           "flavor": "재빠른 호흡으로 피해를 경감한다"
         },
@@ -858,14 +954,52 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "conditional_followup",
-              "trigger": "opening_or_stance",
-              "value": 1
+              "op": "advanced_spend_combo_burst",
+              "token": "combo",
+              "required_tokens": 1,
+              "trigger": "on_hit",
+              "duration_rounds": 1
             }
           },
           "flavor": "기초 심법과 독문 무공을 연결하는 첫 중급 초식"
         }
-      ]
+      ],
+      "martial_identity": {
+        "name": "쾌검·연계",
+        "decision_loop": "검세를 이어나가고 완성된 검세를 폭발시킨다",
+        "tradeoff": "연계가 끊기면 강력한 일격 조건이 다시 필요",
+        "signature_scene": "짧은 초식을 연결해 단 한 번의 만개를 만드는 검술",
+        "token": "combo",
+        "token_cap": 2,
+        "special_action_1": "gain_combo",
+        "special_action_2": "spend_combo_burst",
+        "bonus_action": "flash_step",
+        "reaction_action": "evade_and_keep_combo",
+        "noncombat_use": "detect_sword_marks",
+        "mechanics_status": "PROPOSED_NOT_BALANCED"
+      },
+      "heart_variants": {
+        "entry": {
+          "id": "HWASAN_HEART",
+          "name": "매향운기결",
+          "quality_candidate": "기초/정통",
+          "status": "STARTER_CANDIDATE"
+        },
+        "advanced": {
+          "id": "HWASAN_HEART_UPPER",
+          "name": "매향운기결·상승편",
+          "quality_candidate": "상급",
+          "entry_test": "사부 지도 또는 정당한 비급의 첫 관문",
+          "status": "UNLOCK_CANDIDATE"
+        },
+        "secret": {
+          "id": "HWASAN_HEART_SECRET",
+          "name": "매향운기결·비전편",
+          "quality_candidate": "비전",
+          "entry_test": "문파의 비전 전수 또는 독행의 희귀 깨달음",
+          "status": "UNLOCK_CANDIDATE"
+        }
+      }
     },
     {
       "id": "namgung",
@@ -924,11 +1058,12 @@
           "cost": null,
           "range": "self",
           "effect": {
-            "op": "heart_affinity",
-            "nature": "강맹",
-            "trigger": "first_matching_martial_action",
-            "bonus": 1,
-            "per_round": 1
+            "op": "heart_style_engine",
+            "token": "pressure",
+            "cap": 2,
+            "trigger": "apply_pressure",
+            "notes": "패검·압박 전용 연계 토큰은 심법 운용·기초 초식에서 생성하며 전투 종료 시 제거",
+            "numeric_bonus": "OPEN"
           },
           "flavor": "검에 실은 기운을 압축해 상대의 방어를 정면으로 뚫는다"
         },
@@ -950,9 +1085,11 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "create_opening",
-              "value": 1,
-              "duration_rounds": 1
+              "op": "apply_pressure",
+              "token": "pressure",
+              "cap": 2,
+              "trigger": "on_hit",
+              "duration_rounds": 2
             }
           },
           "flavor": "공격으로 적의 방어 리듬에 틈을 만든다"
@@ -975,8 +1112,10 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "attack_penalty",
-              "value": 1,
+              "op": "break_guard_if_pressure",
+              "token": "pressure",
+              "required_tokens": 1,
+              "trigger": "on_hit_or_action",
               "duration_rounds": 1
             }
           },
@@ -994,10 +1133,10 @@
           },
           "range": "self",
           "effect": {
-            "op": "stance",
-            "mode": "next_attack_bonus",
-            "value": 1,
-            "expires": "end_of_turn"
+            "op": "forward_step",
+            "token": "pressure",
+            "cost_unchanged": true,
+            "details": "PROPOSED_MANUAL_RESOLUTION_PENDING"
           },
           "flavor": "정해진 교전 리듬을 조절한다"
         },
@@ -1013,10 +1152,11 @@
           },
           "range": "self",
           "effect": {
-            "op": "reduce_damage",
-            "dice": "1d6",
-            "min": 0,
-            "trigger": "incoming_hit_before_damage"
+            "op": "steadfast_guard",
+            "token": "pressure",
+            "trigger": "valid_reaction_window",
+            "damage_reduction_dice": "1d6",
+            "details": "PROPOSED_MANUAL_RESOLUTION_PENDING"
           },
           "flavor": "재빠른 호흡으로 피해를 경감한다"
         },
@@ -1117,14 +1257,52 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "conditional_followup",
-              "trigger": "opening_or_stance",
-              "value": 1
+              "op": "advanced_break_guard_if_pressure",
+              "token": "pressure",
+              "required_tokens": 1,
+              "trigger": "on_hit",
+              "duration_rounds": 1
             }
           },
           "flavor": "기초 심법과 독문 무공을 연결하는 첫 중급 초식"
         }
-      ]
+      ],
+      "martial_identity": {
+        "name": "패검·압박",
+        "decision_loop": "정면 충돌로 방어를 약화시키고 파검을 가한다",
+        "tradeoff": "무리하게 밀어붙이면 측면과 후열 보호에 취약",
+        "signature_scene": "강한 방어를 무너뜨리는 정면 충돌",
+        "token": "pressure",
+        "token_cap": 2,
+        "special_action_1": "apply_pressure",
+        "special_action_2": "break_guard_if_pressure",
+        "bonus_action": "forward_step",
+        "reaction_action": "steadfast_guard",
+        "noncombat_use": "read_family_sword",
+        "mechanics_status": "PROPOSED_NOT_BALANCED"
+      },
+      "heart_variants": {
+        "entry": {
+          "id": "NAMGUNG_HEART",
+          "name": "청뢰토납결",
+          "quality_candidate": "기초/정통",
+          "status": "STARTER_CANDIDATE"
+        },
+        "advanced": {
+          "id": "NAMGUNG_HEART_UPPER",
+          "name": "청뢰토납결·상승편",
+          "quality_candidate": "상급",
+          "entry_test": "사부 지도 또는 정당한 비급의 첫 관문",
+          "status": "UNLOCK_CANDIDATE"
+        },
+        "secret": {
+          "id": "NAMGUNG_HEART_SECRET",
+          "name": "청뢰토납결·비전편",
+          "quality_candidate": "비전",
+          "entry_test": "문파의 비전 전수 또는 독행의 희귀 깨달음",
+          "status": "UNLOCK_CANDIDATE"
+        }
+      }
     },
     {
       "id": "peng",
@@ -1183,11 +1361,12 @@
           "cost": null,
           "range": "self",
           "effect": {
-            "op": "heart_affinity",
-            "nature": "강체",
-            "trigger": "first_matching_martial_action",
-            "bonus": 1,
-            "per_round": 1
+            "op": "heart_style_engine",
+            "token": "momentum",
+            "cap": 2,
+            "trigger": "wide_sweep",
+            "notes": "중도·범위 전용 연계 토큰은 심법 운용·기초 초식에서 생성하며 전투 종료 시 제거",
+            "numeric_bonus": "OPEN"
           },
           "flavor": "묵직한 칼끝에 흔들리지 않는 축기를 싣는다"
         },
@@ -1209,9 +1388,11 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "create_opening",
-              "value": 1,
-              "duration_rounds": 1
+              "op": "wide_sweep",
+              "token": "momentum",
+              "cap": 2,
+              "trigger": "on_hit",
+              "duration_rounds": 2
             }
           },
           "flavor": "공격으로 적의 방어 리듬에 틈을 만든다"
@@ -1234,8 +1415,10 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "defense_penalty",
-              "value": 1,
+              "op": "stagger_break",
+              "token": "momentum",
+              "required_tokens": 0,
+              "trigger": "on_hit_or_action",
               "duration_rounds": 1
             }
           },
@@ -1253,10 +1436,10 @@
           },
           "range": "self",
           "effect": {
-            "op": "stance",
-            "mode": "extra_movement_zone",
-            "value": 1,
-            "expires": "end_of_turn"
+            "op": "heavy_stride",
+            "token": "momentum",
+            "cost_unchanged": true,
+            "details": "PROPOSED_MANUAL_RESOLUTION_PENDING"
           },
           "flavor": "정해진 교전 리듬을 조절한다"
         },
@@ -1272,10 +1455,11 @@
           },
           "range": "self",
           "effect": {
-            "op": "reduce_damage",
-            "dice": "1d6",
-            "min": 0,
-            "trigger": "incoming_hit_before_damage"
+            "op": "block_with_blade",
+            "token": "momentum",
+            "trigger": "valid_reaction_window",
+            "damage_reduction_dice": "1d6",
+            "details": "PROPOSED_MANUAL_RESOLUTION_PENDING"
           },
           "flavor": "재빠른 호흡으로 피해를 경감한다"
         },
@@ -1376,14 +1560,52 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "conditional_followup",
-              "trigger": "opening_or_stance",
-              "value": 1
+              "op": "advanced_stagger_break",
+              "token": "momentum",
+              "required_tokens": 1,
+              "trigger": "on_hit",
+              "duration_rounds": 1
             }
           },
           "flavor": "기초 심법과 독문 무공을 연결하는 첫 중급 초식"
         }
-      ]
+      ],
+      "martial_identity": {
+        "name": "중도·범위",
+        "decision_loop": "묵직한 도세로 다수와 진형을 한꺼번에 압박한다",
+        "tradeoff": "좁은 통로나 경량 표적을 따라잡기 어려움",
+        "signature_scene": "중도와 공간을 활용하는 제압",
+        "token": "momentum",
+        "token_cap": 2,
+        "special_action_1": "wide_sweep",
+        "special_action_2": "stagger_break",
+        "bonus_action": "heavy_stride",
+        "reaction_action": "block_with_blade",
+        "noncombat_use": "read_weight_shifts",
+        "mechanics_status": "PROPOSED_NOT_BALANCED"
+      },
+      "heart_variants": {
+        "entry": {
+          "id": "PENG_HEART",
+          "name": "철하축기결",
+          "quality_candidate": "기초/정통",
+          "status": "STARTER_CANDIDATE"
+        },
+        "advanced": {
+          "id": "PENG_HEART_UPPER",
+          "name": "철하축기결·상승편",
+          "quality_candidate": "상급",
+          "entry_test": "사부 지도 또는 정당한 비급의 첫 관문",
+          "status": "UNLOCK_CANDIDATE"
+        },
+        "secret": {
+          "id": "PENG_HEART_SECRET",
+          "name": "철하축기결·비전편",
+          "quality_candidate": "비전",
+          "entry_test": "문파의 비전 전수 또는 독행의 희귀 깨달음",
+          "status": "UNLOCK_CANDIDATE"
+        }
+      }
     },
     {
       "id": "tang",
@@ -1442,11 +1664,12 @@
           "cost": null,
           "range": "self",
           "effect": {
-            "op": "heart_affinity",
-            "nature": "정밀",
-            "trigger": "first_matching_martial_action",
-            "bonus": 1,
-            "per_round": 1
+            "op": "heart_style_engine",
+            "token": "needle",
+            "cap": 2,
+            "trigger": "pin_target",
+            "notes": "독·암기·정밀 전용 연계 토큰은 심법 운용·기초 초식에서 생성하며 전투 종료 시 제거",
+            "numeric_bonus": "OPEN"
           },
           "flavor": "미세한 혈맥을 읽어 살상이 아닌 제압도 가능케 한다"
         },
@@ -1468,9 +1691,11 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "create_opening",
-              "value": 1,
-              "duration_rounds": 1
+              "op": "pin_target",
+              "token": "needle",
+              "cap": 2,
+              "trigger": "on_hit",
+              "duration_rounds": 2
             }
           },
           "flavor": "공격으로 적의 방어 리듬에 틈을 만든다"
@@ -1493,8 +1718,10 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "movement_penalty",
-              "value": 1,
+              "op": "nonlethal_seal",
+              "token": "needle",
+              "required_tokens": 0,
+              "trigger": "on_hit_or_action",
               "duration_rounds": 1
             }
           },
@@ -1512,10 +1739,10 @@
           },
           "range": "self",
           "effect": {
-            "op": "stance",
-            "mode": "next_attack_bonus",
-            "value": 1,
-            "expires": "end_of_turn"
+            "op": "reload_or_recover",
+            "token": "needle",
+            "cost_unchanged": true,
+            "details": "PROPOSED_MANUAL_RESOLUTION_PENDING"
           },
           "flavor": "정해진 교전 리듬을 조절한다"
         },
@@ -1531,10 +1758,11 @@
           },
           "range": "self",
           "effect": {
-            "op": "reduce_damage",
-            "dice": "1d6",
-            "min": 0,
-            "trigger": "incoming_hit_before_damage"
+            "op": "neutralize_poison",
+            "token": "needle",
+            "trigger": "valid_reaction_window",
+            "damage_reduction_dice": "1d6",
+            "details": "PROPOSED_MANUAL_RESOLUTION_PENDING"
           },
           "flavor": "재빠른 호흡으로 피해를 경감한다"
         },
@@ -1635,14 +1863,52 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "conditional_followup",
-              "trigger": "opening_or_stance",
-              "value": 1
+              "op": "advanced_nonlethal_seal",
+              "token": "needle",
+              "required_tokens": 1,
+              "trigger": "on_hit",
+              "duration_rounds": 1
             }
           },
           "flavor": "기초 심법과 독문 무공을 연결하는 첫 중급 초식"
         }
-      ]
+      ],
+      "martial_identity": {
+        "name": "독·암기·정밀",
+        "decision_loop": "표적의 혈도와 약성을 파악한 뒤 비살상으로 제압한다",
+        "tradeoff": "독·암기 준비물이 부족하면 제압 능력이 약화",
+        "signature_scene": "죽이지 않고 증언 가능한 상태로 적을 붙잡는다",
+        "token": "needle",
+        "token_cap": 2,
+        "special_action_1": "pin_target",
+        "special_action_2": "nonlethal_seal",
+        "bonus_action": "reload_or_recover",
+        "reaction_action": "neutralize_poison",
+        "noncombat_use": "analyze_toxin",
+        "mechanics_status": "PROPOSED_NOT_BALANCED"
+      },
+      "heart_variants": {
+        "entry": {
+          "id": "TANG_HEART",
+          "name": "세맥유도결",
+          "quality_candidate": "기초/정통",
+          "status": "STARTER_CANDIDATE"
+        },
+        "advanced": {
+          "id": "TANG_HEART_UPPER",
+          "name": "세맥유도결·상승편",
+          "quality_candidate": "상급",
+          "entry_test": "사부 지도 또는 정당한 비급의 첫 관문",
+          "status": "UNLOCK_CANDIDATE"
+        },
+        "secret": {
+          "id": "TANG_HEART_SECRET",
+          "name": "세맥유도결·비전편",
+          "quality_candidate": "비전",
+          "entry_test": "문파의 비전 전수 또는 독행의 희귀 깨달음",
+          "status": "UNLOCK_CANDIDATE"
+        }
+      }
     },
     {
       "id": "zhuge",
@@ -1701,11 +1967,12 @@
           "cost": null,
           "range": "self",
           "effect": {
-            "op": "heart_affinity",
-            "nature": "진식",
-            "trigger": "first_matching_martial_action",
-            "bonus": 1,
-            "per_round": 1
+            "op": "heart_style_engine",
+            "token": "sigil",
+            "cap": 2,
+            "trigger": "place_sigil",
+            "notes": "진법·지형 전용 연계 토큰은 심법 운용·기초 초식에서 생성하며 전투 종료 시 제거",
+            "numeric_bonus": "OPEN"
           },
           "flavor": "땅의 기맥을 읽고 작은 진식을 연결해 전황을 조율한다"
         },
@@ -1727,9 +1994,11 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "create_opening",
-              "value": 1,
-              "duration_rounds": 1
+              "op": "place_sigil",
+              "token": "sigil",
+              "cap": 2,
+              "trigger": "on_hit",
+              "duration_rounds": 2
             }
           },
           "flavor": "공격으로 적의 방어 리듬에 틈을 만든다"
@@ -1752,8 +2021,10 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "attack_penalty",
-              "value": 1,
+              "op": "trigger_sigil",
+              "token": "sigil",
+              "required_tokens": 0,
+              "trigger": "on_hit_or_action",
               "duration_rounds": 1
             }
           },
@@ -1771,10 +2042,10 @@
           },
           "range": "self",
           "effect": {
-            "op": "stance",
-            "mode": "extra_movement_zone",
-            "value": 1,
-            "expires": "end_of_turn"
+            "op": "rotate_sigil",
+            "token": "sigil",
+            "cost_unchanged": true,
+            "details": "PROPOSED_MANUAL_RESOLUTION_PENDING"
           },
           "flavor": "정해진 교전 리듬을 조절한다"
         },
@@ -1790,10 +2061,11 @@
           },
           "range": "self",
           "effect": {
-            "op": "reduce_damage",
-            "dice": "1d6",
-            "min": 0,
-            "trigger": "incoming_hit_before_damage"
+            "op": "deflect_into_sigil",
+            "token": "sigil",
+            "trigger": "valid_reaction_window",
+            "damage_reduction_dice": "1d6",
+            "details": "PROPOSED_MANUAL_RESOLUTION_PENDING"
           },
           "flavor": "재빠른 호흡으로 피해를 경감한다"
         },
@@ -1894,14 +2166,52 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "conditional_followup",
-              "trigger": "opening_or_stance",
-              "value": 1
+              "op": "advanced_trigger_sigil",
+              "token": "sigil",
+              "required_tokens": 1,
+              "trigger": "on_hit",
+              "duration_rounds": 1
             }
           },
           "flavor": "기초 심법과 독문 무공을 연결하는 첫 중급 초식"
         }
-      ]
+      ],
+      "martial_identity": {
+        "name": "진법·지형",
+        "decision_loop": "진문을 배치해 적의 이동을 유도하고 적재적소에 발동한다",
+        "tradeoff": "움직이는 적이 진식 범위를 벗어나면 효율 하락",
+        "signature_scene": "제한된 공간에 문양을 배치해 수적 열세를 뒤집음",
+        "token": "sigil",
+        "token_cap": 2,
+        "special_action_1": "place_sigil",
+        "special_action_2": "trigger_sigil",
+        "bonus_action": "rotate_sigil",
+        "reaction_action": "deflect_into_sigil",
+        "noncombat_use": "read_formation",
+        "mechanics_status": "PROPOSED_NOT_BALANCED"
+      },
+      "heart_variants": {
+        "entry": {
+          "id": "ZHUGE_HEART",
+          "name": "문진공명결",
+          "quality_candidate": "기초/정통",
+          "status": "STARTER_CANDIDATE"
+        },
+        "advanced": {
+          "id": "ZHUGE_HEART_UPPER",
+          "name": "문진공명결·상승편",
+          "quality_candidate": "상급",
+          "entry_test": "사부 지도 또는 정당한 비급의 첫 관문",
+          "status": "UNLOCK_CANDIDATE"
+        },
+        "secret": {
+          "id": "ZHUGE_HEART_SECRET",
+          "name": "문진공명결·비전편",
+          "quality_candidate": "비전",
+          "entry_test": "문파의 비전 전수 또는 독행의 희귀 깨달음",
+          "status": "UNLOCK_CANDIDATE"
+        }
+      }
     },
     {
       "id": "cheonma",
@@ -1960,11 +2270,12 @@
           "cost": null,
           "range": "self",
           "effect": {
-            "op": "heart_affinity",
-            "nature": "강맹",
-            "trigger": "first_matching_martial_action",
-            "bonus": 1,
-            "per_round": 1
+            "op": "heart_style_engine",
+            "token": "frenzy",
+            "cap": 2,
+            "trigger": "take_risk_for_power",
+            "notes": "마공·환류 전용 연계 토큰은 심법 운용·기초 초식에서 생성하며 전투 종료 시 제거",
+            "numeric_bonus": "OPEN"
           },
           "flavor": "공세에서 파생된 기운을 되돌려 강한 일격을 만든다"
         },
@@ -1986,9 +2297,11 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "create_opening",
-              "value": 1,
-              "duration_rounds": 1
+              "op": "take_risk_for_power",
+              "token": "frenzy",
+              "cap": 2,
+              "trigger": "on_hit",
+              "duration_rounds": 2
             }
           },
           "flavor": "공격으로 적의 방어 리듬에 틈을 만든다"
@@ -2011,8 +2324,10 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "defense_penalty",
-              "value": 1,
+              "op": "consume_frenzy_strike",
+              "token": "frenzy",
+              "required_tokens": 1,
+              "trigger": "on_hit_or_action",
               "duration_rounds": 1
             }
           },
@@ -2030,10 +2345,10 @@
           },
           "range": "self",
           "effect": {
-            "op": "stance",
-            "mode": "next_attack_bonus",
-            "value": 1,
-            "expires": "end_of_turn"
+            "op": "blood_step",
+            "token": "frenzy",
+            "cost_unchanged": true,
+            "details": "PROPOSED_MANUAL_RESOLUTION_PENDING"
           },
           "flavor": "정해진 교전 리듬을 조절한다"
         },
@@ -2049,10 +2364,11 @@
           },
           "range": "self",
           "effect": {
-            "op": "reduce_damage",
-            "dice": "1d6",
-            "min": 0,
-            "trigger": "incoming_hit_before_damage"
+            "op": "reverse_impact",
+            "token": "frenzy",
+            "trigger": "valid_reaction_window",
+            "damage_reduction_dice": "1d6",
+            "details": "PROPOSED_MANUAL_RESOLUTION_PENDING"
           },
           "flavor": "재빠른 호흡으로 피해를 경감한다"
         },
@@ -2153,14 +2469,52 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "conditional_followup",
-              "trigger": "opening_or_stance",
-              "value": 1
+              "op": "advanced_consume_frenzy_strike",
+              "token": "frenzy",
+              "required_tokens": 1,
+              "trigger": "on_hit",
+              "duration_rounds": 1
             }
           },
           "flavor": "기초 심법과 독문 무공을 연결하는 첫 중급 초식"
         }
-      ]
+      ],
+      "martial_identity": {
+        "name": "마공·환류",
+        "decision_loop": "공세의 대가를 감수하고 획득한 기운을 강공으로 바꾼다",
+        "tradeoff": "기혈 관리 실패 시 누적되는 부담",
+        "signature_scene": "짧은 순간의 폭발력과 지불할 위험 사이 선택",
+        "token": "frenzy",
+        "token_cap": 2,
+        "special_action_1": "take_risk_for_power",
+        "special_action_2": "consume_frenzy_strike",
+        "bonus_action": "blood_step",
+        "reaction_action": "reverse_impact",
+        "noncombat_use": "sense_faction_threat",
+        "mechanics_status": "PROPOSED_NOT_BALANCED"
+      },
+      "heart_variants": {
+        "entry": {
+          "id": "CHEONMA_HEART",
+          "name": "흑뢰환류결",
+          "quality_candidate": "기초/정통",
+          "status": "STARTER_CANDIDATE"
+        },
+        "advanced": {
+          "id": "CHEONMA_HEART_UPPER",
+          "name": "흑뢰환류결·상승편",
+          "quality_candidate": "상급",
+          "entry_test": "사부 지도 또는 정당한 비급의 첫 관문",
+          "status": "UNLOCK_CANDIDATE"
+        },
+        "secret": {
+          "id": "CHEONMA_HEART_SECRET",
+          "name": "흑뢰환류결·비전편",
+          "quality_candidate": "비전",
+          "entry_test": "문파의 비전 전수 또는 독행의 희귀 깨달음",
+          "status": "UNLOCK_CANDIDATE"
+        }
+      }
     },
     {
       "id": "bukhae",
@@ -2219,11 +2573,12 @@
           "cost": null,
           "range": "self",
           "effect": {
-            "op": "heart_affinity",
-            "nature": "음한",
-            "trigger": "first_matching_martial_action",
-            "bonus": 1,
-            "per_round": 1
+            "op": "heart_style_engine",
+            "token": "chill",
+            "cap": 2,
+            "trigger": "apply_chill",
+            "notes": "빙공·지속 제어 전용 연계 토큰은 심법 운용·기초 초식에서 생성하며 전투 종료 시 제거",
+            "numeric_bonus": "OPEN"
           },
           "flavor": "차가운 기운을 안정적으로 순환시켜 움직임을 늦춘다"
         },
@@ -2245,9 +2600,11 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "create_opening",
-              "value": 1,
-              "duration_rounds": 1
+              "op": "apply_chill",
+              "token": "chill",
+              "cap": 2,
+              "trigger": "on_hit",
+              "duration_rounds": 2
             }
           },
           "flavor": "공격으로 적의 방어 리듬에 틈을 만든다"
@@ -2270,8 +2627,10 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "movement_penalty",
-              "value": 1,
+              "op": "freeze_at_two_chill",
+              "token": "chill",
+              "required_tokens": 0,
+              "trigger": "on_hit_or_action",
               "duration_rounds": 1
             }
           },
@@ -2289,10 +2648,10 @@
           },
           "range": "self",
           "effect": {
-            "op": "stance",
-            "mode": "extra_movement_zone",
-            "value": 1,
-            "expires": "end_of_turn"
+            "op": "ice_slide",
+            "token": "chill",
+            "cost_unchanged": true,
+            "details": "PROPOSED_MANUAL_RESOLUTION_PENDING"
           },
           "flavor": "정해진 교전 리듬을 조절한다"
         },
@@ -2308,10 +2667,11 @@
           },
           "range": "self",
           "effect": {
-            "op": "reduce_damage",
-            "dice": "1d6",
-            "min": 0,
-            "trigger": "incoming_hit_before_damage"
+            "op": "frost_veil",
+            "token": "chill",
+            "trigger": "valid_reaction_window",
+            "damage_reduction_dice": "1d6",
+            "details": "PROPOSED_MANUAL_RESOLUTION_PENDING"
           },
           "flavor": "재빠른 호흡으로 피해를 경감한다"
         },
@@ -2412,14 +2772,52 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "conditional_followup",
-              "trigger": "opening_or_stance",
-              "value": 1
+              "op": "advanced_freeze_at_two_chill",
+              "token": "chill",
+              "required_tokens": 1,
+              "trigger": "on_hit",
+              "duration_rounds": 1
             }
           },
           "flavor": "기초 심법과 독문 무공을 연결하는 첫 중급 초식"
         }
-      ]
+      ],
+      "martial_identity": {
+        "name": "빙공·지속 제어",
+        "decision_loop": "한기를 누적해 위험한 공격의 속도를 늦추고 빙결을 건다",
+        "tradeoff": "강한 적은 완전 동결에 저항하며 내력이 끊기면 감속만 유지",
+        "signature_scene": "기운의 온도로 교전 리듬을 바꾼다",
+        "token": "chill",
+        "token_cap": 2,
+        "special_action_1": "apply_chill",
+        "special_action_2": "freeze_at_two_chill",
+        "bonus_action": "ice_slide",
+        "reaction_action": "frost_veil",
+        "noncombat_use": "sense_temperature",
+        "mechanics_status": "PROPOSED_NOT_BALANCED"
+      },
+      "heart_variants": {
+        "entry": {
+          "id": "BUKHAE_HEART",
+          "name": "설혼한맥결",
+          "quality_candidate": "기초/정통",
+          "status": "STARTER_CANDIDATE"
+        },
+        "advanced": {
+          "id": "BUKHAE_HEART_UPPER",
+          "name": "설혼한맥결·상승편",
+          "quality_candidate": "상급",
+          "entry_test": "사부 지도 또는 정당한 비급의 첫 관문",
+          "status": "UNLOCK_CANDIDATE"
+        },
+        "secret": {
+          "id": "BUKHAE_HEART_SECRET",
+          "name": "설혼한맥결·비전편",
+          "quality_candidate": "비전",
+          "entry_test": "문파의 비전 전수 또는 독행의 희귀 깨달음",
+          "status": "UNLOCK_CANDIDATE"
+        }
+      }
     },
     {
       "id": "joseon",
@@ -2478,11 +2876,12 @@
           "cost": null,
           "range": "self",
           "effect": {
-            "op": "heart_affinity",
-            "nature": "정밀",
-            "trigger": "first_matching_martial_action",
-            "bonus": 1,
-            "per_round": 1
+            "op": "heart_style_engine",
+            "token": "aim",
+            "cap": 2,
+            "trigger": "mark_at_range",
+            "notes": "궁술·정확도 전용 연계 토큰은 심법 운용·기초 초식에서 생성하며 전투 종료 시 제거",
+            "numeric_bonus": "OPEN"
           },
           "flavor": "호흡을 다스려 활의 연속 조준과 몸의 균형을 유지한다"
         },
@@ -2504,9 +2903,11 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "create_opening",
-              "value": 1,
-              "duration_rounds": 1
+              "op": "mark_at_range",
+              "token": "aim",
+              "cap": 2,
+              "trigger": "on_hit",
+              "duration_rounds": 2
             }
           },
           "flavor": "공격으로 적의 방어 리듬에 틈을 만든다"
@@ -2529,8 +2930,10 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "attack_penalty",
-              "value": 1,
+              "op": "pierce_when_aimed",
+              "token": "aim",
+              "required_tokens": 0,
+              "trigger": "on_hit_or_action",
               "duration_rounds": 1
             }
           },
@@ -2548,10 +2951,10 @@
           },
           "range": "self",
           "effect": {
-            "op": "stance",
-            "mode": "next_attack_bonus",
-            "value": 1,
-            "expires": "end_of_turn"
+            "op": "retreat_and_draw",
+            "token": "aim",
+            "cost_unchanged": true,
+            "details": "PROPOSED_MANUAL_RESOLUTION_PENDING"
           },
           "flavor": "정해진 교전 리듬을 조절한다"
         },
@@ -2567,10 +2970,11 @@
           },
           "range": "self",
           "effect": {
-            "op": "reduce_damage",
-            "dice": "1d6",
-            "min": 0,
-            "trigger": "incoming_hit_before_damage"
+            "op": "drop_and_evade",
+            "token": "aim",
+            "trigger": "valid_reaction_window",
+            "damage_reduction_dice": "1d6",
+            "details": "PROPOSED_MANUAL_RESOLUTION_PENDING"
           },
           "flavor": "재빠른 호흡으로 피해를 경감한다"
         },
@@ -2671,14 +3075,52 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "conditional_followup",
-              "trigger": "opening_or_stance",
-              "value": 1
+              "op": "advanced_pierce_when_aimed",
+              "token": "aim",
+              "required_tokens": 1,
+              "trigger": "on_hit",
+              "duration_rounds": 1
             }
           },
           "flavor": "기초 심법과 독문 무공을 연결하는 첫 중급 초식"
         }
-      ]
+      ],
+      "martial_identity": {
+        "name": "궁술·정확도",
+        "decision_loop": "거리·바람·조준을 관리해 먼 곳의 위험한 적을 끊는다",
+        "tradeoff": "방향과 시야가 막힌 근접 포위에 취약",
+        "signature_scene": "장거리 견제로 동료의 접근로를 만든다",
+        "token": "aim",
+        "token_cap": 2,
+        "special_action_1": "mark_at_range",
+        "special_action_2": "pierce_when_aimed",
+        "bonus_action": "retreat_and_draw",
+        "reaction_action": "drop_and_evade",
+        "noncombat_use": "read_wind",
+        "mechanics_status": "PROPOSED_NOT_BALANCED"
+      },
+      "heart_variants": {
+        "entry": {
+          "id": "JOSEON_HEART",
+          "name": "청연균식법",
+          "quality_candidate": "기초/정통",
+          "status": "STARTER_CANDIDATE"
+        },
+        "advanced": {
+          "id": "JOSEON_HEART_UPPER",
+          "name": "청연균식법·상승편",
+          "quality_candidate": "상급",
+          "entry_test": "사부 지도 또는 정당한 비급의 첫 관문",
+          "status": "UNLOCK_CANDIDATE"
+        },
+        "secret": {
+          "id": "JOSEON_HEART_SECRET",
+          "name": "청연균식법·비전편",
+          "quality_candidate": "비전",
+          "entry_test": "문파의 비전 전수 또는 독행의 희귀 깨달음",
+          "status": "UNLOCK_CANDIDATE"
+        }
+      }
     },
     {
       "id": "wanderer",
@@ -2737,11 +3179,12 @@
           "cost": null,
           "range": "self",
           "effect": {
-            "op": "heart_affinity",
-            "nature": "정순",
-            "trigger": "first_matching_martial_action",
-            "bonus": 1,
-            "per_round": 1
+            "op": "heart_style_engine",
+            "token": "insight",
+            "cap": 2,
+            "trigger": "observe_then_strike",
+            "notes": "독행·응변 전용 연계 토큰은 심법 운용·기초 초식에서 생성하며 전투 종료 시 제거",
+            "numeric_bonus": "OPEN"
           },
           "flavor": "남의 가르침이 없더라도 구결의 결손을 탐구하며 자신만의 길을 찾는다"
         },
@@ -2763,9 +3206,11 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "create_opening",
-              "value": 1,
-              "duration_rounds": 1
+              "op": "observe_then_strike",
+              "token": "insight",
+              "cap": 2,
+              "trigger": "on_hit",
+              "duration_rounds": 2
             }
           },
           "flavor": "공격으로 적의 방어 리듬에 틈을 만든다"
@@ -2788,8 +3233,10 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "defense_penalty",
-              "value": 1,
+              "op": "adapt_technique",
+              "token": "insight",
+              "required_tokens": 0,
+              "trigger": "on_hit_or_action",
               "duration_rounds": 1
             }
           },
@@ -2807,10 +3254,10 @@
           },
           "range": "self",
           "effect": {
-            "op": "stance",
-            "mode": "extra_movement_zone",
-            "value": 1,
-            "expires": "end_of_turn"
+            "op": "switch_style",
+            "token": "insight",
+            "cost_unchanged": true,
+            "details": "PROPOSED_MANUAL_RESOLUTION_PENDING"
           },
           "flavor": "정해진 교전 리듬을 조절한다"
         },
@@ -2826,10 +3273,11 @@
           },
           "range": "self",
           "effect": {
-            "op": "reduce_damage",
-            "dice": "1d6",
-            "min": 0,
-            "trigger": "incoming_hit_before_damage"
+            "op": "improvised_guard",
+            "token": "insight",
+            "trigger": "valid_reaction_window",
+            "damage_reduction_dice": "1d6",
+            "details": "PROPOSED_MANUAL_RESOLUTION_PENDING"
           },
           "flavor": "재빠른 호흡으로 피해를 경감한다"
         },
@@ -2930,14 +3378,52 @@
             "flat": "ability_mod",
             "precision": "proficiency_plus_ability",
             "secondary": {
-              "op": "conditional_followup",
-              "trigger": "opening_or_stance",
-              "value": 1
+              "op": "advanced_adapt_technique",
+              "token": "insight",
+              "required_tokens": 1,
+              "trigger": "on_hit",
+              "duration_rounds": 1
             }
           },
           "flavor": "기초 심법과 독문 무공을 연결하는 첫 중급 초식"
         }
-      ]
+      ],
+      "martial_identity": {
+        "name": "독행·응변",
+        "decision_loop": "상황을 관찰해 이번 전투에서 필요한 조합을 스스로 익힌다",
+        "tradeoff": "전문 문파의 완성된 시그니처 비기에서는 불리할 수 있음",
+        "signature_scene": "오래된 비급과 실전의 작은 깨달음으로 무학을 조합",
+        "token": "insight",
+        "token_cap": 2,
+        "special_action_1": "observe_then_strike",
+        "special_action_2": "adapt_technique",
+        "bonus_action": "switch_style",
+        "reaction_action": "improvised_guard",
+        "noncombat_use": "decode_fragment",
+        "mechanics_status": "PROPOSED_NOT_BALANCED"
+      },
+      "heart_variants": {
+        "entry": {
+          "id": "WANDERER_HEART",
+          "name": "무명토납결",
+          "quality_candidate": "기초/정통",
+          "status": "STARTER_CANDIDATE"
+        },
+        "advanced": {
+          "id": "WANDERER_HEART_UPPER",
+          "name": "무명토납결·상승편",
+          "quality_candidate": "상급",
+          "entry_test": "사부 지도 또는 정당한 비급의 첫 관문",
+          "status": "UNLOCK_CANDIDATE"
+        },
+        "secret": {
+          "id": "WANDERER_HEART_SECRET",
+          "name": "무명토납결·비전편",
+          "quality_candidate": "비전",
+          "entry_test": "문파의 비전 전수 또는 독행의 희귀 깨달음",
+          "status": "UNLOCK_CANDIDATE"
+        }
+      }
     }
   ]
 }
