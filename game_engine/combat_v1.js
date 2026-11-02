@@ -33,7 +33,7 @@
      sp:initialSP??(10+2*mod(abilities.WIS)),maxSp:initialSP??(10+2*mod(abilities.WIS)),
      mp:initialMP??(10+2*mod(abilities.INT)),maxMp:initialMP??(10+2*mod(abilities.INT)),
      def:10+mod(abilities.DEX),abilities:copy(abilities),zone:0,tokens:0,
-     firstDiscount:false,survivalUsed:false,brace:0,stanceAttack:0,stanceDefense:0};
+     firstDiscount:false,survivalUsed:false,retreatAttempted:false,parleyAttempted:false,brace:0,stanceAttack:0,stanceDefense:0};
    for(const f of ["hp","sp","mp"])assert(Number.isInteger(player[f])&&player[f]>0,"invalid experimental resource "+f);
    const enemies=enemyCards.map((e,i)=>{
       assert(Number.isInteger(e.hp)&&e.hp>0&&Number.isInteger(e.def)&&e.def>=1&&Number.isInteger(e.attackBonus),"enemy stats required");
@@ -41,7 +41,7 @@
       assert(Number.isInteger(e.zone)&&e.zone>=0&&e.zone<=2,"enemy zone 0..2");
       assert(e.attackRange===undefined||Number.isInteger(e.attackRange)&&e.attackRange>=0&&e.attackRange<=2,"enemy attackRange 0..2");
       return {id:e.id||"enemy"+i,hp:e.hp,maxHp:e.hp,def:e.def,attackBonus:e.attackBonus,
-        damageBonus:e.damageBonus,attackRange:e.attackRange??0,targetPreference:e.targetPreference==="ally"?"ally":"player",zone:e.zone,skip:0,weaken:0,slow:0,mark:0,cover:e.cover||0};
+        damageBonus:e.damageBonus,attackRange:e.attackRange??0,targetPreference:e.targetPreference==="ally"?"ally":"player",negotiable:e.negotiable===true,negotiationDC:e.negotiationDC??13,zone:e.zone,skip:0,weaken:0,slow:0,mark:0,cover:e.cover||0};
    });
    assert(new Set(enemies.map(e=>e.id)).size===enemies.length,"enemy IDs must be unique");
    const state={version:1,scope:STATUS,rng:seed>>>0,round:1,routeId,style:path.martial_identity.token,
@@ -121,7 +121,9 @@
  }
  function validateChoice(s,pack,choice){
    assert(choice&&typeof choice==="object","choice required");
-   assert(["A1","A2","BASIC","GUARD","RECOVER"].includes(choice.main),"unknown main");
+   assert(["A1","A2","BASIC","GUARD","RECOVER","RETREAT","PARLEY"].includes(choice.main),"unknown main");
+   if(choice.main==="RETREAT")assert(!s.player.retreatAttempted,"already attempted retreat");
+   if(choice.main==="PARLEY"){assert(!s.player.parleyAttempted,"already attempted parley");assert(s.enemies.some(x=>x.hp>0&&x.negotiable),"no enemy willing to negotiate");}
    assert(choice.bonus==null||choice.bonus==="BONUS","unknown bonus");
    assert(Number.isInteger(choice.moveDelta??0)&&Math.abs(choice.moveDelta??0)<=1,"moveDelta out of range");
    assert(Number.isInteger(choice.bonusZoneDelta??0)&&Math.abs(choice.bonusZoneDelta??0)<=1,"bonusZoneDelta out of range");
@@ -148,7 +150,7 @@
  }
  function legalActions(s,pack,opts){
    const targetId=opts?.targetId;
-   const main=["BASIC","A1","A2","GUARD","RECOVER"];
+   const main=["BASIC","A1","A2","GUARD","RECOVER","RETREAT","PARLEY"];
    return main.filter(which=>{
      try {validateChoice(s,pack,{main:which,targetId,moveDelta:opts?.moveDelta??0});return true;}
      catch{return false;}
@@ -156,7 +158,24 @@
  }
  function playerMain(s,pack,choice){
    const p=s.player,route=s.routeId,path=pathOf(pack,route),id=choice.main;
-   assert(["A1","A2","BASIC","GUARD","RECOVER"].includes(id),"unknown main action");
+   assert(["A1","A2","BASIC","GUARD","RECOVER","RETREAT","PARLEY"].includes(id),"unknown main action");
+   if(id==="RETREAT"){
+      p.retreatAttempted=true;
+      const dc=12+Math.max(0,current(s).length-1)*2;
+      const result=attackRoll(s,2+mod(p.abilities.DEX),dc);
+      s.events.push({type:"RETREAT_ATTEMPT",success:result.success,dc});
+      if(result.success)s.winner="escaped";
+      return;
+   }
+   if(id==="PARLEY"){
+      p.parleyAttempted=true;
+      const enemy=current(s).find(x=>x.negotiable);
+      assert(enemy,"no enemy negotiable");
+      const result=attackRoll(s,2+mod(p.abilities.CHA),enemy.negotiationDC);
+      s.events.push({type:"PARLEY_ATTEMPT",target:enemy.id,success:result.success});
+      if(result.success)s.winner="truce";
+      return;
+   }
    if(id==="GUARD"){p.stanceDefense=2;s.events.push({type:"GUARD",bonus:2});return;}
    if(id==="RECOVER"){
       p.sp=Math.min(p.maxSp,p.sp+3);p.mp=Math.min(p.maxMp,p.mp+2);p.stanceDefense=1;
@@ -239,9 +258,9 @@
      playerBonus(s,pack,choice);
      playerMain(s,pack,choice);
    }
-   if(!enemyFirst&&current(s).length>0&&s.player.hp>0)enemyPhase(s,choice);
+   if(!enemyFirst&&!s.winner&&current(s).length>0&&s.player.hp>0)enemyPhase(s,choice);
    if(s.player.hp<=0||s.ally&&s.ally.hp<=0)s.winner="enemies";
-   else if(current(s).length===0)s.winner="player";
+   else if(!s.winner&&current(s).length===0)s.winner="player";
    const result={round:s.round,choice:copy(choice),events:copy(s.events),hp:s.player.hp,sp:s.player.sp,mp:s.player.mp,enemies:s.enemies.map(x=>({id:x.id,hp:x.hp})),winner:s.winner,allyHp:s.ally?.hp??null};
    s.history.push(result);s.round++;s.turns++;
    return s;
