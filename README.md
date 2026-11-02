@@ -70,3 +70,14 @@ CREAM’S AEGIS는 선택의 결과가 동료와 세력, 지역에 오래 남는
 - [새 캐릭터 생성 빌더](game_engine/character_builder.js): 27PB·시작10슬롯·11경로×5재능 검증 및 실험 자원 상한.
 - [성장 통합 회귀 검사](tests/GROWTH_V2_TEST.js): 53개 실행 테스트, 165개 새 인물 조합 통과.
 - **캐릭터 0명 / 활성 세션 없음.** 새 세이브는 신규 캐릭터 생성 후에만 GitHub에 추가.
+
+## 8. A안 — 실전 플레이 우선형 초기 게임 (2026-11-02)
+
+- [실전 운영 규칙](rules/PLAY_FIRST_CORE_V1.md): Lv1~3 문파 입교·심법 수련·d20·자원·퇴각·교섭·저장.
+- [전투 계산 엔진](game_engine/combat_v1.js): 11개 무학의 주행동·추가행동·반응, SP/MP, 사거리, 동료 호위, 전투 결과.
+- [실제 배운 무공만 허용](game_engine/campaign_battle_gate_v1.js): 전수/심법 활성 검증 및 상태 체크포인트 생성.
+- [신규 캐릭터 세션 생성](game_engine/session_bootstrap_v1.js): 플레이어 확정 후 Lv1 새 캐릭터만 준비.
+- [초반 적/입문 대련 카드](game_data/STARTER_ENCOUNTERS_V1.json): 난도별 7개 시험 시나리오.
+- [실행 회귀 테스트](tests/COMBAT_V1_TEST.js): **44/44 통과, 11,000회** 초기 전투 샘플.
+- [검증 보고서](tests/PLAY_FIRST_VALIDATION_V1.md): 성장 53/53, 신규 생성 165 조합, 전투/수련 연결과 남은 한계.
+- **현재 정식 캐릭터 0명.** 정본 D-038~D-043 유지, 새 수치는 실험값이며 플레이어가 새 캐릭터를 확정하기 전 옛 세이브가 부활하지 않는다.
